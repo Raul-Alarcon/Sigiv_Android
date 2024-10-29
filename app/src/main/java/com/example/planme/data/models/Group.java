@@ -1,12 +1,14 @@
 package com.example.planme.data.models;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Group extends Entity{
     private String name;
     private String description;
     private final ArrayList<Message> messages;
     private final ArrayList<User> users;
+    private final Date date;
 
 
     public Group(String id, String name, String description) {
@@ -15,6 +17,7 @@ public class Group extends Entity{
         this.description = description;
         this.messages =  new ArrayList<>();
         this.users = new ArrayList<>();
+        this.date = new Date();
     }
 
     public String getName() { return  this.name;}
@@ -36,10 +39,11 @@ public class Group extends Entity{
     public void setUser(User user){
         this.users.add(user);
     }
+    public Date getDate() { return this.date; }
 
     public Message getLastMessage(){
-        int index = this.messages.size() - 1;
-        return this.messages.get(index);
+        int index = !this.messages.isEmpty() ? this.messages.size() - 1 : -1;
+        return index == -1 ? null : this.messages.get(index);
     }
 
 }
