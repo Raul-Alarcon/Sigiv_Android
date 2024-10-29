@@ -13,26 +13,25 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.planme.R;
+import com.example.planme.databinding.FragmentMeBinding;
 
 public class MeFragment extends Fragment {
 
-    private MeViewModel mViewModel;
-
-    public static MeFragment newInstance() {
-        return new MeFragment();
-    }
-
+    FragmentMeBinding binding;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_me, container, false);
+
+        MeViewModel viewModel = new ViewModelProvider(this).get(MeViewModel.class);
+        this.binding = FragmentMeBinding.inflate(inflater, container, false);
+
+        return this.binding.getRoot();
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(MeViewModel.class);
-        // TODO: Use the ViewModel
+    public void onDestroyView() {
+        super.onDestroyView();
+        this.binding = null;
     }
 
 }

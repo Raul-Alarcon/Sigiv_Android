@@ -13,26 +13,27 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.planme.R;
+import com.example.planme.databinding.FragmentCalendarBinding;
 
 public class CalendarFragment extends Fragment {
 
-    private CalendarViewModel mViewModel;
-
-    public static CalendarFragment newInstance() {
-        return new CalendarFragment();
-    }
+    private FragmentCalendarBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
+
+        CalendarViewModel calendarViewModel = new ViewModelProvider(this)
+                .get(CalendarViewModel.class);
+        this.binding = FragmentCalendarBinding.inflate(inflater, container, false);
+
+        return this.binding.getRoot();
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(CalendarViewModel.class);
-        // TODO: Use the ViewModel
+    public void onDestroyView() {
+        super.onDestroyView();
+        this.binding = null;
     }
 
 }
