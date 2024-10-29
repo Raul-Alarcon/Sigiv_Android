@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.planme.R;
 import com.example.planme.databinding.FragmentMeBinding;
 
 public class MeFragment extends Fragment {
