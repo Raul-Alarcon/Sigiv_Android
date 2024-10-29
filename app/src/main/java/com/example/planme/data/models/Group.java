@@ -37,4 +37,9 @@ public class Group extends Entity{
         this.users.add(user);
     }
 
+    public Message getLastMessage(){
+        int index = this.messages.size() - 1;
+        return this.messages.get(index);
+    }
+
 }
