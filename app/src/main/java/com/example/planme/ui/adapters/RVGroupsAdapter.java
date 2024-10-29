@@ -6,9 +6,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class RVGroupsAdapter extends RecyclerView.Adapter<RVGroupsAdapter.GroupHolder> {
-
-
     @NonNull
     @Override
     public GroupHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
