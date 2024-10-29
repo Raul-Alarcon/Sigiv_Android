@@ -14,24 +14,24 @@ import android.view.ViewGroup;
 
 import com.example.planme.R;
 
-public class TaskkFragment extends Fragment {
+public class TaskFragment extends Fragment {
 
-    private TaskkViewModel mViewModel;
+    private TaskViewModel mViewModel;
 
-    public static TaskkFragment newInstance() {
-        return new TaskkFragment();
+    public static TaskFragment newInstance() {
+        return new TaskFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_taskk, container, false);
+        return inflater.inflate(R.layout.fragment_task, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(TaskkViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(TaskViewModel.class);
         // TODO: Use the ViewModel
     }
 
