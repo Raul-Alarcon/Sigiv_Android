@@ -33,14 +33,14 @@ public class MainActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_task, R.id.navigation_calendar, R.id.navigation_me)
                 .build();
-        this.navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController(this, this.navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, this.navController);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        return this.navController.navigateUp() || super.onSupportNavigateUp();
+        return navController.navigateUp() || super.onSupportNavigateUp();
     }
 
 }
