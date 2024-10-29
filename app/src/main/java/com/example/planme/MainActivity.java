@@ -16,7 +16,7 @@ import com.example.planme.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     NavController navController;
-    private ActivityMainBinding binding;
+    ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

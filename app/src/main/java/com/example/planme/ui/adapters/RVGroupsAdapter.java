@@ -15,6 +15,7 @@ import com.example.planme.databinding.ItemGroupBinding;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class RVGroupsAdapter extends RecyclerView.Adapter<RVGroupsAdapter.GroupHolder> {
 
@@ -64,7 +65,8 @@ public class RVGroupsAdapter extends RecyclerView.Adapter<RVGroupsAdapter.GroupH
 
         public void render(Group item, OnClickListener onClickListener){
             Message lastMessage = item.getLastMessage();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm a", new Locale("es", "ES"));
+
             //binding.imgGroup.setImageDrawable(); traer la imagen del grupo
             binding.tvTitleGroup.setText(item.getName());
             binding.tvLastMessage.setText( lastMessage != null ? lastMessage.getContent() : "Recently Created");

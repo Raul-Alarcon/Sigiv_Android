@@ -25,9 +25,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
         RVGroupsAdapter rvGroupsAdapter = new RVGroupsAdapter();
-        rvGroupsAdapter.setOnClickListener((position, group) -> {
-            Toast.makeText(this.getContext(), group.getName(), Toast.LENGTH_SHORT).show();
-        });
+        rvGroupsAdapter.setOnClickListener((position, group) -> Toast.makeText(this.getContext(), group.getName(), Toast.LENGTH_SHORT).show());
         binding.rvAllGroups.setAdapter(rvGroupsAdapter);
 
         setUpRvGroups(rvGroupsAdapter);

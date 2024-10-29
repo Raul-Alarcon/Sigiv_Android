@@ -4,13 +4,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.planme.data.local.LocalContext;
 import com.example.planme.data.models.Group;
-import com.example.planme.data.repository.GroupRepository;
 import com.example.planme.utils.GenerateID;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HomeViewModel extends ViewModel {
 
