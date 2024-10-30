@@ -50,7 +50,7 @@
         android:background="@drawable/rounded_background"
         android:backgroundTint="#E8E8E8"
         android:padding="12dp"
-        tools:text="@alicnors Take a look at the Flow.collectAsStateWithLifecycle()"
+        tools:text="alicnors Take a look at the Flow.collectAsStateWithLifecycle()"
         android:textColor="#333333"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@id/userName"
