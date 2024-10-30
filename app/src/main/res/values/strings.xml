@@ -12,5 +12,7 @@
     <string name="content_description_img">Imagen del grupo</string>
     <string name="title_page_chat">Chat</string>
 
+    <string name="edit_text_placeholder">Mensaje</string>
+
 
 </resources>

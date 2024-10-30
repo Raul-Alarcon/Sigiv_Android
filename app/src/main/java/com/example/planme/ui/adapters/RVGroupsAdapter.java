@@ -12,6 +12,7 @@ import com.example.planme.R;
 import com.example.planme.data.models.Group;
 import com.example.planme.data.models.Message;
 import com.example.planme.databinding.ItemGroupBinding;
+import com.example.planme.ui.base.OnClickListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,10 +28,6 @@ public class RVGroupsAdapter extends RecyclerView.Adapter<RVGroupsAdapter.GroupH
 
     public void setGroups(ArrayList<Group> groups){
         this.groups = groups;
-    }
-
-    public interface OnClickListener {
-         void onClick(int position, Group group);
     }
 
     public void setOnClickListener(OnClickListener onClickListener) {

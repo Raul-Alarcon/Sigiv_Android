@@ -4,62 +4,53 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <!-- Message from Taylor Brooks -->
-    <TextView
-        android:id="@+id/taylorMessage"
-        android:layout_width="wrap_content"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_chat_message"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#E8E8E8"
-        android:background="@drawable/rounded_background"
-        android:padding="12dp"
-        tools:text="@alicnors Take a look at the Flow.collectAsStateWithLifecycle() APIs. You can use all the same stuff."
-        android:textColor="#000000"
-        android:textSize="14sp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Sticker Image -->
-    <ImageView
-        android:id="@+id/stickerImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="Thank You Sticker"
-        android:src="@drawable/ic_launcher_foreground"
-        app:layout_constraintTop_toBottomOf="@id/taylorMessage"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="40dp"/>
 
-    <!-- User Message -->
-    <TextView
-        android:id="@+id/userMessage"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#4F67FF"
-        android:background="@drawable/rounded_background"
-        android:padding="12dp"
-        tools:text="Thank you!"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/stickerImage"
-        app:layout_constraintStart_toStartOf="@id/stickerImage"
-        android:layout_marginTop="8dp"/>
+        android:background="#F2F2F7"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <!-- Check it out message -->
-    <TextView
-        android:id="@+id/checkItOutMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#4F67FF"
-        android:background="@drawable/rounded_background"
-        android:padding="12dp"
-        android:text="Check it out!"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/userMessage"
-        app:layout_constraintStart_toStartOf="@id/userMessage"
-        android:layout_marginTop="8dp"/>
+        <EditText
+            android:id="@+id/etv_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawablePadding="8dp"
+            android:hint="@string/edit_text_placeholder"
+            android:padding="8dp"
+            android:textColor="#888888"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:layout_marginStart="8dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_button_selector"
+            android:src="@drawable/baseline_send_24"
+            android:contentDescription="@string/fab_transformation_scrim_behavior"
+            android:scaleType="center"
+            app:tint="#ffffff" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

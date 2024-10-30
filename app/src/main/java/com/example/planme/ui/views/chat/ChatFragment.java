@@ -14,11 +14,26 @@ import android.view.ViewGroup;
 
 import com.example.planme.R;
 import com.example.planme.databinding.FragmentChatBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.Objects;
 
 public class ChatFragment extends Fragment {
 
     FragmentChatBinding binding;
     ChatViewModel mViewModel;
+    BottomNavigationView bottomNavigationView;
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        bottomNavigationView = requireActivity().findViewById(R.id.nav_view);
+        if (bottomNavigationView != null) {
+            bottomNavigationView.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -34,6 +49,9 @@ public class ChatFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         this.binding = null;
+        if (bottomNavigationView != null) {
+            bottomNavigationView.setVisibility(View.VISIBLE);
+        }
     }
 
 }
