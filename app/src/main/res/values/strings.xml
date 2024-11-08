@@ -3,9 +3,10 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
     <string name="txt_nav_bottom_task">Tareas</string>
     <string name="txt_nav_bottom_calendar">Calendario</string>
     <string name="txt_nav_bottom_me">Yo</string>
-    <string name="fab_description">Agregar nuevo elemento</string>
+
 
 </resources>
