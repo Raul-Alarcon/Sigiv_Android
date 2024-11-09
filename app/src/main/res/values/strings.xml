@@ -7,6 +7,12 @@
     <string name="txt_nav_bottom_task">Tareas</string>
     <string name="txt_nav_bottom_calendar">Calendario</string>
     <string name="txt_nav_bottom_me">Yo</string>
+    <string name="fb_description">Nuevo Grupo</string>
+    <string name="title_page_me">Perfil</string>
+    <string name="content_description_img">Imagen del grupo</string>
+    <string name="title_page_chat">Chat</string>
+
+    <string name="edit_text_placeholder">Mensaje</string>
 
 
 </resources>
