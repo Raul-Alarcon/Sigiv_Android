@@ -28,4 +28,10 @@
         android:name="com.example.planme.ui.views.me.MeFragment"
         android:label="@string/txt_nav_bottom_me"
         tools:layout="@layout/fragment_me" />
+
+    <fragment
+        android:id="@+id/navigation_info"
+        android:name="com.example.planme.ui.views.chat.InfoFragment"
+        android:label="@string/txt_nav_bottom_me"
+        tools:layout="@layout/fragment_info" />
 </navigation>

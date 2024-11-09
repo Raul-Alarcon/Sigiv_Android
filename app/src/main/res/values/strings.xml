@@ -7,6 +7,14 @@
     <string name="txt_nav_bottom_task">Tareas</string>
     <string name="txt_nav_bottom_calendar">Calendario</string>
     <string name="txt_nav_bottom_me">Yo</string>
-
+    <!-- String Info -->
+    <string name="title_perfil_de_grupo">Perfil De Grupo</string>
+    <string name="title_Uso">Estudiantes Uso</string>
+    <string name="title_Sonsonate">12 miembros · Sonsonate</string>
+    <string name="title_Unirse">Unirse al grupo</string>
+    <string name="title_Miembros">Miembros</string>
+    <string name="number_12">12</string>
+    <string name="text_info">Info.</string>
+    <string name="text_random_code">Estudiantes de ingenieria en sistemas</string>
 
 </resources>
