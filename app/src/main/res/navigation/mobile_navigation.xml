@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_home">
 
         <action android:id="@+id/navigation_home_to_navigation_chat"
-            app:destination="@+id/navigation_chat"/>
+            app:destination="@+id/navigation_chat"
+
+            />
     </fragment>
 
     <fragment
@@ -38,5 +40,12 @@
         android:name="com.example.planme.ui.views.chat.ChatFragment"
         android:label="@string/title_page_chat"
         tools:layout="@layout/fragment_chat" />
+
+    <fragment
+        android:id="@+id/navigation_scan_modal"
+        android:name="com.example.planme.ui.views.home.modal.ScanModalDialogFragment"
+        android:label="Scanner"
+        tools:layout="@layout/scan_modal"
+        />
 
 </navigation>

@@ -1,12 +1,17 @@
 <resources>
+
     <string name="app_name">PlanMe</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-
     <string name="txt_nav_bottom_task">Tareas</string>
     <string name="txt_nav_bottom_calendar">Calendario</string>
     <string name="txt_nav_bottom_me">Yo</string>
-
+    <string name="fab_description">Floating Action Button Description</string>
+    <string name="edit_text_placeholder">Enter text here</string>
+    <string name="fb_description">Facebook Button Description</string>
+    <string name="content_description_img">Image Content Description</string>
+    <string name="title_page_me">Page Title Me</string>
+    <string name="title_page_chat">Page Title Chat</string>
 
 </resources>

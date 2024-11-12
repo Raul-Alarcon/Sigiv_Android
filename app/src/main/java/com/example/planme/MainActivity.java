@@ -1,9 +1,11 @@
 package com.example.planme;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.planme.data.local.LocalContext;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
