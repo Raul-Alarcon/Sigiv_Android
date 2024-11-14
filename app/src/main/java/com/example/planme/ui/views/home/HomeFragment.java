@@ -4,29 +4,53 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
+import com.example.planme.R;
+import com.example.planme.data.models.Group;
 import com.example.planme.databinding.FragmentHomeBinding;
+import com.example.planme.ui.adapters.RVGroupsAdapter;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private HomeViewModel homeViewModel;
+    NavController navController;
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
+
+        //navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
+
+        this.homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        RVGroupsAdapter rvGroupsAdapter = new RVGroupsAdapter();
+        rvGroupsAdapter.setOnClickListener((position, group) -> {
+            this.navController.navigate(R.id.navigation_home_to_navigation_chat);
+        });
+        binding.rvAllGroups.setAdapter(rvGroupsAdapter);
+
+        setUpRvGroups(rvGroupsAdapter);
+
+        return binding.getRoot();
+    }
+
+    private void setUpRvGroups(RVGroupsAdapter rvGroupsAdapter) {
+        this.homeViewModel.getGroups().observe(getViewLifecycleOwner(),rvGroupsAdapter::setGroups);
     }
 
     @Override
