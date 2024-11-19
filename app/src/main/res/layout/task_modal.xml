@@ -22,7 +22,7 @@
             android:layout_marginEnd="353dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Cerrar"
-            android:src="@drawable/clear" />
+            android:src="@drawable/ic_clear" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/circle_button_background"
-            android:src="@drawable/grid_edit"
+            android:src="@drawable/Ic_tabla_editar"
             android:contentDescription="Establecer recordatorio" />
     </LinearLayout>
 
