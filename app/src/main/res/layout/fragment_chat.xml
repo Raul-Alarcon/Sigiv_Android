@@ -46,7 +46,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/rounded_button_selector"
-            android:src="@drawable/ic_enviar"
+            android:src="@drawable/ic_send"
             android:contentDescription="@string/fab_transformation_scrim_behavior"
             android:scaleType="center"
             app:tint="#ffffff" />

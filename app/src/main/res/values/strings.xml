@@ -13,5 +13,6 @@
     <string name="content_description_img">Image Content Description</string>
     <string name="title_page_me">Page Title Me</string>
     <string name="title_page_chat">Page Title Chat</string>
+    <string name="scan_modal">Escanear QR</string>
 
 </resources>
