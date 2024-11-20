@@ -7,12 +7,12 @@
     <string name="txt_nav_bottom_task">Tareas</string>
     <string name="txt_nav_bottom_calendar">Calendario</string>
     <string name="txt_nav_bottom_me">Yo</string>
-    <string name="fab_description">Floating Action Button Description</string>
+    <string name="fab_description">Boton flotante</string>
     <string name="edit_text_placeholder">Enter text here</string>
     <string name="fb_description">Facebook Button Description</string>
     <string name="content_description_img">Image Content Description</string>
-    <string name="title_page_me">Page Title Me</string>
-    <string name="title_page_chat">Page Title Chat</string>
-    <string name="scan_modal">Escanear QR</string>
+    <string name="title_page_me">Titulo del Perfil</string>
+    <string name="title_page_chat">Titulo de pagina chat</string>
+    <string name="scan_modal">Escaner QR</string>
 
 </resources>
