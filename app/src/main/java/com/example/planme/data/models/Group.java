@@ -6,6 +6,7 @@ import java.util.Date;
 public class Group extends Entity{
     private String name;
     private String description;
+    private String code;
     private final ArrayList<Message> messages;
     private final ArrayList<User> users;
     private final Date date;
@@ -46,4 +47,11 @@ public class Group extends Entity{
         return index == -1 ? null : this.messages.get(index);
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 }
