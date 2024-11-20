@@ -14,16 +14,25 @@ import android.view.ViewGroup;
 
 import com.example.planme.R;
 import com.example.planme.databinding.FragmentChatBinding;
+import com.example.planme.ui.adapters.RVMessageAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.Objects;
 
 public class ChatFragment extends Fragment {
 
     FragmentChatBinding binding;
-    ChatViewModel mViewModel;
+    ChatViewModel chatViewModel;
     BottomNavigationView bottomNavigationView;
 
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+
+        chatViewModel = new ViewModelProvider(this).get(ChatViewModel.class);
+        binding = FragmentChatBinding.inflate(inflater, container, false);
+
+        return binding.getRoot();
+
+    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -32,17 +41,12 @@ public class ChatFragment extends Fragment {
         if (bottomNavigationView != null) {
             bottomNavigationView.setVisibility(View.GONE);
         }
-    }
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+        RVMessageAdapter messageAdapter = new RVMessageAdapter();
+        this.binding.rvChatMessage.setAdapter(messageAdapter);
 
-        mViewModel = new ViewModelProvider(this).get(ChatViewModel.class);
-        binding = FragmentChatBinding.inflate(inflater, container, false);
-
-        return binding.getRoot();
-
+        this.chatViewModel.getMessageUI().observe(getViewLifecycleOwner(),
+                messageUIS -> messageUIS.forEach(messageAdapter::setMessage));
     }
 
     @Override

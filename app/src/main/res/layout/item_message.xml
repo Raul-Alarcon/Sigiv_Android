@@ -1,60 +1,320 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="end"
+    android:id="@+id/message_container"
     android:padding="8dp">
 
-    <!-- Profile Image -->
-    <ImageView
-        android:id="@+id/profileImage"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_launcher_foreground"
-        tools:contentDescription="Profile Image"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+    <LinearLayout
+        android:id="@+id/other_message_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible">
 
-    <!-- User Name -->
-    <TextView
-        android:id="@+id/userName"
+        <!-- Profile Image -->
+        <ImageView
+            android:id="@+id/other_profile_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_launcher_foreground"
+            tools:contentDescription="Profile Image" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/other_message_property"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <!-- User Name -->
+                <TextView
+                    android:id="@+id/other_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Taylor Brooks"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <!-- Time Text -->
+                <TextView
+                    android:id="@+id/other_user_time_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="8:05 PM"
+                    android:textColor="#888888"
+                    android:textSize="12sp"
+                    android:layout_marginHorizontal="8dp" />
+
+
+            </LinearLayout>
+
+            <!-- Message Bubble -->
+            <TextView
+                android:id="@+id/other_message_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/rounded_background"
+                android:padding="12dp"
+                tools:text="alicnors Take a look at the Flow.collectAsStateWithLifecycle() "
+                android:textSize="14sp"
+                android:backgroundTint="#E8E8E8"
+                android:textColor="#333333"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/my_message_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Taylor Brooks"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@id/profileImage"
-        app:layout_constraintTop_toTopOf="@id/profileImage"/>
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="end">
+
+            <LinearLayout
+                android:id="@+id/my_message_property"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end">
+                <!-- Time Text -->
+                <TextView
+                    android:id="@+id/my_user_time_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="8:05 PM"
+                    android:textColor="#888888"
+                    android:textSize="12sp"
+                    android:layout_marginHorizontal="8dp" />
+
+
+                <!-- User Name -->
+                <TextView
+                    android:id="@+id/my_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Taylor Brooks"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <!-- Message Bubble -->
+            <TextView
+                android:id="@+id/my_message_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/rounded_background"
+                android:backgroundTint="?attr/colorPrimary"
+                android:padding="12dp"
+                tools:text="alicnors Take a look at"
+                android:textSize="14sp"
+                android:textColor="@color/my_msg_text_color"/>
+
+        </LinearLayout>
+
+
+        <!-- Profile Image -->
+        <ImageView
+            android:id="@+id/my_profile_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_launcher_foreground"
+            tools:contentDescription="Profile Image" />
+
+    </LinearLayout>
+
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/my_message_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:gravity="end">-->
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="end">-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/my_message_property"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="end">-->
+
+<!--                &lt;!&ndash; Time Text &ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:id="@+id/my_user_time_message"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    tools:text="8:05 PM"-->
+<!--                    android:textColor="#888888"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:layout_marginEnd="8dp"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/userName2"-->
+<!--                    app:layout_constraintBaseline_toBaselineOf="@id/userName2"/>-->
+
+<!--                &lt;!&ndash; User Name &ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:id="@+id/my_user_name"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    tools:text="Taylor Brooks"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/profileImage2"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/profileImage2"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--            &lt;!&ndash; Message Bubble &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/my_message_text"-->
+<!--                android:layout_width="300dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="4dp"-->
+<!--                android:background="@drawable/rounded_background"-->
+<!--                android:backgroundTint="?attr/colorPrimary"-->
+<!--                android:padding="12dp"-->
+<!--                tools:text="alicnors Take a look at the Flow.collectAsStateWithLifecycle() "-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="14sp"/>-->
+<!--        </LinearLayout>-->
+
+<!--        &lt;!&ndash; Profile Image &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/my_profile_img"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:src="@drawable/ic_launcher_foreground"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:contentDescription="Profile Image" />-->
+
+<!--    </LinearLayout>-->
+
+
+
+
+
+
+
+
+    <!-- Profile Image -->
+<!--    <ImageView-->
+<!--        android:id="@+id/profileImage"-->
+<!--        android:layout_width="40dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        tools:contentDescription="Profile Image"-->
+<!--        android:src="@drawable/ic_launcher_foreground"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/userName"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        tools:text="Taylor Brooks"-->
+<!--        android:textColor="#000000"-->
+<!--        android:textSize="14sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/profileImage"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <!-- Time Text -->
-    <TextView
-        android:id="@+id/timeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="8:05 PM"
-        android:textColor="#888888"
-        android:textSize="12sp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@id/userName"
-        app:layout_constraintBaseline_toBaselineOf="@id/userName"/>
+<!--    <TextView-->
+<!--        android:id="@+id/timeText"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        tools:text="8:05 PM"-->
+<!--        android:textColor="#888888"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:textSize="12sp"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/userName"-->
+<!--        app:layout_constraintBaseline_toBaselineOf="@id/userName" />-->
 
-    <!-- Message Bubble -->
-    <TextView
-        android:id="@+id/messageText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_background"
-        android:backgroundTint="#E8E8E8"
-        android:padding="12dp"
-        tools:text="alicnors Take a look at the Flow.collectAsStateWithLifecycle()"
-        android:textColor="#333333"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@id/userName"
-        app:layout_constraintTop_toBottomOf="@id/userName"
-        android:layout_marginTop="4dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</RelativeLayout>
+<!--<androidx.constraintlayout.widget.ConstraintLayout-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:padding="8dp">-->
+
+<!--    &lt;!&ndash; Profile Image &ndash;&gt;-->
+<!--    <ImageView-->
+<!--        android:id="@+id/profileImage"-->
+<!--        android:layout_width="40dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:src="@drawable/ic_launcher_foreground"-->
+<!--        tools:contentDescription="Profile Image"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"/>-->
+
+<!--    &lt;!&ndash; User Name &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/userName"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        tools:text="Taylor Brooks"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="#000000"-->
+<!--        android:textSize="14sp"-->
+<!--        app:layout_constraintStart_toEndOf="@id/profileImage"-->
+<!--        app:layout_constraintTop_toTopOf="@id/profileImage"/>-->
+
+<!--    &lt;!&ndash; Time Text &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/timeText"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        tools:text="8:05 PM"-->
+<!--        android:textColor="#888888"-->
+<!--        android:textSize="12sp"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        app:layout_constraintStart_toEndOf="@id/userName"-->
+<!--        app:layout_constraintBaseline_toBaselineOf="@id/userName"/>-->
+
+<!--    &lt;!&ndash; Message Bubble &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/messageText"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/rounded_background"-->
+<!--        android:backgroundTint="#E8E8E8"-->
+<!--        android:padding="12dp"-->
+<!--        tools:text="alicnors Take a look at the Flow.collectAsStateWithLifecycle()"-->
+<!--        android:textColor="#333333"-->
+<!--        android:textSize="14sp"-->
+<!--        app:layout_constraintStart_toStartOf="@id/userName"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/userName"-->
+<!--        android:layout_marginTop="4dp"/>-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
