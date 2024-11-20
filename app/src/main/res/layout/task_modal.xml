@@ -16,10 +16,9 @@
 
         <ImageButton
             android:id="@+id/btnClose"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="353dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="false"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Cerrar"
             android:src="@drawable/ic_clear" />
@@ -86,8 +85,8 @@
 
         <ImageButton
             android:id="@+id/btnReminder"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@drawable/circle_button_background"
             android:src="@drawable/ic_calendario"
             android:contentDescription="Establecer recordatorio" />
