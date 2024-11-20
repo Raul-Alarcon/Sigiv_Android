@@ -14,5 +14,10 @@
 
     <string name="edit_text_placeholder">Mensaje</string>
 
-
+    <string name="txt_calendar_day_legend">LUN</string>
+    <string name="txt_calendar_event_item">THU\nJUN 30\n14:00</string>
+    <string name="txt_topic_event_item">TOPIC</string>
+    <string name="txt_task_event_item">TASK</string>
+    <string name="txt_group_event_item">GROUP</string>
+    <string name="txt_topicg_event_item">TOPIC GROUP</string>
 </resources>

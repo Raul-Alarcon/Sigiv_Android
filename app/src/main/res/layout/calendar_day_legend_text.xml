@@ -5,6 +5,6 @@
     android:layout_height="wrap_content"
     android:layout_weight="1"
     android:gravity="center"
-    android:textColor="@color/black"
+    android:textColor="@color/light_primary_text"
     android:textSize="14sp"
-    tools:text="SUN" />
+    tools:text="@string/txt_calendar_day_legend" />

@@ -6,17 +6,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="1dp"
-    android:background="@color/example_5_item_view_bg_color">
+    android:background="@color/light_background">
 
     <TextView
-        android:id="@+id/itemFlightDateText"
+        android:id="@+id/itemTaskDateText"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#5D4037"
+        android:background="@color/light_brown"
         android:gravity="center"
         android:lineSpacingExtra="2.5dp"
         android:textAllCaps="true"
-        android:textColor="@color/example_5_text_grey"
+        android:textColor="@color/light_tint"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="H,1:1"
@@ -30,19 +30,19 @@
     <View
         android:layout_width="2dp"
         android:layout_height="0dp"
-        android:background="@color/example_5_page_bg_color"
+        android:background="@color/light_primary_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/itemFlightDateText"
+        app:layout_constraintEnd_toEndOf="@id/itemTaskDateText"
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
-        android:id="@+id/itemFlightDepartureImage"
+        android:id="@+id/itemTaskDepartureImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/itemFlightDateText"
+        app:layout_constraintBottom_toBottomOf="@id/itemTaskDateText"
         app:layout_constraintDimensionRatio="W,1:1"
-        app:layout_constraintStart_toEndOf="@id/itemFlightDateText"
-        app:layout_constraintTop_toTopOf="@id/itemFlightDateText">
+        app:layout_constraintStart_toEndOf="@id/itemTaskDateText"
+        app:layout_constraintTop_toTopOf="@id/itemTaskDateText">
 
         <!--<ImageView
             android:layout_width="24dp"
@@ -53,45 +53,45 @@
     </FrameLayout>
 
     <LinearLayout
-        android:id="@+id/itemFlightDepartureLayout"
+        android:id="@+id/itemTaskDepartureLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@id/itemFlightDepartureImage"
+        app:layout_constraintBottom_toBottomOf="@id/itemTaskDepartureImage"
         app:layout_constraintDimensionRatio="W,2:1"
-        app:layout_constraintStart_toEndOf="@id/itemFlightDepartureImage"
-        app:layout_constraintTop_toTopOf="@id/itemFlightDepartureImage">
+        app:layout_constraintStart_toEndOf="@id/itemTaskDepartureImage"
+        app:layout_constraintTop_toTopOf="@id/itemTaskDepartureImage">
 
         <TextView
             android:fontFamily="sans-serif-black"
-            android:id="@+id/itemDepartureAirportCodeText"
+            android:id="@+id/itemTopicText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/example_5_text_grey"
+            android:textColor="@color/light_primary_text"
             android:textSize="16sp"
-            tools:text="LOS" />
+            tools:text="@string/txt_topic_event_item" />
 
         <TextView
             android:fontFamily="sans-serif-light"
-            android:id="@+id/itemDepartureAirportCityText"
+            android:id="@+id/itemTaskText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/example_5_text_grey"
+            android:textColor="@color/light_primary_text"
             android:textSize="16sp"
-            tools:text="Lagos" />
+            tools:text="@string/txt_task_event_item" />
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/itemFlightDestinationImage"
+        android:id="@+id/itemTaskDestinationImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/itemFlightDepartureLayout"
+        app:layout_constraintBottom_toBottomOf="@id/itemTaskDepartureLayout"
         app:layout_constraintDimensionRatio="W,1:1"
-        app:layout_constraintStart_toEndOf="@id/itemFlightDepartureLayout"
-        app:layout_constraintTop_toTopOf="@id/itemFlightDepartureLayout">
+        app:layout_constraintStart_toEndOf="@id/itemTaskDepartureLayout"
+        app:layout_constraintTop_toTopOf="@id/itemTaskDepartureLayout">
 
        <!-- <ImageView
             android:layout_width="24dp"
@@ -102,52 +102,52 @@
     </FrameLayout>
 
     <LinearLayout
-        android:id="@+id/itemFlightDestinationLayout"
+        android:id="@+id/itemTaskDestinationLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@id/itemFlightDestinationImage"
+        app:layout_constraintBottom_toBottomOf="@id/itemTaskDestinationImage"
         app:layout_constraintDimensionRatio="W,2:1"
-        app:layout_constraintStart_toEndOf="@id/itemFlightDestinationImage"
-        app:layout_constraintTop_toTopOf="@id/itemFlightDestinationImage">
+        app:layout_constraintStart_toEndOf="@id/itemTaskDestinationImage"
+        app:layout_constraintTop_toTopOf="@id/itemTaskDestinationImage">
 
         <TextView
             android:fontFamily="sans-serif-black"
-            android:id="@+id/itemDestinationAirportCodeText"
+            android:id="@+id/itemTopicgText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/example_5_text_grey"
+            android:textColor="@color/light_primary_text"
             android:textSize="16sp"
-            tools:text="ABV" />
+            tools:text="@string/txt_topicg_event_item" />
 
         <TextView
             android:fontFamily="sans-serif-light"
-            android:id="@+id/itemDestinationAirportCityText"
+            android:id="@+id/itemGroupText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/example_5_text_grey"
+            android:textColor="@color/light_primary_text"
             android:textSize="16sp"
-            tools:text="Abuja" />
+            tools:text="@string/txt_group_event_item" />
     </LinearLayout>
 
     <!--Departure/Destination dividers-->
     <View
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:background="@color/example_5_page_bg_color"
+        android:background="@color/light_primary_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/itemFlightDepartureLayout"
+        app:layout_constraintEnd_toEndOf="@id/itemTaskDepartureLayout"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:background="@color/example_5_page_bg_color"
+        android:background="@color/light_primary_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/itemFlightDestinationImage"
+        app:layout_constraintStart_toStartOf="@id/itemTaskDestinationImage"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
