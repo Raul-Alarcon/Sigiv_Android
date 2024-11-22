@@ -17,4 +17,12 @@
     <string name="text_info">Info.</string>
     <string name="text_random_code">Estudiantes de ingenieria en sistemas</string>
 
+    <!-- String QR -->
+    <string name="qr_code_text">S1206E2024X</string>
+    <string name="title_qr_code_description">QR Code</string>
+    <string name="title_qr_code_message">QR code to join the group</string>
+    <string name="title_chat_group_profile">Chat Group Profile</string>
+    <string name="title_back_button_description">Back</string>
+
+
 </resources>

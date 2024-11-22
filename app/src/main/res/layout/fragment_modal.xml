@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    tools:context=".ui.views.chat.ModalFragment">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <!-- Back Arrow -->
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_arrow_back_modal"
+            android:contentDescription="@string/title_back_button_description"/>
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_chat_group_profile"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+
+    <!-- Label -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_qr_code_message"
+        android:layout_marginStart="16dp"
+        android:textStyle="bold"
+        android:textColor="#757575"/>
+
+    <!-- QR Code -->
+    <ImageView
+        android:id="@+id/qrCodeImageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_qr_modal"
+        android:layout_margin="16dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/title_qr_code_description"/>
+
+    <!-- Code Text Button -->
+    <TextView
+        android:id="@+id/codeTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/qr_code_text"
+        android:textColor="#FFFFFF"
+        android:background="#4285F4"
+        android:padding="12dp"
+        android:layout_marginHorizontal="16dp"
+        android:gravity="center"
+        android:textSize="16sp"/>
+
+</LinearLayout>
