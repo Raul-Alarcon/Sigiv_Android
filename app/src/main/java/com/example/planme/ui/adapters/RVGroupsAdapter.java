@@ -3,31 +3,29 @@ package com.example.planme.ui.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.planme.R;
-import com.example.planme.data.models.Group;
-import com.example.planme.data.models.Message;
 import com.example.planme.databinding.ItemGroupBinding;
 import com.example.planme.ui.base.OnClickListener;
+import com.example.planme.ui.models.GroupUI;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.List;
 
 public class RVGroupsAdapter extends RecyclerView.Adapter<RVGroupsAdapter.GroupHolder> {
 
-    private ArrayList<Group> groups;
+    private List<GroupUI> groups;
     private OnClickListener onClickListener;
     public RVGroupsAdapter() {
         this.groups = new ArrayList<>();
     }
 
-    public void setGroups(ArrayList<Group> groups){
+    public void setGroups(List<GroupUI> groups){
         this.groups = groups;
+        this.notifyDataSetChanged();
     }
 
     public void setOnClickListener(OnClickListener onClickListener) {
@@ -44,7 +42,7 @@ public class RVGroupsAdapter extends RecyclerView.Adapter<RVGroupsAdapter.GroupH
 
     @Override
     public void onBindViewHolder(@NonNull GroupHolder holder, int position) {
-        Group item = this.groups.get(position);
+        GroupUI item = this.groups.get(position);
         holder.render(item, this.onClickListener);
     }
 
@@ -60,16 +58,20 @@ public class RVGroupsAdapter extends RecyclerView.Adapter<RVGroupsAdapter.GroupH
             binding = ItemGroupBinding.bind(itemView);
         }
 
-        public void render(Group item, OnClickListener onClickListener){
-            Message lastMessage = item.getLastMessage();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm a", new Locale("es", "ES"));
+        public void render(GroupUI item, OnClickListener onClickListener){
+            //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm a", new Locale("es", "ES"));
 
             //binding.imgGroup.setImageDrawable(); traer la imagen del grupo
             binding.tvTitleGroup.setText(item.getName());
-            binding.tvLastMessage.setText( lastMessage != null ? lastMessage.getContent() : "Recently Created");
-            binding.tvTimeLastMessageGroup.setText(lastMessage != null ?
-                    simpleDateFormat.format(lastMessage.getDate()):
-                        simpleDateFormat.format(item.getDate()));
+
+            binding.tvLastMessage.setText(
+                    item.getLastMessage() != null ?
+                            item.getLastMessage().getContent()
+                            : "Recently Created");
+
+            binding.tvTimeLastMessageGroup.setText(item.getLastMessage() != null ?
+                    item.getLastMessage().getDate():
+                    item.getDate());
             
             this.itemView.setOnClickListener( view -> {
                 if(onClickListener != null) onClickListener.onClick(getAdapterPosition(), item);

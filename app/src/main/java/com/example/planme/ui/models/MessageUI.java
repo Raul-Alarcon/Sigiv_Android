@@ -5,21 +5,21 @@ public class MessageUI {
     private String content;
     private String date;
     private String userId;
-    private String urlImg;
-    private String userSessionId;
-    private String userName;
-    public MessageUI(String id, String content, String date, String userId, String urlImg, String userSessionId, String userName) {
+    private String groupId;
+    public MessageUI(String id, String content, String date, String userId, String groupId) {
         this.id = id;
         this.content = content;
         this.date = date;
         this.userId = userId;
-        this.urlImg = urlImg;
-        this.userSessionId = userSessionId;
-        this.userName = userName;
+        this.groupId = groupId;
     }
 
-    public boolean isMe(){
-        return this.userId.equals(this.userSessionId);
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 
     public String getId() {
@@ -54,27 +54,5 @@ public class MessageUI {
         this.userId = userId;
     }
 
-    public String getUrlImg() {
-        return urlImg;
-    }
 
-    public void setUrlImg(String urlImg) {
-        this.urlImg = urlImg;
-    }
-
-    public String getUserSessionId() {
-        return userSessionId;
-    }
-
-    public void setUserSessionId(String userSessionId) {
-        this.userSessionId = userSessionId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 }

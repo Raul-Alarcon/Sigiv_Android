@@ -13,20 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.planme.R;
 import com.example.planme.databinding.ItemMessageBinding;
-import com.example.planme.ui.models.MessageUI;
+import com.example.planme.ui.models.CardMessageUI;
 
 import java.util.ArrayList;
 
 public class RVMessageAdapter extends RecyclerView.Adapter<RVMessageAdapter.MessageHolder>{
 
-    ArrayList<MessageUI> messages;
+    ArrayList<CardMessageUI> messages;
 
     public RVMessageAdapter(){
         this.messages = new ArrayList<>();
 
     }
 
-    public void setMessage(MessageUI message){
+    public void setMessage(CardMessageUI message){
         this.messages.add(message);
         int position = this.messages.size() - 1;
         notifyItemChanged(position, message);
@@ -44,8 +44,8 @@ public class RVMessageAdapter extends RecyclerView.Adapter<RVMessageAdapter.Mess
 
     @Override
     public void onBindViewHolder(@NonNull MessageHolder holder, int position) {
-        MessageUI message = this.messages.get(position);
-        MessageUI lastMessage = null;
+        CardMessageUI message = this.messages.get(position);
+        CardMessageUI lastMessage = null;
         if (position > 0){
             lastMessage = this.messages.get(position - 1);
         }
@@ -66,10 +66,9 @@ public class RVMessageAdapter extends RecyclerView.Adapter<RVMessageAdapter.Mess
             super(itemView);
             binding = ItemMessageBinding.bind(itemView);
             context = itemView.getContext();
-
         }
 
-        public void render(MessageUI message,  MessageUI lastMessage) {
+        public void render(CardMessageUI message,  CardMessageUI lastMessage) {
             String lastUser = lastMessage != null ? lastMessage.getUserName() : "";
 
             if(message.isMe()){

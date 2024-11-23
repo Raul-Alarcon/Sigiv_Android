@@ -39,4 +39,10 @@
         android:label="@string/title_page_chat"
         tools:layout="@layout/fragment_chat" />
 
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.example.planme.ui.views.login.LoginFragment"
+        android:label="@string/title_page_login"
+        tools:layout="@layout/fragment_login" />
+
 </navigation>

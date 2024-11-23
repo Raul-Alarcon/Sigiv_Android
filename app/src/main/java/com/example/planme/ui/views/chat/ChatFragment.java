@@ -45,7 +45,7 @@ public class ChatFragment extends Fragment {
         RVMessageAdapter messageAdapter = new RVMessageAdapter();
         this.binding.rvChatMessage.setAdapter(messageAdapter);
 
-        this.chatViewModel.getMessageUI().observe(getViewLifecycleOwner(),
+        this.chatViewModel.getCardMessageUI().observe(getViewLifecycleOwner(),
                 messageUIS -> messageUIS.forEach(messageAdapter::setMessage));
     }
 

@@ -1,17 +1,24 @@
 package com.example.planme.ui.views.home;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.planme.data.models.Group;
-import com.example.planme.utils.GenerateID;
+import com.example.planme.ui.models.GroupUI;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeViewModel extends ViewModel {
-
-   private final MutableLiveData<ArrayList<Group>> groups;
+    FirebaseDatabase db = FirebaseDatabase.getInstance();
+   private final MutableLiveData<List<GroupUI>> groups;
    //GroupRepository groupRepository;
 
     public HomeViewModel() {
@@ -21,12 +28,44 @@ public class HomeViewModel extends ViewModel {
 
     }
     private void initialize() {
-        ArrayList<Group> groups = new ArrayList<>();
-        for (int i = 0; i < 10; i++){
-            groups.add(new Group(GenerateID.invoke(), "Group " + i, "Description"));
-        }
-        this.groups.setValue(groups);
+
+        DatabaseReference myRef = db.getReference();
+
+        myRef.child("groups").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<Group> _groups = new ArrayList<>();
+                for (DataSnapshot groupSnapShot: snapshot.getChildren()) {
+                     Group group = groupSnapShot.getValue(Group.class);
+                     _groups.add(group);
+                }
+
+                //groups.setValue(_groups);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
     }
 
-    public LiveData<ArrayList<Group>> getGroups() { return this.groups; }
+    public void addNewGroup(GroupUI groupUI){
+        Group newGroup = new Group();
+        newGroup.setName(groupUI.getName());
+        newGroup.setDescription(groupUI.getDescription());
+
+        DatabaseReference myRef = db.getReference();
+        String key = myRef.child("groups").push().getKey();
+        newGroup.setId(key);
+
+        myRef.child("groups")
+                .child(key)
+                .setValue(newGroup);
+    }
+
+    public LiveData<List<GroupUI>> getGroups() { return this.groups; }
 }

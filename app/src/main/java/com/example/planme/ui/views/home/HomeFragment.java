@@ -15,14 +15,14 @@ import com.example.planme.R;
 import com.example.planme.data.models.Group;
 import com.example.planme.databinding.FragmentHomeBinding;
 import com.example.planme.ui.adapters.RVGroupsAdapter;
+import com.example.planme.ui.models.GroupUI;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private HomeViewModel homeViewModel;
     NavController navController;
-
-
+    FormGroup addGroupForm = new FormGroup();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,10 +45,17 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
 
+        addGroupForm.setOnSaveClick( groupUI -> {
+            GroupUI _groupUI = (GroupUI) groupUI;
+            this.handlerSaveClick(_groupUI);
+        });
+
         this.binding.btnFormGroup.setOnClickListener(__ -> {
-            FormGroup addGroupForm = new FormGroup();
             addGroupForm.show(getParentFragmentManager(), "add_group");
         });
+    }
+    private void handlerSaveClick(GroupUI groupUI){
+        this.homeViewModel.addNewGroup(groupUI);
     }
 
     private void setUpRvGroups(RVGroupsAdapter rvGroupsAdapter) {
