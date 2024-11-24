@@ -2,10 +2,9 @@ package com.example.planme.utils;
 
 import com.example.planme.data.models.Group;
 import com.example.planme.data.models.Message;
+import com.example.planme.ui.models.CardMessageUI;
 import com.example.planme.ui.models.GroupUI;
-import com.example.planme.ui.models.MessageUI;
-
-import java.util.Date;
+import com.example.planme.ui.models.UserUI;
 
 public class Mapper {
 
@@ -24,21 +23,33 @@ public class Mapper {
             int lastIndex = group.getMessages().size() - 1;
             Message lastMessage = group.getMessages().get(lastIndex);
 
-            String dateFormat = DateFormatHelper.format(lastMessage.getDate(), "HH:mm a");
+            // TODO: formatear las fechas para una mejor visualizacion
+            //String dateFormat = DateFormatHelper.format(lastMessage.getDate(), "HH:mm a");
             groupUI.setContentLastMessage(lastMessage.getContent());
-            groupUI.setDateLastMessage(dateFormat);
+            groupUI.setDateLastMessage(lastMessage.getDate());
         }
 
         return  groupUI;
     }
 
-    public static MessageUI messageToUI(Message message){
-        String dateFormat = DateFormatHelper.format(message.getDate(), "HH:mm a");
-        return new MessageUI(
+    public static CardMessageUI messageToCard(Message message, UserUI userSession){
+        return  new CardMessageUI(
                 message.getId(),
                 message.getContent(),
-                dateFormat,
-                message.getUser().getId(),
-                "");
+                message.getDate(),
+                message.getUserId(),
+                userSession.getUrlImg(),
+                userSession.getId(),
+                userSession.getName());
     }
+
+//    public static MessageUI messageToUI(Message message){
+//        String dateFormat = DateFormatHelper.format(message.getDate(), "HH:mm a");
+//        return new MessageUI(
+//                message.getId(),
+//                message.getContent(),
+//                dateFormat,
+//                message.getUser().getId(),
+//                "");
+//    }
 }

@@ -27,9 +27,11 @@ public class RVMessageAdapter extends RecyclerView.Adapter<RVMessageAdapter.Mess
     }
 
     public void setMessage(CardMessageUI message){
-        this.messages.add(message);
-        int position = this.messages.size() - 1;
-        notifyItemChanged(position, message);
+        if (!messages.contains(message)) {
+            this.messages.add(message);
+            int position = this.messages.size() - 1;
+            notifyItemChanged(position, message);
+        }
     }
 
     @NonNull

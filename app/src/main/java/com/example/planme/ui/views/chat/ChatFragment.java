@@ -22,6 +22,16 @@ public class ChatFragment extends Fragment {
     FragmentChatBinding binding;
     ChatViewModel chatViewModel;
     BottomNavigationView bottomNavigationView;
+    String groupId;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if(getArguments() != null){
+            groupId = getArguments().getString("groupId");
+        }
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -45,7 +55,15 @@ public class ChatFragment extends Fragment {
         RVMessageAdapter messageAdapter = new RVMessageAdapter();
         this.binding.rvChatMessage.setAdapter(messageAdapter);
 
-        this.chatViewModel.getCardMessageUI().observe(getViewLifecycleOwner(),
+        this.binding.btnSend.setOnClickListener( __ -> {
+            String content = this.binding.etvMessage.getText().toString();
+            if(!content.isEmpty()){
+                this.chatViewModel.sendMessage(groupId,content);
+                this.binding.etvMessage.setText("");
+            }
+        });
+
+        this.chatViewModel.getMessageGroup(groupId).observe(getViewLifecycleOwner(),
                 messageUIS -> messageUIS.forEach(messageAdapter::setMessage));
     }
 

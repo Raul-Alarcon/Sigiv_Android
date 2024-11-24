@@ -36,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser currentUser = this.auth.getCurrentUser();
 
+//        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+//            Log.e("CrashHandler", "Uncaught Exception", throwable);
+//            // Puedes enviar el log a un servidor o archivo
+//        });
+
+
         //LocalContext.setUpContext();
 
         //SharedPreferences sharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE);

@@ -33,6 +33,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
 }
 
 dependencies {
@@ -53,5 +54,6 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+
     //implementation("com.google.android.gms:play-services-auth:16.0.0")
 }

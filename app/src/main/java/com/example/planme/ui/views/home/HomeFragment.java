@@ -13,7 +13,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.planme.R;
-import com.example.planme.data.models.Group;
 import com.example.planme.databinding.FragmentHomeBinding;
 import com.example.planme.ui.adapters.RVGroupsAdapter;
 import com.example.planme.ui.models.GroupUI;
@@ -36,7 +35,9 @@ public class HomeFragment extends Fragment {
 
         RVGroupsAdapter rvGroupsAdapter = new RVGroupsAdapter();
         rvGroupsAdapter.setOnClickListener((position, group) -> {
-            this.navController.navigate(R.id.navigation_home_to_navigation_chat);
+            Bundle args = new Bundle();
+            args.putString("groupId", group.getId());
+            this.navController.navigate(R.id.navigation_home_to_navigation_chat, args);
         });
         binding.rvAllGroups.setAdapter(rvGroupsAdapter);
         setUpRvGroups(rvGroupsAdapter);

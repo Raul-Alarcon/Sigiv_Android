@@ -45,6 +45,7 @@
             android:textSize="14sp" />
 
         <ImageButton
+            android:id="@+id/btn_send"
             android:layout_marginStart="8dp"
             android:layout_width="50dp"
             android:layout_height="50dp"

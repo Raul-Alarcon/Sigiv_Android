@@ -1,15 +1,17 @@
 package com.example.planme.ui.models;
 
+import android.net.Uri;
+
 public class CardMessageUI {
     private String id;
     private String content;
     private String date;
     private String userId;
-    private String urlImg;
+    private Uri urlImg;
     private String userSessionId;
     private String userName;
 
-    public CardMessageUI(String id, String content, String date, String userId, String urlImg, String userSessionId, String userName) {
+    public CardMessageUI(String id, String content, String date, String userId, Uri urlImg, String userSessionId, String userName) {
         this.id = id;
         this.content = content;
         this.date = date;
@@ -54,11 +56,11 @@ public class CardMessageUI {
         this.userId = userId;
     }
 
-    public String getUrlImg() {
+    public Uri getUrlImg() {
         return urlImg;
     }
 
-    public void setUrlImg(String urlImg) {
+    public void setUrlImg(Uri urlImg) {
         this.urlImg = urlImg;
     }
 
@@ -76,5 +78,20 @@ public class CardMessageUI {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        CardMessageUI that = (CardMessageUI) obj;
+
+        return content.equals(that.content);
+    }
+
+    @Override
+    public int hashCode() {
+        return content.hashCode();
     }
 }

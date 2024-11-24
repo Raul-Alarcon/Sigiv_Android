@@ -10,25 +10,26 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class GroupRepository  {
     final DatabaseReference dbRef;
-    final String model = "groups";
+    final static String model = "groups";
     public GroupRepository(DatabaseReference databaseReference ) {
         this.dbRef = databaseReference;
     }
 
     public void getGroupsByUserId(String currentUserId, final BiConsumer<List<Group>, Exception> onFinish) {
-        Query query = this.dbRef.child(this.model)
+        Query query = this.dbRef.child(model)
                 .orderByChild("userId").equalTo(currentUserId);
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 List<Group> _groups = new ArrayList<>();
                 dataSnapshot.getChildren().forEach( _data -> {
                     Group group = _data.getValue(Group.class);
@@ -48,7 +49,7 @@ public class GroupRepository  {
 
     public void add(Group group, final Consumer<Exception> onFinish){
         try {
-            String key = this.dbRef.child(this.model)
+            String key = this.dbRef.child(model)
                     .push().getKey();
             group.setId(key);
 
@@ -57,7 +58,8 @@ public class GroupRepository  {
                 throw new Exception("La clave no pudo ser creada");
             }
 
-            this.dbRef.child(this.model)
+            assert key != null;
+            this.dbRef.child(model)
                     .child(key)
                     .setValue(group);
 
