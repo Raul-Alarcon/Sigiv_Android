@@ -62,6 +62,11 @@ public class ChatViewModel extends ViewModel {
         message.setGroupId(groupId);
         message.setUserId(userSession.getUid());
         message.setDate(DateFormatHelper.getCurrentDateTime());
+
+        if(userSession.getPhotoUrl() != null){
+            message.setUrlImg(userSession.getPhotoUrl().toString());
+        }
+
         this.messageRepository.addMessageToGroup( groupId, message, exception -> {
             if(exception == null){
                 // validar si hay un error

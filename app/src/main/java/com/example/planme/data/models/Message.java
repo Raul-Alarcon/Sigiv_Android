@@ -7,6 +7,7 @@ public class Message extends  Entity{
     private String date;
     private String userId;
     private String groupId;
+    private String urlImg;
 
     public Message(){
         this.id = "";
@@ -14,6 +15,7 @@ public class Message extends  Entity{
         this.date = "";
         this.userId = "";
         this.groupId = "";
+        this.urlImg = "";
     }
 
     public Message(String id, String content, String date, String userId, String groupId) {
@@ -54,5 +56,13 @@ public class Message extends  Entity{
 
     public void setGroupId(String groupId) {
         this.groupId = groupId;
+    }
+
+    public String getUrlImg() {
+        return urlImg;
+    }
+
+    public void setUrlImg(String urlImg) {
+        this.urlImg = urlImg;
     }
 }
