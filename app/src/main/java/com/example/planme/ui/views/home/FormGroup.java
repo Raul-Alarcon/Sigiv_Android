@@ -36,12 +36,12 @@ public class FormGroup extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        View parentView = (View) view.getParent();
-        BottomSheetBehavior<View> behavior = BottomSheetBehavior.from(parentView);
+//        View parentView = (View) view.getParent();
+//        BottomSheetBehavior<View> behavior = BottomSheetBehavior.from(parentView);
 
-        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        behavior.setFitToContents(false); // Permite ajustar el contenido
-        behavior.setHalfExpandedRatio(0.6f); // Ratio del estado intermedio
+//        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+//        behavior.setFitToContents(false); // Permite ajustar el contenido
+//        behavior.setHalfExpandedRatio(0.6f); // Ratio del estado intermedio
         // on close click
         this.binding.btnClose.setOnClickListener(__ -> {
             this.dismiss();
@@ -63,7 +63,6 @@ public class FormGroup extends BottomSheetDialogFragment {
         this.binding.edtName.setText("");
         this.binding.edtDescription.setText("");
     }
-
 
 
 }

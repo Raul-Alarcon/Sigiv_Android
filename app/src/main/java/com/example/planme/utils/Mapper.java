@@ -17,7 +17,7 @@ public class Mapper {
         groupUI.setId(group.getId());
         groupUI.setName(group.getName());
         groupUI.setDescription(group.getDescription());
-
+        groupUI.setCode(group.getCode());
         groupUI.setDate(dateFormat);
 
         if(!group.getMessages().isEmpty() && group.getMessages() != null){

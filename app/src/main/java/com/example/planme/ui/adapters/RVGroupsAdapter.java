@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.planme.R;
 import com.example.planme.databinding.ItemGroupBinding;
+import com.example.planme.ui.base.LongClickListener;
 import com.example.planme.ui.base.OnClickListener;
 import com.example.planme.ui.models.GroupUI;
 
@@ -19,6 +20,7 @@ public class RVGroupsAdapter extends RecyclerView.Adapter<RVGroupsAdapter.GroupH
 
     private List<GroupUI> groups;
     private OnClickListener onClickListener;
+    private LongClickListener onPressListener;
     public RVGroupsAdapter() {
         this.groups = new ArrayList<>();
     }
@@ -32,6 +34,10 @@ public class RVGroupsAdapter extends RecyclerView.Adapter<RVGroupsAdapter.GroupH
         this.onClickListener = onClickListener;
     }
 
+    public void setOnPressListener(LongClickListener onPressListener){
+        this.onPressListener = onPressListener;
+    }
+
     @NonNull
     @Override
     public GroupHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,7 +49,7 @@ public class RVGroupsAdapter extends RecyclerView.Adapter<RVGroupsAdapter.GroupH
     @Override
     public void onBindViewHolder(@NonNull GroupHolder holder, int position) {
         GroupUI item = this.groups.get(position);
-        holder.render(item, this.onClickListener);
+        holder.render(item, this.onClickListener, this.onPressListener);
     }
 
     @Override
@@ -58,7 +64,7 @@ public class RVGroupsAdapter extends RecyclerView.Adapter<RVGroupsAdapter.GroupH
             binding = ItemGroupBinding.bind(itemView);
         }
 
-        public void render(GroupUI item, OnClickListener onClickListener){
+        public void render(GroupUI item, OnClickListener onClickListener, LongClickListener onPressListener){
             //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm a", new Locale("es", "ES"));
 
             //binding.imgGroup.setImageDrawable(); traer la imagen del grupo
@@ -75,6 +81,16 @@ public class RVGroupsAdapter extends RecyclerView.Adapter<RVGroupsAdapter.GroupH
             this.itemView.setOnClickListener( view -> {
                 if(onClickListener != null) onClickListener.onClick(getAdapterPosition(), item);
             });
+
+
+            this.itemView.setOnLongClickListener(__ -> {
+                if(onPressListener != null) onPressListener.onPress(item);
+                return true;
+            });
         }
     }
+
 }
+
+
+

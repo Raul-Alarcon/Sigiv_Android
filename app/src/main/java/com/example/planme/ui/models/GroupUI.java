@@ -7,6 +7,7 @@ public class GroupUI extends EntityUI {
     private String contentLastMessage;
     private String dateLastMessage;
     private String urlImg;
+    private String code;
 
     public GroupUI(){
         this.name = "";
@@ -15,6 +16,7 @@ public class GroupUI extends EntityUI {
         this.contentLastMessage = "";
         this.dateLastMessage = "";
         this.urlImg = "";
+        this.code = "";
     }
 
     public void setName(String name) {
@@ -72,5 +74,13 @@ public class GroupUI extends EntityUI {
 
     public void setDateLastMessage(String dateLastMessage) {
         this.dateLastMessage = dateLastMessage;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

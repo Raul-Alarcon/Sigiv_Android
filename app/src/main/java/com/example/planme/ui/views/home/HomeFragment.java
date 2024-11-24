@@ -24,6 +24,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     NavController navController;
     FormGroup addGroupForm = new FormGroup();
+    ActionsGroup actionsGroup = new ActionsGroup();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class HomeFragment extends Fragment {
             args.putString("groupId", group.getId());
             this.navController.navigate(R.id.navigation_home_to_navigation_chat, args);
         });
+        rvGroupsAdapter.setOnPressListener(this::handlerOnPress);
         binding.rvAllGroups.setAdapter(rvGroupsAdapter);
         setUpRvGroups(rvGroupsAdapter);
         return binding.getRoot();
@@ -64,6 +66,11 @@ public class HomeFragment extends Fragment {
         this.binding.btnFormGroup.setOnClickListener(__ ->
                 addGroupForm.show(getParentFragmentManager(), "add_group"));
 
+    }
+    
+    private void handlerOnPress(GroupUI groupUI){
+        this.actionsGroup.setGroupSelected(groupUI);
+        this.actionsGroup.show(getParentFragmentManager(), "actions_group");
     }
     private void handlerSaveClick(GroupUI groupUI){
         try {
