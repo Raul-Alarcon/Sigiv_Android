@@ -54,7 +54,7 @@ public class GroupRepository  {
             group.setId(key);
 
 
-            if (!String.valueOf(key).isEmpty()){
+            if (String.valueOf(key).isEmpty()){
                 throw new Exception("La clave no pudo ser creada");
             }
 

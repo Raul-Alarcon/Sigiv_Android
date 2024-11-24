@@ -8,7 +8,7 @@ public class Group extends Entity{
     private String name;
     private String description;
     private String code;
-    private final String date;
+    private String date;
     private String userId;
     private List<Message> messages;
     private List<User> users;
@@ -28,7 +28,7 @@ public class Group extends Entity{
         this.messages = messages;
         this.userId = userId;
         this.users = users;
-        this.date = (new Date()).toString();
+        this.date = "";
     }
 
     public String getUserId() {
@@ -50,7 +50,9 @@ public class Group extends Entity{
     }
 
     public String getDate() { return this.date; }
-
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getCode() {
         return code;

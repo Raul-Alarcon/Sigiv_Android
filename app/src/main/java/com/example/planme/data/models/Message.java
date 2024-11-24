@@ -11,7 +11,7 @@ public class Message extends  Entity{
     public Message(){
         this.id = "";
         this.content = "";
-        this.date = (new Date()).toString();
+        this.date = "";
         this.userId = "";
         this.groupId = "";
     }

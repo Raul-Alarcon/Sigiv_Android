@@ -1,5 +1,7 @@
 package com.example.planme.ui.views.home;
 
+import android.renderscript.Script;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -8,6 +10,7 @@ import com.example.planme.data.models.Group;
 import com.example.planme.data.repository.GroupRepository;
 import com.example.planme.ui.models.GroupUI;
 import com.example.planme.ui.models.MessageException;
+import com.example.planme.utils.DateFormatHelper;
 import com.example.planme.utils.Mapper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -57,6 +60,7 @@ public class HomeViewModel extends ViewModel {
         group.setName(groupUI.getName());
         group.setDescription(groupUI.getDescription());
         group.setUserId(userSession.getUid());
+        group.setDate(DateFormatHelper.getCurrentDateTime());
         
         groupRepository.add(group, (exception) -> {
             if(exception != null){

@@ -9,47 +9,36 @@ import com.example.planme.ui.models.UserUI;
 public class Mapper {
 
     public static GroupUI groupToUI(Group group){
-//        Date dateGroup =  DateFormatHelper.stringToDate(group.getDate());
-//        String formatDateGroup = DateFormatHelper.format(dateGroup, "HH:mm a");
+        String dateFormat =  DateFormatHelper.format(group.getDate(), "HH:mm a");
 
         GroupUI groupUI = new GroupUI();
         groupUI.setId(group.getId());
         groupUI.setName(group.getName());
         groupUI.setDescription(group.getDescription());
 
-        groupUI.setDate(group.getDate());
+        groupUI.setDate(dateFormat);
 
         if(!group.getMessages().isEmpty() && group.getMessages() != null){
             int lastIndex = group.getMessages().size() - 1;
             Message lastMessage = group.getMessages().get(lastIndex);
 
-            // TODO: formatear las fechas para una mejor visualizacion
-            //String dateFormat = DateFormatHelper.format(lastMessage.getDate(), "HH:mm a");
+            String dateFormatLastMessage =  DateFormatHelper.format(lastMessage.getDate(), "HH:mm a");
             groupUI.setContentLastMessage(lastMessage.getContent());
-            groupUI.setDateLastMessage(lastMessage.getDate());
+            groupUI.setDateLastMessage(dateFormatLastMessage);
         }
 
         return  groupUI;
     }
 
     public static CardMessageUI messageToCard(Message message, UserUI userSession){
+        String dateFormat = DateFormatHelper.format(message.getDate(), "HH:mm a");
         return  new CardMessageUI(
                 message.getId(),
                 message.getContent(),
-                message.getDate(),
+                dateFormat,
                 message.getUserId(),
                 userSession.getUrlImg(),
                 userSession.getId(),
                 userSession.getName());
     }
-
-//    public static MessageUI messageToUI(Message message){
-//        String dateFormat = DateFormatHelper.format(message.getDate(), "HH:mm a");
-//        return new MessageUI(
-//                message.getId(),
-//                message.getContent(),
-//                dateFormat,
-//                message.getUser().getId(),
-//                "");
-//    }
 }

@@ -9,6 +9,7 @@ import com.example.planme.data.repository.MessageRepository;
 import com.example.planme.ui.models.CardMessageUI;
 import com.example.planme.ui.models.MessageUI;
 import com.example.planme.ui.models.UserUI;
+import com.example.planme.utils.DateFormatHelper;
 import com.example.planme.utils.GenerateID;
 import com.example.planme.utils.Mapper;
 import com.google.firebase.Firebase;
@@ -19,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.zip.DataFormatException;
 
 public class ChatViewModel extends ViewModel {
     final MessageRepository messageRepository;
@@ -59,6 +61,7 @@ public class ChatViewModel extends ViewModel {
         message.setContent(content);
         message.setGroupId(groupId);
         message.setUserId(userSession.getUid());
+        message.setDate(DateFormatHelper.getCurrentDateTime());
         this.messageRepository.addMessageToGroup( groupId, message, exception -> {
             if(exception == null){
                 // validar si hay un error
