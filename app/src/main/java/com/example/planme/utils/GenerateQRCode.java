@@ -41,4 +41,15 @@ public class GenerateQRCode {
             throw new Exception(e);
         }
     }
+
+    public static JSONObject parseQRCode(String qrContent) throws Exception {
+        try {
+            return new JSONObject(qrContent);
+        } catch (JSONException e) {
+            throw new Exception(e);
+        }
+    }
+
+
+
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:id="@+id/qr_info_container">
+
+    <!-- Recent Notifications -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="24dp"
+        android:gravity="center">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/img_group_photo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/common_google_signin_btn_icon_dark"
+            app:shapeAppearanceOverlay="@style/CircularShape"/>
+
+    </LinearLayout>
+
+    <!-- Main Content -->
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Real-Time Alerts"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get instant notifications on your crypto transactions, market updates, and more. Ensure you never miss a beat in the fast-paced world of cryptocurrency trading."
+        android:textColor="#666666"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Enable Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_join"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Unirme"
+        app:cornerRadius="8dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Dismiss Text -->
+    <TextView
+        android:id="@+id/txt_dismiss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The group administrator is the only moderator"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        android:layout_gravity="center"
+        android:padding="8dp"/>
+
+</LinearLayout>
+
+

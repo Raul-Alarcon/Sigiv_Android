@@ -40,20 +40,25 @@ public class HomeViewModel extends ViewModel {
         this.initialize();
     }
     private void initialize() {
-        groupRepository
-                .getGroupsByUserId(userSession.getUid(), (groups, exception) -> {
-                    if(exception == null){
-                        List<GroupUI> _groups = groups.stream()
-                                .map(Mapper::groupToUI).collect(Collectors.toList());
-                        this.groups.setValue(_groups);
-                    } else {
-                        messageException.setContent("Error al cargar los grupos");
-                        messageException.setActive(true);
-                        messageException.setStack(exception.getMessage());
-                        this.exception.setValue(messageException);
-                        messageException.setActive(false);
-                    }
-                });
+
+        if(userSession != null){
+            groupRepository
+                    .getGroupsByUserId(userSession.getUid(), (groups, exception) -> {
+                        if(exception == null){
+                            List<GroupUI> _groups = groups.stream()
+                                    .map(Mapper::groupToUI).collect(Collectors.toList());
+                            this.groups.setValue(_groups);
+                        } else {
+                            messageException.setContent("Error al cargar los grupos");
+                            messageException.setActive(true);
+                            messageException.setStack(exception.getMessage());
+                            this.exception.setValue(messageException);
+                            messageException.setActive(false);
+                        }
+                    });
+        }
+
+
     }
 
     public void addGroup(GroupUI groupUI){

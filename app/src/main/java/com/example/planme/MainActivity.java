@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.planme.utils.ExceptionHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,18 +35,18 @@ public class MainActivity extends AppCompatActivity {
 
         this.auth = FirebaseAuth.getInstance();
 
-        FirebaseUser currentUser = this.auth.getCurrentUser();
+        FirebaseUser currentUser = null;
+        try {
+            currentUser = this.auth.getCurrentUser();
+        } catch (Exception e){
+            ExceptionHelper.log(e);
+        }
 
 //        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
 //            Log.e("CrashHandler", "Uncaught Exception", throwable);
 //            // Puedes enviar el log a un servidor o archivo
 //        });
 
-
-        //LocalContext.setUpContext();
-
-        //SharedPreferences sharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE);
-        //boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -73,11 +74,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if (currentUser == null) { // !isLoggedIn
+        if (currentUser == null) {
             NavOptions navOptions = new NavOptions.Builder()
                     .setPopUpTo(R.id.mobile_navigation, true)
                     .build();
-
             navController.navigate(R.id.navigation_login, null, navOptions);
         }
 
