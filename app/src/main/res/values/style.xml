@@ -4,4 +4,9 @@
         <item name="behavior_peekHeight">0dp</item>
         <item name="android:windowIsFloating">false</item>
     </style>
+
+    <style name="CircularShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>  <!-- Esto hace que sea un círculo -->
+    </style>
 </resources>

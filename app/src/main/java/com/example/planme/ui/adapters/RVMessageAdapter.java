@@ -3,14 +3,19 @@ package com.example.planme.ui.adapters;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.Uri;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.planme.R;
 import com.example.planme.databinding.ItemMessageBinding;
 import com.example.planme.ui.models.CardMessageUI;
@@ -82,7 +87,9 @@ public class RVMessageAdapter extends RecyclerView.Adapter<RVMessageAdapter.Mess
                     this.binding.myProfileImg.setVisibility(View.INVISIBLE);
                 }
 
-                this.binding.myProfileImg.setImageResource(R.drawable.ic_launcher_foreground);
+                this.loadImg(message.getUrlImg(), this.binding.myProfileImg);
+
+                //this.binding.myProfileImg.setImageResource(R.drawable.ic_launcher_foreground);
                 this.binding.myUserTimeMessage.setText(message.getDate());
                 this.binding.myMessageText.setText(message.getContent());
                 this.binding.myUserName.setText(message.getUserName());
@@ -95,12 +102,23 @@ public class RVMessageAdapter extends RecyclerView.Adapter<RVMessageAdapter.Mess
                     this.binding.otherMessageProperty.setVisibility(View.GONE);
                     this.binding.otherProfileImg.setVisibility(View.INVISIBLE);
                 }
+                this.loadImg(message.getUrlImg(), this.binding.otherProfileImg);
 
-                this.binding.otherProfileImg.setImageResource(R.drawable.ic_launcher_foreground);
+//                this.binding.otherProfileImg.setImageResource(R.drawable.ic_launcher_foreground);
                 this.binding.otherUserTimeMessage.setText(message.getDate());
                 this.binding.otherMessageText.setText(message.getContent());
                 this.binding.otherUserName.setText(message.getUserName());
             }
+        }
+
+        private void loadImg(Uri urlImg, ImageView property){
+            Glide.with(itemView.getContext())
+                    .load(urlImg)
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.ic_notifications_black_24dp)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(property);
         }
 
 
