@@ -11,6 +11,7 @@ import com.example.planme.data.repository.GroupRepository;
 import com.example.planme.ui.models.GroupUI;
 import com.example.planme.ui.models.MessageException;
 import com.example.planme.utils.DateFormatHelper;
+import com.example.planme.utils.GenerateCode;
 import com.example.planme.utils.Mapper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -61,6 +62,7 @@ public class HomeViewModel extends ViewModel {
         group.setDescription(groupUI.getDescription());
         group.setUserId(userSession.getUid());
         group.setDate(DateFormatHelper.getCurrentDateTime());
+        group.setCode(GenerateCode.generateUniqueCode());
         
         groupRepository.add(group, (exception) -> {
             if(exception != null){

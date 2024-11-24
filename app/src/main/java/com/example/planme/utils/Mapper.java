@@ -1,5 +1,7 @@
 package com.example.planme.utils;
 
+import android.net.Uri;
+
 import com.example.planme.data.models.Group;
 import com.example.planme.data.models.Message;
 import com.example.planme.ui.models.CardMessageUI;
@@ -32,12 +34,18 @@ public class Mapper {
 
     public static CardMessageUI messageToCard(Message message, UserUI userSession){
         String dateFormat = DateFormatHelper.format(message.getDate(), "HH:mm a");
+        Uri img = userSession.getUrlImg();
+
+        if(!message.getUserId().equals(userSession.getId())){
+            img = Uri.parse(message.getUrlImg());
+        }
+
         return  new CardMessageUI(
                 message.getId(),
                 message.getContent(),
                 dateFormat,
                 message.getUserId(),
-                userSession.getUrlImg(),
+                img,
                 userSession.getId(),
                 userSession.getName());
     }
