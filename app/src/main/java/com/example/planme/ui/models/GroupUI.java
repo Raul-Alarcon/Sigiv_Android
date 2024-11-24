@@ -4,9 +4,18 @@ public class GroupUI extends EntityUI {
     private String name;
     private String description;
     private String date;
-    private MessageUI lastMessage;
+    private String contentLastMessage;
+    private String dateLastMessage;
+    private String urlImg;
 
-    public GroupUI(){}
+    public GroupUI(){
+        this.name = "";
+        this.description = "";
+        this.date = "";
+        this.contentLastMessage = "";
+        this.dateLastMessage = "";
+        this.urlImg = "";
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -16,11 +25,13 @@ public class GroupUI extends EntityUI {
         this.description = description;
     }
 
-    public GroupUI(String name, String description, MessageUI lastMessage, String date) {
+    public GroupUI(String name, String description, String contentLastMessage,String dateLastMessage, String date) {
         this.name = name;
         this.description = description;
-        this.lastMessage = lastMessage;
+        this.contentLastMessage = contentLastMessage;
+        this.dateLastMessage = dateLastMessage;
         this.date = date;
+        this.urlImg = "";
     }
 
     public String getName() {
@@ -39,11 +50,27 @@ public class GroupUI extends EntityUI {
         this.date = date;
     }
 
-    public MessageUI getLastMessage() {
-        return lastMessage;
+    public String getContentLastMessage() {
+        return contentLastMessage;
     }
 
-    public void setLastMessage(MessageUI lastMessage) {
-        this.lastMessage = lastMessage;
+    public void setContentLastMessage(String lastMessage) {
+        this.contentLastMessage = lastMessage;
+    }
+
+    public String getUrlImg() {
+        return urlImg;
+    }
+
+    public void setUrlImg(String urlImg) {
+        this.urlImg = urlImg;
+    }
+
+    public String getDateLastMessage() {
+        return dateLastMessage;
+    }
+
+    public void setDateLastMessage(String dateLastMessage) {
+        this.dateLastMessage = dateLastMessage;
     }
 }

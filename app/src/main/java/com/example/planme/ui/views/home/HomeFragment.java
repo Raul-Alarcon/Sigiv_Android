@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,6 +17,7 @@ import com.example.planme.data.models.Group;
 import com.example.planme.databinding.FragmentHomeBinding;
 import com.example.planme.ui.adapters.RVGroupsAdapter;
 import com.example.planme.ui.models.GroupUI;
+import com.example.planme.utils.ExceptionHelper;
 
 public class HomeFragment extends Fragment {
 
@@ -45,17 +47,31 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
 
+        if(homeViewModel != null){
+            this.homeViewModel.getException().observe(getViewLifecycleOwner(), exception -> {
+                if(exception.isActive()){
+                    Toast.makeText(getContext(), exception.getContent(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
         addGroupForm.setOnSaveClick( groupUI -> {
             GroupUI _groupUI = (GroupUI) groupUI;
             this.handlerSaveClick(_groupUI);
         });
 
-        this.binding.btnFormGroup.setOnClickListener(__ -> {
-            addGroupForm.show(getParentFragmentManager(), "add_group");
-        });
+        this.binding.btnFormGroup.setOnClickListener(__ ->
+                addGroupForm.show(getParentFragmentManager(), "add_group"));
+
     }
     private void handlerSaveClick(GroupUI groupUI){
-        this.homeViewModel.addNewGroup(groupUI);
+        try {
+            this.homeViewModel.addGroup(groupUI);
+            addGroupForm.dismiss();
+            addGroupForm.clearForm();
+        } catch (Exception e){
+            ExceptionHelper.log(e);
+        }
     }
 
     private void setUpRvGroups(RVGroupsAdapter rvGroupsAdapter) {

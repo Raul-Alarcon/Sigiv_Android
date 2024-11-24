@@ -64,13 +64,12 @@ public class RVGroupsAdapter extends RecyclerView.Adapter<RVGroupsAdapter.GroupH
             //binding.imgGroup.setImageDrawable(); traer la imagen del grupo
             binding.tvTitleGroup.setText(item.getName());
 
-            binding.tvLastMessage.setText(
-                    item.getLastMessage() != null ?
-                            item.getLastMessage().getContent()
-                            : "Recently Created");
+            binding.tvLastMessage.setText(!item.getContentLastMessage().isEmpty() ?
+                    item.getContentLastMessage() : "Recently Created");
 
-            binding.tvTimeLastMessageGroup.setText(item.getLastMessage() != null ?
-                    item.getLastMessage().getDate():
+
+            binding.tvTimeLastMessageGroup.setText(!item.getDateLastMessage().isEmpty()?
+                    item.getDateLastMessage():
                     item.getDate());
             
             this.itemView.setOnClickListener( view -> {

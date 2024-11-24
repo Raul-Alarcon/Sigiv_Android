@@ -1,71 +1,74 @@
 package com.example.planme.ui.views.home;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.planme.data.models.Group;
+import com.example.planme.data.repository.GroupRepository;
 import com.example.planme.ui.models.GroupUI;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
+import com.example.planme.ui.models.MessageException;
+import com.example.planme.utils.Mapper;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HomeViewModel extends ViewModel {
     FirebaseDatabase db = FirebaseDatabase.getInstance();
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseUser userSession;
+    private final MessageException messageException;
+    final GroupRepository groupRepository;
    private final MutableLiveData<List<GroupUI>> groups;
-   //GroupRepository groupRepository;
+   private final MutableLiveData<MessageException> exception;
+
 
     public HomeViewModel() {
-        //this.groupRepository = new GroupRepository();
+        this.groupRepository = new GroupRepository(db.getReference());
         this.groups = new MutableLiveData<>();
-        this.initialize();
+        this.exception = new MutableLiveData<>(new MessageException());
+        userSession = auth.getCurrentUser();
+        this.messageException = new MessageException();
 
+        this.initialize();
     }
     private void initialize() {
-
-        DatabaseReference myRef = db.getReference();
-
-        myRef.child("groups").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<Group> _groups = new ArrayList<>();
-                for (DataSnapshot groupSnapShot: snapshot.getChildren()) {
-                     Group group = groupSnapShot.getValue(Group.class);
-                     _groups.add(group);
-                }
-
-                //groups.setValue(_groups);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
+        groupRepository
+                .getGroupsByUserId(userSession.getUid(), (groups, exception) -> {
+                    if(exception == null){
+                        List<GroupUI> _groups = groups.stream()
+                                .map(Mapper::groupToUI).collect(Collectors.toList());
+                        this.groups.setValue(_groups);
+                    } else {
+                        messageException.setContent("Error al cargar los grupos");
+                        messageException.setActive(true);
+                        messageException.setStack(exception.getMessage());
+                        this.exception.setValue(messageException);
+                        messageException.setActive(false);
+                    }
+                });
     }
 
-    public void addNewGroup(GroupUI groupUI){
-        Group newGroup = new Group();
-        newGroup.setName(groupUI.getName());
-        newGroup.setDescription(groupUI.getDescription());
-
-        DatabaseReference myRef = db.getReference();
-        String key = myRef.child("groups").push().getKey();
-        newGroup.setId(key);
-
-        myRef.child("groups")
-                .child(key)
-                .setValue(newGroup);
+    public void addGroup(GroupUI groupUI){
+        Group group = new Group();
+        group.setName(groupUI.getName());
+        group.setDescription(groupUI.getDescription());
+        group.setUserId(userSession.getUid());
+        
+        groupRepository.add(group, (exception) -> {
+            if(exception != null){
+                messageException.setActive(true);
+                messageException.setContent("Ocurrio un problema intentelo mas tarde");
+                messageException.setStack(exception.getMessage());
+                this.exception.setValue(messageException);
+                messageException.setActive(false);
+            }
+        });
     }
 
     public LiveData<List<GroupUI>> getGroups() { return this.groups; }
+    public LiveData<MessageException> getException(){ return this.exception; }
 }

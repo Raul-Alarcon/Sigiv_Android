@@ -9,6 +9,7 @@ public class Group extends Entity{
     private String description;
     private String code;
     private final String date;
+    private String userId;
     private List<Message> messages;
     private List<User> users;
 
@@ -20,13 +21,22 @@ public class Group extends Entity{
         description = "";
     }
 
-    public Group(String id, String name, String description, List<Message> messages, List<User> users) {
+    public Group(String id, String name, String description,String userId,  List<Message> messages, List<User> users) {
         super(id);
         this.name = name;
         this.description = description;
         this.messages = messages;
+        this.userId = userId;
         this.users = users;
         this.date = (new Date()).toString();
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() { return  this.name;}
