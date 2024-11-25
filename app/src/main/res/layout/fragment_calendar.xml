@@ -13,7 +13,7 @@
         android:id="@+id/exFiveAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/light_primary_button">
+        android:background="?attr/primaryButton">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                 android:layout_height="36dp"
                 android:layout_marginEnd="22dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                app:tint="@color/light_tint"
+                app:tint="?attr/primaryBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="@color/light_tint"
+                android:textColor="?attr/primaryBackground"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/exFiveNextMonthImage"
@@ -51,7 +51,7 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                app:tint="@color/light_tint"
+                app:tint="?attr/primaryBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

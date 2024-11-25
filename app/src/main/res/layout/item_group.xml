@@ -27,7 +27,7 @@
             android:id="@+id/tv_title_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Papá"
+            tools:text="@string/txt_group_name"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -35,7 +35,7 @@
             android:id="@+id/tv_last_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Videollamada"
+            tools:text="@string/txt_group_activity"
             android:textSize="14sp" />
 
     </LinearLayout>
@@ -44,7 +44,7 @@
         android:id="@+id/tv_time_last_message_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="10:45 a. m."
+        tools:text="@string/txt_group_time"
         android:textSize="14sp" />
 
 </LinearLayout>

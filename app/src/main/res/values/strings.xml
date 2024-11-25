@@ -20,4 +20,40 @@
     <string name="txt_task_event_item">TASK</string>
     <string name="txt_group_event_item">GROUP</string>
     <string name="txt_topicg_event_item">TOPIC GROUP</string>
+
+    <string name="txt_new_Group">Nuevo Grupo</string>
+    <string name="txt_group_name">Nombre</string>
+    <string name="txt_group_description">Descripción</string>
+    <string name="txt_save_group">Guardar</string>
+
+    <string name="txt_info_btn1">boton1</string>
+    <string name="txt_info_btn2">boton2</string>
+
+    <string name="txt_group_create">Crear Grupo</string>
+    <string name="txt_group_gcode">Crear Codigo</string>
+    <string name="txt_group_scan">Crear QR</string>
+    <string name="txt_group_code">Codigo</string>
+    <string name="txt_group_btn1">boton1</string>
+
+    <string name="txt_info_exit">Salir</string>
+    <string name="txt_info_delete">Eliminar</string>
+
+    <string name="txt_description_qr">Get instant notifications on your crypto transactions, market updates, and more. Ensure you never miss a beat in the fast-paced world of cryptocurrency trading.</string>
+    <string name="txt_unirme">Unirme</string>
+    <string name="txt_mod_group">El administrador del grupo es solo el moderador.</string>
+
+    <string name="txt_group_time">10:45 a. m.</string>
+    <string name="txt_group_activity">Videollamada</string>
+
+    <string name="txt_profile">Imagen de Perfil</string>
+    <string name="txt_use_name">Juan Perez</string>
+    <string name="txt_message_hour">8:05 PM</string>
+    <string name="txt_message">Hola que areas hay??</string>
+
+    <string name="txt_scan">Scanea el codigo para unir tu cuenta.</string>
+    <string name="txt_info_qr">Scanea el codigo QR</string>
+    <string name="txt_code_manually">O ingresa el codigo manualmente.</string>
+
+    <string name="web_client_id">482461582860-4jdrrhjr5o2bvltiibbk7ku016csd3fl.apps.googleusercontent.com</string>
+    <string name="txt_btn_google">Iniciar con google</string>
 </resources>
