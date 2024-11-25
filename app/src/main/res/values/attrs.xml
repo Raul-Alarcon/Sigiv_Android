@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="primaryBackground" format="color"/>
+    <attr name="messagePanel" format="color"/>
+    <attr name="primaryTextColor" format="color"/>
+    <attr name="secondaryTextColor" format="color"/>
+    <attr name="primaryButton" format="color"/>
+    <attr name="secondaryButton" format="color"/>
+    <attr name="secondaryButtonVariant" format="color"/>
+    <attr name="primaryButtonVariant" format="color"/>
+    <attr name="alertError" format="color"/>
+    <attr name="utilBrown" format="color"/>
+</resources>
