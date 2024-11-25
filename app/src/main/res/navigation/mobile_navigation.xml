@@ -13,6 +13,7 @@
 
         <action android:id="@+id/navigation_home_to_navigation_chat"
             app:destination="@+id/navigation_chat"/>
+
     </fragment>
 
     <fragment
@@ -37,6 +38,18 @@
         android:id="@+id/navigation_chat"
         android:name="com.example.planme.ui.views.chat.ChatFragment"
         android:label="@string/title_page_chat"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_chat" >
+
+        <argument
+            android:name="groupId"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.example.planme.ui.views.login.LoginFragment"
+        android:label="@string/title_page_login"
+        tools:layout="@layout/fragment_login" />
 
 </navigation>
