@@ -1,18 +1,22 @@
 <resources>
-
     <string name="app_name">PlanMe</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="web_client_id">482461582860-4jdrrhjr5o2bvltiibbk7ku016csd3fl.apps.googleusercontent.com</string>
+
     <string name="txt_nav_bottom_task">Tareas</string>
     <string name="txt_nav_bottom_calendar">Calendario</string>
     <string name="txt_nav_bottom_me">Yo</string>
-    <string name="fab_description">Boton flotante</string>
-    <string name="edit_text_placeholder">Enter text here</string>
-    <string name="fb_description">Facebook Button Description</string>
-    <string name="content_description_img">Image Content Description</string>
-    <string name="title_page_me">Titulo del Perfil</string>
-    <string name="title_page_chat">Titulo de pagina chat</string>
-    <string name="scan_modal">Escaner QR</string>
+    <string name="fb_description">Nuevo Grupo</string>
+    <string name="title_page_me">Perfil</string>
+    <string name="content_description_img">Imagen del grupo</string>
+    <string name="title_page_chat">Chat</string>
+    <string name="title_page_login">Login</string>
+
+    <string name="edit_text_placeholder">Mensaje</string>
+
+    <string name="txt_btn_google">Iniciar con google</string>
+
 
 </resources>
