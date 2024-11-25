@@ -3,6 +3,7 @@ package com.example.planme.ui.views.home;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.transition.TransitionManager;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,13 +29,29 @@ import com.journeyapps.barcodescanner.ScanOptions;
 
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 public class FormGroup extends BottomSheetDialogFragment {
     private ActivityResultLauncher<ScanOptions> qrLauncher;
     GroupModalBinding binding;
     OnClickListenerBase listener;
+    OnClickListenerBase onJoinListener;
+
+    public interface FindListeners{
+        void onFindOne(String query);
+    }
+    FindListeners findByCodeListener;
+    GroupUI groupUI;
 
     public void setOnSaveClick(OnClickListenerBase listener){
         this.listener = listener;
+    }
+    public void setOnFindByCodeClick(FindListeners listener){
+        this.findByCodeListener = listener;
+    }
+
+    public void setOnJoinClick(OnClickListenerBase listener){
+        this.onJoinListener = listener;
     }
 
     @Override
@@ -75,11 +92,13 @@ public class FormGroup extends BottomSheetDialogFragment {
         this.binding.qrLayout.qrInfoContainer.setVisibility(View.GONE);
 
         this.binding.btnNew.setOnClickListener( __ -> {
+            this.binding.qrLayout.qrInfoContainer.setVisibility(View.GONE);
             this.binding.formLayout.newContainer.setVisibility(View.VISIBLE);
             this.binding.addByCodeLayout.setVisibility(View.GONE);
         });
 
         this.binding.btnCode.setOnClickListener( __ -> {
+            this.binding.qrLayout.qrInfoContainer.setVisibility(View.GONE);
             this.binding.formLayout.newContainer.setVisibility(View.GONE);
             this.binding.addByCodeLayout.setVisibility(View.VISIBLE);
         });
@@ -110,6 +129,31 @@ public class FormGroup extends BottomSheetDialogFragment {
                 launchQRScanner();
             }
         });
+
+        this.binding.btnSendCode.setOnClickListener(__ -> {
+            if(this.findByCodeListener != null){
+                String code = Objects.requireNonNull(this.binding.codeInput.getText()).toString();
+                this.findByCodeListener.onFindOne(code);
+            }
+        });
+
+        this.binding.qrLayout.btnJoin.setOnClickListener( __ -> {
+            if(this.groupUI != null && this.onJoinListener != null){
+                this.onJoinListener.onClick(this.groupUI);
+            }
+        });
+    }
+
+    public void showInfoGroup(GroupUI groupUI){
+        if(groupUI != null){
+            this.groupUI = groupUI;
+            this.binding.addByCodeLayout.setVisibility(View.GONE);
+            this.binding.qrLayout.tvName.setText(groupUI.getName());
+            this.binding.qrLayout.tvDescription.setText(groupUI.getDescription());
+
+            TransitionManager.beginDelayedTransition((ViewGroup) this.binding.qrLayout.qrInfoContainer.getParent());
+            this.binding.qrLayout.qrInfoContainer.setVisibility(View.VISIBLE);
+        }
     }
 
     private void launchQRScanner() {
@@ -119,20 +163,18 @@ public class FormGroup extends BottomSheetDialogFragment {
                 .setCameraId(0) // Use back camera
                 .setBeepEnabled(true)
                 .setBarcodeImageEnabled(true)
-                .setOrientationLocked(true);
+                .setOrientationLocked(false);
 
         qrLauncher.launch(options);
     }
 
     private void handleQRResult(String qrContent) {
         try {
-            // Parse the scanned QR content into a Group object
-            JSONObject scannedGroup = GenerateQRCode.parseQRCode(qrContent);
-
+            GroupUI scannedGroup = GenerateQRCode.parseQRCode(qrContent);
             if (scannedGroup != null) {
-
-                this.binding.qrLayout.tvName.setText(scannedGroup.getString("name"));
-                this.binding.qrLayout.tvDescription.setText(scannedGroup.getString("description"));
+                this.groupUI =  scannedGroup;
+                this.binding.qrLayout.tvName.setText(scannedGroup.getName());
+                this.binding.qrLayout.tvDescription.setText(scannedGroup.getDescription());
                 this.binding.qrLayout.qrInfoContainer.setVisibility(View.VISIBLE);
 
             } else {

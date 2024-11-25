@@ -62,6 +62,7 @@ public class ChatViewModel extends ViewModel {
         message.setGroupId(groupId);
         message.setUserId(userSession.getUid());
         message.setDate(DateFormatHelper.getCurrentDateTime());
+        message.setUserName(userSession.getDisplayName());
 
         if(userSession.getPhotoUrl() != null){
             message.setUrlImg(userSession.getPhotoUrl().toString());

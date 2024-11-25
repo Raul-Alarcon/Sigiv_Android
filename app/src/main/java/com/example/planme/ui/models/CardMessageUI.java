@@ -1,17 +1,16 @@
 package com.example.planme.ui.models;
 
-import android.net.Uri;
 
 public class CardMessageUI {
     private String id;
     private String content;
     private String date;
     private String userId;
-    private Uri urlImg;
+    private String urlImg;
     private String userSessionId;
     private String userName;
 
-    public CardMessageUI(String id, String content, String date, String userId, Uri urlImg, String userSessionId, String userName) {
+    public CardMessageUI(String id, String content, String date, String userId, String urlImg, String userSessionId, String userName) {
         this.id = id;
         this.content = content;
         this.date = date;
@@ -56,11 +55,11 @@ public class CardMessageUI {
         this.userId = userId;
     }
 
-    public Uri getUrlImg() {
+    public String getUrlImg() {
         return urlImg;
     }
 
-    public void setUrlImg(Uri urlImg) {
+    public void setUrlImg(String urlImg) {
         this.urlImg = urlImg;
     }
 

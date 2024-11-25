@@ -66,6 +66,17 @@ public class HomeFragment extends Fragment {
         this.binding.btnFormGroup.setOnClickListener(__ ->
                 addGroupForm.show(getParentFragmentManager(), "add_group"));
 
+        this.homeViewModel.getGroup().observe(getViewLifecycleOwner(), groupUI -> {
+            addGroupForm.showInfoGroup(groupUI);
+        });
+
+        addGroupForm.setOnFindByCodeClick(this.homeViewModel::findByCode);
+        addGroupForm.setOnJoinClick( groupUI -> {
+            if(groupUI != null){
+                GroupUI group = (GroupUI) groupUI;
+                this.homeViewModel.addMemberGroup(group);
+            }
+        });
     }
     
     private void handlerOnPress(GroupUI groupUI){

@@ -81,37 +81,45 @@ public class RVMessageAdapter extends RecyclerView.Adapter<RVMessageAdapter.Mess
             if(message.isMe()){
                 this.binding.myMessageLayout.setVisibility(View.VISIBLE);
                 this.binding.otherMessageLayout.setVisibility(View.GONE);
+                this.binding.timeMessage.setVisibility(View.GONE);
 
                 if(message.getUserName().equals(lastUser)){
                     this.binding.myMessageProperty.setVisibility(View.GONE);
                     this.binding.myProfileImg.setVisibility(View.INVISIBLE);
+                    this.binding.timeMessage.setVisibility(View.VISIBLE);
                 }
 
-                this.loadImg(message.getUrlImg(), this.binding.myProfileImg);
-
-                //this.binding.myProfileImg.setImageResource(R.drawable.ic_launcher_foreground);
-                this.binding.myUserTimeMessage.setText(message.getDate());
+                if(this.binding.myProfileImg.getVisibility() == View.VISIBLE){
+                    this.loadImg(message.getUrlImg(), this.binding.myProfileImg);
+                    this.binding.myUserTimeMessage.setText(message.getDate());
+                    this.binding.myUserName.setText(message.getUserName());
+                }
+                this.binding.timeMessage.setText(message.getDate());
                 this.binding.myMessageText.setText(message.getContent());
-                this.binding.myUserName.setText(message.getUserName());
-
             } else {
                 this.binding.myMessageLayout.setVisibility(View.GONE);
                 this.binding.otherMessageLayout.setVisibility(View.VISIBLE);
+                this.binding.otherTimeMessage.setVisibility(View.GONE);
 
                 if(message.getUserName().equals(lastUser)){
                     this.binding.otherMessageProperty.setVisibility(View.GONE);
                     this.binding.otherProfileImg.setVisibility(View.INVISIBLE);
+                    this.binding.otherTimeMessage.setVisibility(View.VISIBLE);
                 }
-                this.loadImg(message.getUrlImg(), this.binding.otherProfileImg);
 
-//                this.binding.otherProfileImg.setImageResource(R.drawable.ic_launcher_foreground);
-                this.binding.otherUserTimeMessage.setText(message.getDate());
+                if(this.binding.otherProfileImg.getVisibility() == View.VISIBLE){
+                    this.loadImg(message.getUrlImg(), this.binding.otherProfileImg);
+                    this.binding.otherUserTimeMessage.setText(message.getDate());
+                    this.binding.otherUserName.setText(message.getUserName());
+                }
+
+                this.binding.otherTimeMessage.setText(message.getDate());
                 this.binding.otherMessageText.setText(message.getContent());
-                this.binding.otherUserName.setText(message.getUserName());
+
             }
         }
 
-        private void loadImg(Uri urlImg, ImageView property){
+        private void loadImg(String urlImg, ImageView property){
             Glide.with(itemView.getContext())
                     .load(urlImg)
                     .placeholder(R.drawable.ic_launcher_foreground)

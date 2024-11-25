@@ -10,9 +10,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -67,6 +65,46 @@ public class GroupRepository  {
             onFinish.accept(e);
         }
 
+    }
+
+    public void getGroupById(String groupId, final BiConsumer<Group, Exception> onFinish) {
+        this.dbRef.child(model)
+                .child(groupId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Group group = dataSnapshot.getValue(Group.class);
+                onFinish.accept(group, null);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                onFinish.accept(null, databaseError.toException());
+            }
+        });
+    }
+
+    public void getGroupByCode(String code, final BiConsumer<Group, Exception> onFinish) {
+        Query query = this.dbRef.child(model)
+                .orderByChild("code").equalTo(code);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Group group = snapshot.getValue(Group.class);
+                        if (group != null) {
+                            onFinish.accept(group, null);
+                            return;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                onFinish.accept(null, databaseError.toException());
+            }
+        });
     }
 
 }

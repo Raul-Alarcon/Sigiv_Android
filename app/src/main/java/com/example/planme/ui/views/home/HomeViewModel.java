@@ -7,7 +7,9 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.planme.data.models.Group;
+import com.example.planme.data.models.MemberGroup;
 import com.example.planme.data.repository.GroupRepository;
+import com.example.planme.data.repository.MemberGroupRepository;
 import com.example.planme.ui.models.GroupUI;
 import com.example.planme.ui.models.MessageException;
 import com.example.planme.utils.DateFormatHelper;
@@ -17,6 +19,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.lang.reflect.Member;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,16 +29,22 @@ public class HomeViewModel extends ViewModel {
     FirebaseDatabase db = FirebaseDatabase.getInstance();
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseUser userSession;
+    final List<GroupUI> dataCache = new ArrayList<>();
     private final MessageException messageException;
     final GroupRepository groupRepository;
+    final MemberGroupRepository memberGroupRepository;
    private final MutableLiveData<List<GroupUI>> groups;
    private final MutableLiveData<MessageException> exception;
+   private final MutableLiveData<GroupUI> group;
 
 
     public HomeViewModel() {
         this.groupRepository = new GroupRepository(db.getReference());
+        this.memberGroupRepository = new MemberGroupRepository(db.getReference());
         this.groups = new MutableLiveData<>();
         this.exception = new MutableLiveData<>(new MessageException());
+        this.group = new MutableLiveData<>();
+
         userSession = auth.getCurrentUser();
         this.messageException = new MessageException();
 
@@ -45,9 +56,13 @@ public class HomeViewModel extends ViewModel {
             groupRepository
                     .getGroupsByUserId(userSession.getUid(), (groups, exception) -> {
                         if(exception == null){
-                            List<GroupUI> _groups = groups.stream()
-                                    .map(Mapper::groupToUI).collect(Collectors.toList());
-                            this.groups.setValue(_groups);
+                            dataCache.clear();
+                            dataCache.addAll(groups.stream()
+                                    .map(Mapper::groupToUI).collect(Collectors.toList()));
+
+                            Collections.reverse(dataCache);
+
+                            this.groups.setValue(dataCache);
                         } else {
                             messageException.setContent("Error al cargar los grupos");
                             messageException.setActive(true);
@@ -56,9 +71,25 @@ public class HomeViewModel extends ViewModel {
                             messageException.setActive(false);
                         }
                     });
+
+            this.initializeMember();
         }
 
-
+    }
+    private void initializeMember(){
+        memberGroupRepository.listenOnAddMember( userSession.getUid(), (member, exception) -> {
+            if(exception == null){
+                groupRepository.getGroupById(member.getGroupId(),(group, _exception) ->{
+                    if(_exception == null){
+                        GroupUI groupUI = Mapper.groupToUI(group);
+                        if(!dataCache.contains(groupUI)){
+                            dataCache.add(groupUI);
+                            this.groups.setValue(dataCache);
+                        }
+                    }
+                });
+            }
+        });
     }
 
     public void addGroup(GroupUI groupUI){
@@ -80,6 +111,29 @@ public class HomeViewModel extends ViewModel {
         });
     }
 
+    public void findByCode(String code){
+        this.groupRepository.getGroupByCode(code,(group, exception) -> {
+            if(exception == null && group != null){
+                GroupUI groupUI = Mapper.groupToUI(group);
+                this.group.setValue(groupUI);
+            }
+        });
+    }
+
+    public void addMemberGroup(GroupUI groupUI){
+        MemberGroup member = new MemberGroup();
+        member.setGroupId(groupUI.getId());
+        member.setMember(userSession.getUid());
+
+        this.memberGroupRepository.addMemberToGroup( groupUI.getId(),
+            member,(exception) -> {
+                if(exception == null){
+
+                }
+        });
+    }
+
     public LiveData<List<GroupUI>> getGroups() { return this.groups; }
     public LiveData<MessageException> getException(){ return this.exception; }
+    public LiveData<GroupUI> getGroup() { return this.group; }
 }

@@ -16,6 +16,7 @@ public class GenerateQRCode {
     public static Bitmap qRCode(GroupUI groupUI) throws Exception {
         try {
             JSONObject groupData = new JSONObject();
+            groupData.put("id", groupUI.getId());
             groupData.put("name", groupUI.getName());
             groupData.put("description", groupUI.getDescription());
             groupData.put("code", groupUI.getCode());
@@ -42,9 +43,18 @@ public class GenerateQRCode {
         }
     }
 
-    public static JSONObject parseQRCode(String qrContent) throws Exception {
+    public static GroupUI parseQRCode(String qrContent) throws Exception {
         try {
-            return new JSONObject(qrContent);
+            JSONObject groupData = new JSONObject(qrContent);
+            GroupUI groupUI = new GroupUI();
+
+            groupUI.setId(groupData.getString("id"));
+            groupUI.setName(groupData.getString("name"));
+            groupUI.setDescription(groupData.getString("description"));
+            groupUI.setCode(groupData.getString("code"));
+            groupUI.setDate(groupData.getString("date"));
+
+            return groupUI;
         } catch (JSONException e) {
             throw new Exception(e);
         }

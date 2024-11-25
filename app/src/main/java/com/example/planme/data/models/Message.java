@@ -1,13 +1,12 @@
 package com.example.planme.data.models;
 
-import java.util.Date;
-
 public class Message extends  Entity{
     private String content;
     private String date;
     private String userId;
     private String groupId;
     private String urlImg;
+    private String userName;
 
     public Message(){
         this.id = "";
@@ -16,14 +15,17 @@ public class Message extends  Entity{
         this.userId = "";
         this.groupId = "";
         this.urlImg = "";
+        this.userName = "";
     }
 
-    public Message(String id, String content, String date, String userId, String groupId) {
+    public Message(String id, String content, String date, String userId, String groupId, String urlImg, String userName) {
         super(id);
         this.content = content;
         this.date = date;
         this.userId = userId;
         this.groupId = groupId;
+        this.urlImg = urlImg;
+        this.userName = userName;
     }
 
     public String getContent() {
@@ -64,5 +66,13 @@ public class Message extends  Entity{
 
     public void setUrlImg(String urlImg) {
         this.urlImg = urlImg;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
