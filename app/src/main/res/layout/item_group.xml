@@ -15,7 +15,7 @@
         android:layout_height="56dp"
         android:layout_marginEnd="16dp"
         android:contentDescription="@string/content_description_img"
-        android:src="@drawable/ic_notifications" />
+        android:src="@drawable/ic_usuario" />
 
     <LinearLayout
         android:layout_width="0dp"
