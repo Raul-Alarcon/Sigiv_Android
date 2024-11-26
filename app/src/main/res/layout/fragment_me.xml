@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,30 +8,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="58dp"
         android:orientation="vertical"
-        android:padding="20dp"
-        android:layout_marginBottom="58dp"> <!-- Deja espacio para el BottomNavigationView -->
+        android:padding="20dp"> <!-- Deja espacio para el BottomNavigationView -->
 
         <!-- Barra de Título -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
+            tools:ignore="UseCompoundDrawables">
 
             <!-- Botón de retroceso -->
             <ImageView
-                android:id="@+id/ic_back"
+                android:id="@+id/Back"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/back"
-                android:contentDescription="Back"
-                android:layout_marginEnd="8dp" />
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/btn_back"
+                android:src="@drawable/back" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Perfil"
+                android:text="@string/title_page_me"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -41,78 +42,78 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/usuario"
-            android:contentDescription="Profile Picture"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/profile_picture"
+            android:src="@drawable/usuario" />
 
         <!-- Información del perfil -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre"
+                android:text="@string/txt_nombre"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_usuario"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/txt_apellido"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_usuario"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/txt_informacion"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_descripcion"
                 android:textSize="12sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Usuario1"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Apellido"
-                android:textSize="12sp"
-                android:layout_marginTop="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Usuario1"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Informacion"
-                android:textSize="12sp"
-                android:layout_marginTop="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Descripcion"
+                android:layout_marginTop="8dp"
+                android:text="@string/txt_correo"
                 android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Correo"
-                android:textSize="12sp"
-                android:layout_marginTop="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="usuario1@gmail.com"
-                android:textSize="16sp" />
+                android:text="@string/txt_Email"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <!-- Opciones adicionales -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="32dp"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <!-- Botón de Invitación -->
             <TextView
@@ -120,9 +121,9 @@
                 android:layout_width="92dp"
                 android:layout_height="31dp"
                 android:layout_marginTop="8dp"
-                android:text="Invitación"
-                android:textColor="@color/black"
+                android:text="@string/btn_Invitacion"
                 android:textAlignment="center"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <!-- Botón de About -->
@@ -131,7 +132,7 @@
                 android:layout_width="101dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="8dp"
-                android:text="About"
+                android:text="@string/txt_About"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -142,20 +143,11 @@
             android:id="@+id/btn_cerrar_sesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cerrar sesión"
-            android:textSize="16sp"
-            android:textColor="#FF0000"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="32dp" />
+            android:layout_marginTop="32dp"
+            android:text="@string/btn_cerrarSecion"
+            android:textColor="#FF0000"
+            android:textSize="16sp" />
     </LinearLayout>
-
-    <!-- Barra de navegación inferior fija -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:layout_gravity="bottom"
-        android:background="?android:attr/windowBackground"
-        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
