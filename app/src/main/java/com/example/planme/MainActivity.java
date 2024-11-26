@@ -1,22 +1,30 @@
 package com.example.planme;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
-import com.example.planme.data.local.LocalContext;
+import com.example.planme.utils.ExceptionHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.planme.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     NavController navController;
     ActivityMainBinding binding;
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +33,20 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        LocalContext.setUpContext();
+        this.auth = FirebaseAuth.getInstance();
+
+        FirebaseUser currentUser = null;
+        try {
+            currentUser = this.auth.getCurrentUser();
+        } catch (Exception e){
+            ExceptionHelper.log(e);
+        }
+
+//        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+//            Log.e("CrashHandler", "Uncaught Exception", throwable);
+//            // Puedes enviar el log a un servidor o archivo
+//        });
+
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -36,6 +57,30 @@ public class MainActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            try {
+                if (destination.getId() == R.id.navigation_login) {
+                    navView.setVisibility(View.GONE);
+                    Objects.requireNonNull(getSupportActionBar()).hide();
+                } else {
+                    navView.setVisibility(View.VISIBLE);
+                    Objects.requireNonNull(getSupportActionBar()).show();
+                }
+            } catch (Exception e){
+                Log.println(Log.ERROR, "Navigation",
+                        "Error: " + e.getClass().getName() +" "+e.getMessage());
+            }
+        });
+
+        if (currentUser == null) {
+            NavOptions navOptions = new NavOptions.Builder()
+                    .setPopUpTo(R.id.mobile_navigation, true)
+                    .build();
+            navController.navigate(R.id.navigation_login, null, navOptions);
+        }
+
     }
 
     @Override

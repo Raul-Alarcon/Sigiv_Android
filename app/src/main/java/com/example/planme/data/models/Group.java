@@ -2,22 +2,41 @@ package com.example.planme.data.models;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Group extends Entity{
     private String name;
     private String description;
-    private final ArrayList<Message> messages;
-    private final ArrayList<User> users;
-    private final Date date;
+    private String code;
+    private String date;
+    private String userId;
+    private List<Message> messages;
+    private List<User> users;
 
+    public Group(){
+        messages = new ArrayList<>();
+        users = new ArrayList<>();
+        date = (new Date()).toString();
+        code = "NO CODE";
+        description = "";
+    }
 
-    public Group(String id, String name, String description) {
+    public Group(String id, String name, String description,String userId,  List<Message> messages, List<User> users) {
         super(id);
         this.name = name;
         this.description = description;
-        this.messages =  new ArrayList<>();
-        this.users = new ArrayList<>();
-        this.date = new Date();
+        this.messages = messages;
+        this.userId = userId;
+        this.users = users;
+        this.date = "";
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() { return  this.name;}
@@ -30,20 +49,32 @@ public class Group extends Entity{
         this.description = description;
     }
 
-    public ArrayList<Message> getMessages() { return this.messages; }
-    public void addMessage(Message message){
-        this.messages.add(message);
+    public String getDate() { return this.date; }
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public ArrayList<User> getUser() { return this.users; }
-    public void setUser(User user){
-        this.users.add(user);
-    }
-    public Date getDate() { return this.date; }
-
-    public Message getLastMessage(){
-        int index = !this.messages.isEmpty() ? this.messages.size() - 1 : -1;
-        return index == -1 ? null : this.messages.get(index);
+    public String getCode() {
+        return code;
     }
 
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 }

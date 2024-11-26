@@ -10,9 +10,7 @@ public class LocalContext {
     public final static ArrayList<Entity> context = new ArrayList<>();
 
     public static void setUpContext(){
-        for(int i = 0; i < 10; i++){
-            context.add(new Group(GenerateID.invoke(), "Group " + i, "Esta es una description de prueba"));
-        }
+        //TODO: for fake data
     }
 
 
