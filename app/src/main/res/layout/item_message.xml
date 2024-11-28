@@ -142,7 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_background"
-                android:backgroundTint="?attr/colorPrimary">
+                android:backgroundTint="?attr/secondaryButton">
 
                 <TextView
                     android:id="@+id/my_message_text"
@@ -152,14 +152,14 @@
                     android:padding="12dp"
                     tools:text="@string/txt_message"
                     android:textSize="14sp"
-                    android:textColor="?attr/secondaryButton"/>
+                    android:textColor="?attr/primaryTextColor"/>
 
                 <TextView
                     android:id="@+id/time_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="8:05 PM"
-                    android:textColor="?attr/secondaryButton"
+                    android:textColor="?attr/secondaryTextColor"
                     android:textSize="12sp"
                     android:layout_marginBottom="4dp"
                     android:layout_gravity="bottom"

@@ -7,7 +7,7 @@
     <color name="light_primary_text">#000000</color>
     <color name="light_secondary_text">#757575</color>
     <color name="light_primary_button">#3e77d4</color>
-    <color name="light_secondary_button">#3e8bd4</color>
+    <color name="light_secondary_button">#84b2f5</color>
     <color name="light_secondary_button_variant">#FF03DAC5</color>
     <color name="light_primary_button_variant">#FF018786</color>
     <color name="light_alert_error">#E57373</color>

@@ -1,13 +1,14 @@
 package com.example.planme.ui.models;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class FlightUI {
-    private Date time;
+    private String time;
     private AirportUI departure;
     private AirportUI destination;
 
-    public FlightUI(Date time, AirportUI departure, AirportUI destination, int color) {
+    public FlightUI(String time, AirportUI departure, AirportUI destination, int color) {
         this.time = time;
         this.departure = departure;
         this.destination = destination;
@@ -16,11 +17,11 @@ public class FlightUI {
 
     private int color;
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
