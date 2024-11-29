@@ -13,6 +13,6 @@
         <item name="alertError">@color/light_alert_error</item>
         <item name="utilBrown">@color/light_brown</item>
 
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">#373434</item>
     </style>
 </resources>
