@@ -3,6 +3,7 @@ package com.example.planme.ui.views.calendar;
 import static com.kizitonwose.calendar.core.ExtensionsKt.daysOfWeek;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
@@ -54,6 +55,7 @@ public class CalendarFragment extends Fragment{
     private List<FlightUI> flights = new ArrayList<>();
     private RVFlightAdapter flightAdapter;
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -71,9 +73,10 @@ public class CalendarFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
         YearMonth currentMonth = YearMonth.now();
-        YearMonth startMonth = currentMonth.minusMonths(200);
+        YearMonth startMonth = currentMonth;
         YearMonth endMonth = currentMonth.plusMonths(200);
         List<DayOfWeek> daysOfWeek = daysOfWeek();
+
 
         flightAdapter = new RVFlightAdapter();
         binding.exFiveRv.setAdapter(flightAdapter);
@@ -156,8 +159,10 @@ public class CalendarFragment extends Fragment{
         // Configuración del dayBinder
         binding.exFiveCalendar.setDayBinder(new MonthDayBinder<DayViewContainer>() {
 
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void bind(@NonNull DayViewContainer container, CalendarDay calendarDay) {
+                LocalDate today = LocalDate.now();
                 container.day = calendarDay;
                 Context context = container.binding.getRoot().getContext();
                 TextView textView = container.binding.exFiveDayText;
@@ -174,12 +179,23 @@ public class CalendarFragment extends Fragment{
                 flightBottomView.setBackground(null);
 
                 if (calendarDay.getPosition() == DayPosition.MonthDate) {
-                    /*textView.setTextColorRes(R.color.msg_text_color);*/
+                    TypedValue typedValue = new TypedValue();
+                    context.getTheme().resolveAttribute(R.attr.primaryButton, typedValue, true);
+                    int color = typedValue.data;
+                    textView.setTextColor(color);
                     layout.setBackgroundResource(
                             selectedDate != null && selectedDate.equals(calendarDay.getDate())
                                     ? R.drawable.selected_bg
                                     : 0
                     );
+
+                    if (calendarDay.getDate().equals(today)) {
+                        layout.setBackgroundResource(R.drawable.selected_bg); // Estilo para el día actual
+                    } else if (selectedDate != null && selectedDate.equals(calendarDay.getDate())) {
+                        layout.setBackgroundResource(R.drawable.selected_bg); // Estilo para el día seleccionado
+                    } else {
+                        layout.setBackgroundResource(0);
+                    }
 
                    /* List<FlightUI> flights = flights.get(calendarDay.getDate());
                     if (flights != null) {
