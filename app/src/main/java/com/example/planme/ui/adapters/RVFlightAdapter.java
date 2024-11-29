@@ -17,6 +17,10 @@ public class RVFlightAdapter extends RecyclerView.Adapter<RVFlightAdapter.Exampl
 
     private List<FlightUI> flights = new ArrayList<>();
 
+    public List<FlightUI> getFlights(){
+        return this.flights;
+    }
+
     @NonNull
     @Override
     public Example5FlightsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
