@@ -16,7 +16,7 @@
         android:layout_margin="16dp"
         android:background="@null"
         android:contentDescription="@string/profile_picture"
-        android:src="@drawable/imagen" />
+        />
 
     <!-- Título de la app -->
     <TextView
