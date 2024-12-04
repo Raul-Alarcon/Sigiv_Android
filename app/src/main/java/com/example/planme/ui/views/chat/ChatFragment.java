@@ -63,8 +63,12 @@ public class ChatFragment extends Fragment {
             }
         });
 
-        this.chatViewModel.getMessageGroup(groupId).observe(getViewLifecycleOwner(),
-                messageUIS -> messageUIS.forEach(messageAdapter::setMessage));
+        this.chatViewModel.getMessageGroup(groupId).observe(getViewLifecycleOwner(), messageUIS -> {
+            messageUIS.forEach(messageAdapter::setMessage);
+            if (messageAdapter.getItemCount() > 0){
+                this.binding.rvChatMessage.smoothScrollToPosition(messageAdapter.getItemCount() - 1);
+            }
+        });
     }
 
     @Override
