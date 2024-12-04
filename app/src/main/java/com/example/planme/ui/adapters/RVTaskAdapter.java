@@ -30,7 +30,6 @@ public class RVTaskAdapter extends  RecyclerView.Adapter<RVTaskAdapter.TaskHolde
     public TaskHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_task, parent, false);
         return new TaskHolder(view);
-);
     }
 
     @Override
