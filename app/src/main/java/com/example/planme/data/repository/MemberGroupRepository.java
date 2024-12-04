@@ -113,7 +113,6 @@ public class MemberGroupRepository {
         return future;
     }
 
-    // TODO: VERIFICAR
     public CompletableFuture<Boolean> exitToGroup(String userId){
         CompletableFuture<Boolean> future = new CompletableFuture<>();
 
