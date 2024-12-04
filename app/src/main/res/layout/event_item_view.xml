@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="0.143"
-        tools:text="THU\nJUN 30\n14:00" />
+        tools:text="THU\nJUN 30" />
 
     <!--Colored view divider-->
     <View
