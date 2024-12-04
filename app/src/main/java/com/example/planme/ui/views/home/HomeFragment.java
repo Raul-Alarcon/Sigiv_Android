@@ -1,9 +1,6 @@
 package com.example.planme.ui.views.home;
 
-import static androidx.core.content.ContextCompat.getSystemService;
 
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

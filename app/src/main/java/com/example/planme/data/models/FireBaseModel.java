@@ -5,4 +5,5 @@ public class FireBaseModel {
     public static String message = "messages";
     public static String member = "membersGroup";
     public static String task = "tasks";
+    public static String note = "notes";
 }

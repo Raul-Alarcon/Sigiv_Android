@@ -14,4 +14,7 @@
     <string name="title_page_login">Login</string>
     <string name="edit_text_placeholder">Mensaje</string>
     <string name="txt_btn_google">Iniciar con google</string>
+
+    <string name="title_page_new_note">Nota</string>
+    <string name="date_message">Hoy %1$s</string>
 </resources>
