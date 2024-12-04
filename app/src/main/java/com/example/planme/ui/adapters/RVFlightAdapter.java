@@ -50,11 +50,8 @@ public class RVFlightAdapter extends RecyclerView.Adapter<RVFlightAdapter.Exampl
             binding.itemTaskDateText.setText(DateFormatHelper.format(flight.getTime(), "EEE'\n'dd MMM'\n'HH:mm"));
             binding.itemTaskDateText.setBackgroundColor(itemView.getContext().getColor(flight.getColor()));
 
-            binding.itemTopicText.setText(flight.getDeparture().getCode());
-            binding.itemTaskText.setText(flight.getDeparture().getCity());
-
-            binding.itemTopicgText.setText(flight.getDestination().getCode());
-            binding.itemGroupText.setText(flight.getDestination().getCity());
+            binding.itemTopicText.setText(flight.getTopic());
+            binding.itemTaskText.setText(flight.getTxt());
         }
     }
 }

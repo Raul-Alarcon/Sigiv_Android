@@ -3,6 +3,7 @@ package com.example.planme.ui.views.calendar;
 import static com.kizitonwose.calendar.core.ExtensionsKt.daysOfWeek;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -21,7 +22,9 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.planme.R;
 import com.example.planme.databinding.CalendarDayBinding;
@@ -44,8 +47,10 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class CalendarFragment extends Fragment{
 
@@ -54,6 +59,8 @@ public class CalendarFragment extends Fragment{
     NavController navController; private LocalDate selectedDate;
     private List<FlightUI> flights = new ArrayList<>();
     private RVFlightAdapter flightAdapter;
+    private final Map<LocalDate, List<FlightUI>> taskMap = new HashMap<>();
+
 
 
     @Override
@@ -95,7 +102,7 @@ public class CalendarFragment extends Fragment{
                 LocalDate previousSelectedDate = selectedDate;
                 selectedDate = null; // Limpia la selección actual
                 binding.exFiveCalendar.notifyDateChanged(previousSelectedDate); // Notifica al calendario para actualizar la vista
-                //updateAdapterForDate(null); // Actualiza el adaptador (esto depende de tu implementación específica)
+                updateAdapterForDate(null); // Actualiza el adaptador (esto depende de tu implementación específica)
             }
 
             return null; // Devuelve null ya que no necesitamos devolver un valor específico
@@ -117,17 +124,91 @@ public class CalendarFragment extends Fragment{
             }
         });
 
+        binding.exThreeAddButton.setOnClickListener(v -> {
+            if (selectedDate != null) {
+                showAddEventDialog(selectedDate);
+            } else {
+                // Mostrar un mensaje si no se ha seleccionado una fecha
+                Toast.makeText(getContext(), "Por favor, selecciona una fecha primero", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
+
+    private void showAddEventDialog(LocalDate selectedDate) {
+        // Crear un AlertDialog para ingresar el título y la descripción
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_event, null);
+
+        final EditText titleEditText = dialogView.findViewById(R.id.editTextTitle);
+        final EditText descriptionEditText = dialogView.findViewById(R.id.editTextDescription);
+
+        new AlertDialog.Builder(getContext())
+                .setTitle("Agregar Evento")
+                .setView(dialogView)
+                .setPositiveButton("Guardar", (dialog, which) -> {
+                    // Obtener los valores de los campos
+                    String title = titleEditText.getText().toString().trim();
+                    String description = descriptionEditText.getText().toString().trim();
+
+                    if (!title.isEmpty() && !description.isEmpty()) {
+                        // Crear un nuevo evento
+                        FlightUI newEvent = new FlightUI();
+                        newEvent.setTopic(title);
+                        newEvent.setTxt(description);
+
+                        // Formatear la fecha
+                        DateTimeFormatter formatter = null;
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                        }
+                        String formattedDate = null; // Convierte LocalDate a String
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                            formattedDate = selectedDate.format(formatter);
+                        }
+
+                        // Establecer la fecha en el evento
+                        newEvent.setTime(formattedDate);
+
+                        // Guardar el evento en taskMap
+                        addTaskToDate(selectedDate, newEvent);
+
+                        // Actualizar el adaptador para mostrar el nuevo evento
+                        updateAdapterForDate(selectedDate);
+                    } else {
+                        Toast.makeText(getContext(), "Por favor ingresa un título y una descripción", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
+
+
 
     private void updateAdapterForDate(LocalDate date) {
         flightAdapter.getFlights().clear();
-       /* if (date != null && flights.containsKey(date)) {
-           // flightAdapter.getFlights().addAll(flights.get(date));
-        }*/
+        if (date != null && taskMap.containsKey(date)) {
+            flightAdapter.getFlights().addAll(taskMap.get(date));
+        }
         flightAdapter.notifyDataSetChanged();
     }
 
+    private void addTaskToDate(LocalDate date, FlightUI task) {
+        if (!taskMap.containsKey(date)) {
+            taskMap.put(date, new ArrayList<>());
+        }
+        taskMap.get(date).add(task);
+    }
+
+    private void deleteEvent(FlightUI event) {
+        LocalDate date = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            date = LocalDate.parse(event.getTime());
+        }
+        List<FlightUI> dateEvents = taskMap.getOrDefault(date, new ArrayList<>());
+        dateEvents.remove(event);
+        taskMap.put(date, dateEvents);
+        updateAdapterForDate(date);
+    }
 
     private void configureBinders(List<DayOfWeek> daysOfWeek) {
         // Clase para manejar las vistas del día
@@ -196,16 +277,11 @@ public class CalendarFragment extends Fragment{
                     } else {
                         layout.setBackgroundResource(0);
                     }
-
-                   /* List<FlightUI> flights = flights.get(calendarDay.getDate());
-                    if (flights != null) {
-                        if (flights.size() == 1) {
-                            flightBottomView.setBackgroundColor(context.getColorCompat(flights.get(0).getColor()));
-                        } else {
-                            flightTopView.setBackgroundColor(context.getColorCompat(flights.get(0).getColor()));
-                            flightBottomView.setBackgroundColor(context.getColorCompat(flights.get(1).getColor()));
-                        }
-                    }*/
+                    List<FlightUI> flightsForDay = taskMap.get(calendarDay.getDate());
+                    if (flightsForDay != null && !flightsForDay.isEmpty()) {
+                        // Mostrar eventos en el día (por ejemplo, cambiar color o agregar iconos)
+                        /*flightTopView.setBackgroundColor(ContextCompat.getColor(context, R.color.eventColor));*/
+                    }
                 } else {
                    /* textView.setTextColorRes(R.color.example_5_text_grey_light);*/
                     layout.setBackground(null);
@@ -262,9 +338,8 @@ public class CalendarFragment extends Fragment{
 
             }
         });
+
     }
-
-
 
     @Override
     public void onDestroyView() {
