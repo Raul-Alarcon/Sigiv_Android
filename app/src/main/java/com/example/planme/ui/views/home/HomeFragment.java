@@ -1,5 +1,9 @@
 package com.example.planme.ui.views.home;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,6 +79,46 @@ public class HomeFragment extends Fragment {
             if(groupUI != null){
                 GroupUI group = (GroupUI) groupUI;
                 this.homeViewModel.addMemberGroup(group);
+                addGroupForm.dismiss();
+            }
+        });
+
+        this.actionsGroup.setOnDeleteListener( groupUI -> {
+            if(groupUI != null){
+                homeViewModel.deleteGroup((GroupUI)groupUI)
+                        .thenAccept( isDeleted -> {
+                            if(isDeleted){
+                                this.actionsGroup.dismiss();
+                                Toast.makeText(getContext(), "Successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .exceptionally(throwable -> {
+                            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                            if (throwable != null) {
+                                ExceptionHelper.log(new Exception(throwable.getMessage()));
+                            }
+                            return null;
+                        });
+
+            }
+        });
+
+        this.actionsGroup.setOnExitListener(groupUI -> {
+            if(groupUI != null){
+                this.homeViewModel.exit((GroupUI) groupUI)
+                        .thenAccept( isExit -> {
+                            if(isExit) {
+                                this.actionsGroup.dismiss();
+                                Toast.makeText(getContext(), "Successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .exceptionally(throwable -> {
+                            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                            if (throwable != null) {
+                                ExceptionHelper.log(new Exception(throwable.getMessage()));
+                            }
+                            return null;
+                        });;
             }
         });
     }
@@ -92,6 +136,7 @@ public class HomeFragment extends Fragment {
             ExceptionHelper.log(e);
         }
     }
+    //ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
 
     private void setUpRvGroups(RVGroupsAdapter rvGroupsAdapter) {
         this.homeViewModel.getGroups().observe(getViewLifecycleOwner(),rvGroupsAdapter::setGroups);
