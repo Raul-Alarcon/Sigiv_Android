@@ -11,7 +11,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Scan QR code"
+            android:text="Scane Codigo QR"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="#000000"
@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Scan this code to verify your account."
+            android:text="Escanea este código para verificar tu cuenta."
             android:textSize="16sp"
             android:textColor="#666666"
             android:layout_marginBottom="32dp"/>
@@ -49,7 +49,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="or enter the code manually"
+                android:text="o introduzca el código manualmente"
                 android:textColor="#666666"
                 android:textSize="14sp"
                 android:layout_marginHorizontal="16dp"/>
@@ -86,17 +86,15 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
-
-
             <ImageButton
                 android:id="@+id/copy_button"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/rounded_background"
-                android:src="@drawable/ic_launcher_foreground"
-                android:contentDescription="sss"
-                android:padding="12dp"/>
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:contentDescription="Copiar texto"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_portapapeles1" />
+
         </LinearLayout>
 
         <!-- Verify Button -->

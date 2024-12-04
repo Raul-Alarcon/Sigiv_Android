@@ -4,7 +4,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="web_client_id">482461582860-4jdrrhjr5o2bvltiibbk7ku016csd3fl.apps.googleusercontent.com</string>
-
     <string name="txt_nav_bottom_task">Tareas</string>
     <string name="txt_nav_bottom_calendar">Calendario</string>
     <string name="txt_nav_bottom_me">Yo</string>
@@ -13,10 +12,6 @@
     <string name="content_description_img">Imagen del grupo</string>
     <string name="title_page_chat">Chat</string>
     <string name="title_page_login">Login</string>
-
     <string name="edit_text_placeholder">Mensaje</string>
-
     <string name="txt_btn_google">Iniciar con google</string>
-
-
 </resources>
