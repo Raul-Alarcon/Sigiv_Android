@@ -25,8 +25,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Nuevo Grupo"
-                android:textColor="@android:color/black"
+                android:text="@string/txt_new_Group"
+                android:textColor="?attr/primaryTextColor"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -42,7 +42,7 @@
                 android:id="@+id/edt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre"
+                android:hint="@string/txt_group_name"
                 android:inputType="text"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -58,7 +58,7 @@
                 android:id="@+id/edt_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Descripción"
+                android:hint="@string/txt_group_description"
                 android:inputType="textMultiLine"
                 android:minLines="3"
                 android:gravity="top" />
@@ -69,7 +69,7 @@
             android:id="@+id/btn_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Guardar"
+            android:text="@string/txt_save_group"
             android:textAllCaps="false"
             app:cornerRadius="8dp" />
 </LinearLayout>

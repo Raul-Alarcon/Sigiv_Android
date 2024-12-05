@@ -21,7 +21,7 @@
             android:layout_height="40dp"
             android:layout_marginEnd="8dp"
             android:src="@drawable/ic_launcher_foreground"
-            tools:contentDescription="Profile Image"
+            tools:contentDescription="@string/txt_profile"
             app:shapeAppearanceOverlay="@style/CircularShape"/>
 
         <LinearLayout
@@ -39,9 +39,9 @@
                     android:id="@+id/other_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Taylor Brooks"
+                    tools:text="@string/txt_use_name"
                     android:textStyle="bold"
-                    android:textColor="#000000"
+                    android:textColor="?attr/primaryTextColor"
                     android:textSize="14sp" />
 
                 <!-- Time Text -->
@@ -49,8 +49,8 @@
                     android:id="@+id/other_user_time_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="8:05 PM"
-                    android:textColor="#888888"
+                    tools:text="@string/txt_message_hour"
+                    android:textColor="?attr/secondaryTextColor"
                     android:textSize="12sp"
                     android:layout_marginHorizontal="8dp" />
 
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_background"
-                android:backgroundTint="#E8E8E8">
+                android:backgroundTint="?attr/messagePanel">
 
                 <TextView
                     android:id="@+id/other_message_text"
@@ -70,18 +70,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:padding="12dp"
-                    tools:text="alicnors Take a look at the"
+                    tools:text="@string/txt_message"
                     android:textSize="14sp"
 
-                    android:textColor="#333333"/>
+                    android:textColor="?attr/primaryTextColor"/>
 
                 <!-- Time Text -->
                 <TextView
                     android:id="@+id/other_time_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="8:05 PM"
-                    android:textColor="#888888"
+                    tools:text="@string/txt_message_hour"
+                    android:textColor="?attr/secondaryTextColor"
                     android:textSize="12sp"
                     android:layout_marginBottom="4dp"
                     android:layout_gravity="bottom"
@@ -119,8 +119,8 @@
                     android:id="@+id/my_user_time_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="8:05 PM"
-                    android:textColor="#888888"
+                    tools:text="@string/txt_message_hour"
+                    android:textColor="?attr/secondaryTextColor"
                     android:textSize="12sp"
                     android:layout_marginHorizontal="8dp" />
 
@@ -130,9 +130,9 @@
                     android:id="@+id/my_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Taylor Brooks"
+                    tools:text="@string/txt_use_name"
                     android:textStyle="bold"
-                    android:textColor="#000000"
+                    android:textColor="?attr/primaryTextColor"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -142,7 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_background"
-                android:backgroundTint="?attr/colorPrimary">
+                android:backgroundTint="?attr/secondaryButton">
 
                 <TextView
                     android:id="@+id/my_message_text"
@@ -150,16 +150,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:padding="12dp"
-                    tools:text="alicnors Take a look at"
+                    tools:text="@string/txt_message"
                     android:textSize="14sp"
-                    android:textColor="@color/my_msg_text_color"/>
+                    android:textColor="?attr/primaryTextColor"/>
 
                 <TextView
                     android:id="@+id/time_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="8:05 PM"
-                    android:textColor="@color/my_msg_text_color"
+                    android:textColor="?attr/secondaryTextColor"
                     android:textSize="12sp"
                     android:layout_marginBottom="4dp"
                     android:layout_gravity="bottom"

@@ -33,6 +33,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
 }
 
 dependencies {
@@ -59,4 +60,7 @@ dependencies {
 
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
     implementation("com.google.zxing:core:3.3.0")
+    implementation("com.kizitonwose.calendar:view:2.6.0")
+
+    //implementation("com.google.android.gms:play-services-auth:16.0.0")
 }
