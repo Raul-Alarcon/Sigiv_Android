@@ -52,9 +52,18 @@ public class Mapper {
         note.setId(noteUI.getId());
         note.setContent(noteUI.getShortContent());
         note.setDate(noteUI.getDate());
-        note.setTitle(note.getTitle());
+        note.setTitle(noteUI.getTitle());
 
         return note;
     }
+    public static NoteUI noteToUi(Note note){
+        String dateFormat = DateFormatHelper.format(note.getDate(), "HH:mm a");
+        return  new NoteUI(
+                note.getId(),
+                dateFormat,
+                note.getContent(),
+                note.getTitle());
+    }
+
 
 }

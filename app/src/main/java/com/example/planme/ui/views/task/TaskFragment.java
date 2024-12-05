@@ -16,15 +16,18 @@ import android.view.ViewGroup;
 
 import com.example.planme.R;
 import com.example.planme.databinding.FragmentTaskBinding;
+import com.example.planme.ui.adapters.RVNoteAdapter;
 
 public class TaskFragment extends Fragment {
     FragmentTaskBinding binding;
     NavController navController;
+    TaskViewModel taskViewModel;
+    RVNoteAdapter rvNoteAdapter;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        TaskViewModel taskViewModel = new ViewModelProvider(this).get(TaskViewModel.class);
+        taskViewModel = new ViewModelProvider(this).get(TaskViewModel.class);
         this.binding = FragmentTaskBinding.inflate(inflater, container, false);
         return this.binding.getRoot();
     }
@@ -34,8 +37,15 @@ public class TaskFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.navController = Navigation.findNavController(view);
 
+        this.rvNoteAdapter = new RVNoteAdapter();
+        this.binding.rvAllNotes.setAdapter(rvNoteAdapter);
+
         if(this.binding != null){
             this.binding.btnFormNote.setOnClickListener( __ -> this.handleNavToNewNote());
+        }
+
+        if(this.taskViewModel != null) {
+            this.taskViewModel.getNotesUI().observe(getViewLifecycleOwner(), rvNoteAdapter::setNotes);
         }
 
     }
