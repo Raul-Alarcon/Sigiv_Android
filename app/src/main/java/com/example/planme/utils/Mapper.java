@@ -1,7 +1,5 @@
 package com.example.planme.utils;
 
-import android.net.Uri;
-
 import com.example.planme.data.models.Group;
 import com.example.planme.data.models.Message;
 import com.example.planme.data.models.Note;

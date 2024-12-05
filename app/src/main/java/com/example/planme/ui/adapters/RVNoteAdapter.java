@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.planme.R;
 import com.example.planme.databinding.ItemNoteBinding;
+import com.example.planme.ui.base.OnClickListenerBase;
+import com.example.planme.ui.base.OnLongClickListenerBase;
 import com.example.planme.ui.models.NoteUI;
 
 import java.util.ArrayList;
@@ -17,13 +19,21 @@ import java.util.List;
 public class RVNoteAdapter extends RecyclerView.Adapter<RVNoteAdapter.NoteHolder> {
 
     private List<NoteUI> noteUIS;
-
+    private OnLongClickListenerBase onLongClickListener;
+    private OnClickListenerBase onClickListener;
     public RVNoteAdapter(){
         this.noteUIS = new ArrayList<>();
     }
     public void setNotes(List<NoteUI> notes){
         this.noteUIS = notes;
         this.notifyDataSetChanged();
+    }
+
+    public void setOnLongClickListener(OnLongClickListenerBase onLongClickListener){
+        this.onLongClickListener = onLongClickListener;
+    }
+    public void setOnClickListener(OnClickListenerBase onClickListener){
+        this.onClickListener = onClickListener;
     }
 
     @NonNull
@@ -37,6 +47,20 @@ public class RVNoteAdapter extends RecyclerView.Adapter<RVNoteAdapter.NoteHolder
     @Override
     public void onBindViewHolder(@NonNull NoteHolder holder, int position) {
         NoteUI noteUI = noteUIS.get(position);
+
+        holder.itemView.setOnLongClickListener( __ -> {
+            if(onLongClickListener != null){
+                onLongClickListener.onLongClick(noteUI);
+            }
+            return true;
+        });
+
+        holder.itemView.setOnClickListener( __ -> {
+            if(onClickListener != null){
+                onClickListener.onClick(noteUI);
+            }
+        });
+
         holder.render(noteUI);
     }
 

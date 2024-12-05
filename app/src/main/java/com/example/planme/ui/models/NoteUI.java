@@ -1,24 +1,15 @@
 package com.example.planme.ui.models;
 
-public class NoteUI {
-    private String id;
+public class NoteUI extends EntityUI {
     private String date;
     private String shortContent;
     private String title;
 
     public NoteUI(String id, String date, String shortContent, String title) {
-        this.id = id;
+        super.setId(id);
         this.date = date;
         this.shortContent = shortContent;
         this.title = title;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getDate() {
