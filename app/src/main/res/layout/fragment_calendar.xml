@@ -115,6 +115,6 @@
         android:layout_marginRight="10dp"
         app:tint="?attr/primaryBackground"
         app:backgroundTint="?attr/primaryButton"
-        app:srcCompat="@drawable/baseline_send_24" />
+        app:srcCompat="@drawable/ic_nuevo_grupo" />
 
 </FrameLayout>

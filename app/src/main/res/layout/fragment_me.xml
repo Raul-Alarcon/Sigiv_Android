@@ -123,7 +123,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/btn_Invitacion"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="?attr/primaryTextColor"
                 android:textSize="20sp" />
 
             <!-- Botón de About -->
@@ -134,7 +134,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/txt_About"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="?attr/primaryTextColor"
                 android:textSize="20sp" />
         </LinearLayout>
 

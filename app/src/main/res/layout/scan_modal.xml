@@ -64,7 +64,7 @@
         android:id="@+id/join_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/teal_700"
+        android:backgroundTint="?attr/primaryButton"
         android:text="Unirme"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
