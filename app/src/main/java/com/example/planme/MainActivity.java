@@ -61,9 +61,15 @@ public class MainActivity extends AppCompatActivity {
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             try {
+
+                if (destination.getId() == R.id.navigation_chat){
+                    navView.setVisibility(View.GONE);
+                }
                 if (destination.getId() == R.id.navigation_login) {
+
                     navView.setVisibility(View.GONE);
                     Objects.requireNonNull(getSupportActionBar()).hide();
+
                 } else {
                     navView.setVisibility(View.VISIBLE);
                     Objects.requireNonNull(getSupportActionBar()).show();
