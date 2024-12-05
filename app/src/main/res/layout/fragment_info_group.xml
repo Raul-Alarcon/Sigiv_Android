@@ -18,8 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            app:icon="@drawable/ic_informacion"
-            android:contentDescription="asdasd"
+            app:icon="@drawable/ic_notifications_black_24dp"
+            android:contentDescription="@string/txt_info_btn1"
             app:iconGravity="textStart"
             app:iconPadding="0dp"/>
 
@@ -29,8 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            app:icon="@drawable/ic_qr"
-            android:contentDescription="asdasd"
+            app:icon="@drawable/ic_notifications_black_24dp"
+            android:contentDescription="@string/txt_info_btn2"
             app:iconGravity="textStart"
             app:iconPadding="0dp"/>
     </LinearLayout>
@@ -40,10 +40,5 @@
 
     <include android:id="@+id/info_layout"
         layout="@layout/info_layout"/>
-
-
-
-
-
 
 </LinearLayout>

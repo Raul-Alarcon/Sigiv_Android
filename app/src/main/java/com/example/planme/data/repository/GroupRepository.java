@@ -3,6 +3,7 @@ package com.example.planme.data.repository;
 import androidx.annotation.NonNull;
 
 import com.example.planme.data.models.Group;
+import com.example.planme.ui.models.GroupUI;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -11,6 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -105,6 +107,23 @@ public class GroupRepository  {
                 onFinish.accept(null, databaseError.toException());
             }
         });
+    }
+
+    public CompletableFuture<Boolean> delete(String groupId){
+        CompletableFuture<Boolean> future = new CompletableFuture<>();
+           try {
+               this.dbRef.child(model).child(groupId)
+                       .removeValue().addOnCompleteListener( task -> {
+                           if(task.isSuccessful()){
+                               future.complete(true);
+                           } else {
+                               future.completeExceptionally(task.getException());
+                           }
+                       });
+           } catch (Exception e){
+               future.completeExceptionally(e);
+           }
+        return  future;
     }
 
 }

@@ -1,11 +1,11 @@
 package com.example.planme.utils;
 
-import android.net.Uri;
-
 import com.example.planme.data.models.Group;
 import com.example.planme.data.models.Message;
+import com.example.planme.data.models.Note;
 import com.example.planme.ui.models.CardMessageUI;
 import com.example.planme.ui.models.GroupUI;
+import com.example.planme.ui.models.NoteUI;
 import com.example.planme.ui.models.UserUI;
 
 public class Mapper {
@@ -43,4 +43,25 @@ public class Mapper {
                 userSession.getId(),
                 message.getUserName());
     }
+
+    public static Note noteUiToModel(NoteUI noteUI){
+        Note note = new Note();
+
+        note.setId(noteUI.getId());
+        note.setContent(noteUI.getShortContent());
+        note.setDate(noteUI.getDate());
+        note.setTitle(noteUI.getTitle());
+
+        return note;
+    }
+    public static NoteUI noteToUi(Note note){
+        String dateFormat = DateFormatHelper.format(note.getDate(), "HH:mm a");
+        return  new NoteUI(
+                note.getId(),
+                dateFormat,
+                note.getContent(),
+                note.getTitle());
+    }
+
+
 }
