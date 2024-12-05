@@ -11,7 +11,11 @@
     <string name="title_page_me">Perfil</string>
     <string name="content_description_img">Imagen del grupo</string>
     <string name="title_page_chat">Chat</string>
+    <string name="btn_back" translatable="false">Back</string>
+    <string name="btn_cerrarSecion" translatable="false">Cerrar sesión</string>
+
     <string name="title_page_login">Login</string>
+
     <string name="edit_text_placeholder">Mensaje</string>
     <string name="txt_btn_google">Iniciar con google</string>
 
@@ -19,4 +23,18 @@
     <string name="date_message">Hoy %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_Invitacion">Invitación</string>
+    <string name="txt_About">About</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="txt_nombre">Nombre</string>
+    <string name="txt_usuario">Usuario1</string>
+    <string name="txt_apellido">Apellido</string>
+    <string name="txt_descripcion">Descripcion</string>
+    <string name="txt_correo">Correo</string>
+    <string name="txt_Email">usuario1@gmail.com</string>
+    <string name="txt_informacion">Informacion</string>
+    <string name="txt_Version">Version 1.0</string>
+    <string name="txt_derechos_reservados">Derechos Reservados</string>
+    <string name="txt_creadores">Creadores</string>
+
 </resources>
