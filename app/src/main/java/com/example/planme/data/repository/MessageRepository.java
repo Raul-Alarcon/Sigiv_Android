@@ -12,6 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class MessageRepository {
@@ -60,6 +61,26 @@ public class MessageRepository {
         } catch (Exception exception){
             onFinish.accept(exception);
         }
+    }
+
+    public CompletableFuture<Boolean> deleteMessageToGroup(String groupId){
+        CompletableFuture<Boolean> future = CompletableFuture.completedFuture(true);
+
+        try {
+            this.messageDbContext.child(groupId)
+                    .removeValue()
+                    .addOnCompleteListener( task -> {
+                        if(task.isSuccessful()){
+                            future.complete(true);
+                        } else {
+                            future.completeExceptionally(task.getException());
+                        }
+                    });
+        } catch (Exception e){
+            future.completeExceptionally(e);
+        }
+
+        return future;
     }
 
 }

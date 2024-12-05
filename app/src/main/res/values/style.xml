@@ -9,4 +9,13 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>  <!-- Esto hace que sea un círculo -->
     </style>
+
+    <style name="SquareFab" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.NoCorners</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.NoCorners" parent="">
+        <item name="cornerSize">10dp</item>
+    </style>
+
 </resources>
