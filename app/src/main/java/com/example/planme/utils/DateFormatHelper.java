@@ -30,9 +30,9 @@ public class DateFormatHelper {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-    }
+        }
+        public static String getCurrentDateTime(){
+            return formatter.format(new Date());
+        }
 
-    public static String getCurrentDateTime(){
-        return formatter.format(new Date());
-    }
 }

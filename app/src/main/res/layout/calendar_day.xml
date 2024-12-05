@@ -28,7 +28,7 @@
             android:layout_height="5dp"
             android:layout_gravity="bottom"
             android:layout_marginBottom="18dp"
-            android:background="?attr/primaryTextColor" />
+            android:background="?attr/primaryButton" />
 
         <View
             android:id="@+id/exFiveDayFlightBottom"

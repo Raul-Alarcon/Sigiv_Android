@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="1dp"
-    android:background="?attr/primaryBackground">
+    android:background="?attr/primaryBackground"
+    android:id="@+id/item">
 
     <TextView
         android:id="@+id/itemTaskDateText"
@@ -23,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.143"
+        app:layout_constraintWidth_percent="0.17"
         tools:text="THU\nJUN 30" />
 
     <!--Colored view divider-->
@@ -42,7 +43,7 @@
         android:orientation="vertical"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@id/itemTaskDateText"
-        app:layout_constraintDimensionRatio="W,6:1"
+        app:layout_constraintDimensionRatio="W,5:1"
         app:layout_constraintStart_toEndOf="@id/itemTaskDateText"
         app:layout_constraintTop_toTopOf="@id/itemTaskDateText"
         android:padding="5dp">

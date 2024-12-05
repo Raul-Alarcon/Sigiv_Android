@@ -1,26 +1,30 @@
 package com.example.planme.ui.models;
 
+import java.time.LocalDate;
+
 public class FlightUI {
-    private String time;
+    private String id;
     private String topic;
     private String txt;
-    //private String id;
-    private int color;
+    private LocalDate time;
 
-    public FlightUI() {
-        this.time = time;
+    public FlightUI(String id, String topic, String txt, LocalDate time) {
+        this.id = id;
         this.topic = topic;
         this.txt = txt;
-        //this.id = id;
-        this.color = color;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
         this.time = time;
+    }
+
+    public FlightUI() {
+
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTopic() {
@@ -35,24 +39,16 @@ public class FlightUI {
         return txt;
     }
 
-    public void setTxt(String text) {
-        this.txt = text;
+    public void setTxt(String txt) {
+        this.txt = txt;
     }
 
-   /* public String getId() {
-        return id;
+    public LocalDate getTime() {
+        return time;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }*/
-
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
+    public void setTime(LocalDate time) {
+        this.time = time;
     }
 
 }
