@@ -53,6 +53,8 @@
 
     <string name="txt_scan">Scanea el codigo para unir tu cuenta.</string>
     <string name="txt_info_qr">Scanea el codigo QR</string>
+    <string name="txt_Scanear">Scanear</string>
+    <string name="txt_close">Cerrar</string>
     <string name="txt_code_manually">O ingresa el codigo manualmente.</string>
 
     <string name="web_client_id">482461582860-4jdrrhjr5o2bvltiibbk7ku016csd3fl.apps.googleusercontent.com</string>
