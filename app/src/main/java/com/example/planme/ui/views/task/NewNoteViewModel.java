@@ -28,4 +28,10 @@ public class NewNoteViewModel extends ViewModel {
         String userId = this.userSession.getUid();
         return this.noteRepository.addNote(userId, note);
     }
+
+    public CompletableFuture<Boolean> updateNote(NoteUI noteUI){
+        Note note = Mapper.noteUiToModel(noteUI);
+        String userId = this.userSession.getUid();
+        return  this.noteRepository.updateNote(userId, note);
+    }
 }

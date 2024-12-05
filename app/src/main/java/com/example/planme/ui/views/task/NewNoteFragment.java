@@ -25,10 +25,14 @@ import com.example.planme.ui.models.NoteUI;
 import com.example.planme.utils.DateFormatHelper;
 import com.example.planme.utils.ExceptionHelper;
 
+import org.json.JSONException;
+
 public class NewNoteFragment extends Fragment {
     FragmentNewNoteBinding binding;
     NewNoteViewModel newNoteViewModel;
     NavController navController;
+    NoteUI noteUISelected;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -43,6 +47,25 @@ public class NewNoteFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.navController = Navigation.findNavController(view);
+
+        noteUISelected = null;
+
+        if (getArguments() != null) {
+            String noteJson = getArguments().getString("noteUI");
+            noteUISelected = new NoteUI();
+
+            try {
+                noteUISelected.jsonStringToNote(noteJson);
+
+                if (noteJson != null) {
+                    this.binding.title.setText(noteUISelected.getTitle());
+                    this.binding.content.setText(noteUISelected.getShortContent());
+                }
+            } catch (JSONException e) {
+                ExceptionHelper.log(e);
+            }
+
+        }
 
         if(this.binding != null){
             String date = DateFormatHelper.getCurrentDateTime();
@@ -70,6 +93,40 @@ public class NewNoteFragment extends Fragment {
     }
 
     private void handleSaveClick(){
+        if(noteUISelected != null){
+            this.handleUpdateNote();
+        } else {
+            this.handleNewNote();
+        }
+    }
+
+    private void handleUpdateNote(){
+        String title = this.binding.title.getText().toString();
+        String content = this.binding.content.getText().toString();
+
+        try {
+
+            this.noteUISelected.setShortContent(content);
+            this.noteUISelected.setTitle(title);
+
+            this.newNoteViewModel.updateNote(this.noteUISelected)
+                    .thenAccept( isSave -> {
+                        if(isSave) {
+                            Toast.makeText(getContext(), "Successfully", Toast.LENGTH_SHORT).show();
+                        }
+                        if(!isSave){
+                            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                        }
+                    }).exceptionally( throwable -> {
+                        ExceptionHelper.log(new Exception(throwable.getMessage()));
+                        return null;
+                    });
+        } catch (Exception e){
+            ExceptionHelper.log(e);
+        }
+    }
+
+    private void handleNewNote(){
         String title = this.binding.title.getText().toString();
         String content = this.binding.content.getText().toString();
         NoteUI noteUI = new NoteUI("", "", content, title);

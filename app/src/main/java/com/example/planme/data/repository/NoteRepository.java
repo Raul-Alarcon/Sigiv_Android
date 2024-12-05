@@ -74,4 +74,44 @@ public class NoteRepository {
         return future;
     }
 
+    public CompletableFuture<Boolean> Delete(String userId, String noteId){
+        CompletableFuture<Boolean> future = new CompletableFuture<>();
+
+        try{
+            this.noteDbContext.child(userId).child(noteId)
+                    .removeValue().addOnCompleteListener( task -> {
+                        if (task.isSuccessful()){
+                            future.complete(true);
+                        } else {
+                            future.complete(false);
+                        }
+
+                    });
+        } catch (Exception e){
+            future.completeExceptionally(e);
+        }
+
+        return future;
+    }
+
+    public CompletableFuture<Boolean> updateNote(String userId, Note note){
+        CompletableFuture<Boolean> future = new CompletableFuture<>();
+        try {
+            note.setDate(DateFormatHelper.getCurrentDateTime());
+            this.noteDbContext.child(userId)
+                    .child(note.getId()).setValue(note).addOnCompleteListener(task -> {
+                        if(task.isSuccessful()){
+                            future.complete(true);
+                        } else {
+                            future.complete(false);
+                        }
+                    });
+
+        } catch (Exception e){
+            future.completeExceptionally(e);
+        }
+
+        return future;
+    }
+
 }
