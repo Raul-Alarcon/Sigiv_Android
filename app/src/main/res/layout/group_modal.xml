@@ -18,8 +18,8 @@
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            app:icon="@drawable/ic_nuevo_grupo1"
             android:contentDescription="@string/txt_group_create"
+            app:icon="@drawable/ic_nuevo_grupo1"
             app:iconGravity="textStart"
             app:iconPadding="0dp"/>
 
@@ -29,8 +29,8 @@
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:contentDescription="@string/txt_group_gcode"
             app:icon="@drawable/ic_codigo_union"
+            android:contentDescription="@string/txt_group_gcode"
             app:iconGravity="textStart"
             app:iconPadding="0dp"/>
 
