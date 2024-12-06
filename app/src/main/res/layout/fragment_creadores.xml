@@ -5,275 +5,244 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".ui.views.Creadores.CreadoresFragment">
 
-    <!-- Icono circular -->
-
-    <!-- Contenedor principal con esquinas redondeadas -->
-    <ImageView
-        android:id="@+id/logoImageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/ic_usuario"
-        android:contentDescription="@string/txt_usuarios"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_usuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
+    <!-- ScrollView para habilitar desplazamiento -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="?attr/primaryTextColor" />
-
-    <LinearLayout
-        android:id="@+id/mainContainer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/rounded_background2"
-        android:orientation="vertical"
-        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logoImageView"
-        app:layout_constraintVertical_bias="0.152">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Creador 1 -->
+        <!-- Contenedor principal -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_background2"
-            android:orientation="horizontal"
-            android:padding="8dp">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <!-- Imagen del creador -->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
+            <!-- Icono circular -->
+            <ImageView
+                android:id="@+id/logoImageView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ic_usuario"
+                android:contentDescription="@string/txt_usuarios"
                 android:scaleType="centerCrop"
-                android:src="@drawable/usuario"
-                app:shapeAppearanceOverlay="@style/CircularShape" />
+                app:tint="?attr/primaryTextColor" />
 
-            <!-- Nombre y correo del creador en un LinearLayout vertical -->
+            <!-- Lista de creadores -->
             <LinearLayout
-                android:layout_width="0dp"
+                android:id="@+id/mainContainer"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_background2"
-                android:orientation="vertical"
-                >
-
-                <!-- Nombre del creador -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/primaryTextColor"
-                    android:text="@string/NombreMelvin"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    />
-
-                <!-- Correo del creador -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/primaryTextColor"
-                    android:text="@string/CorreoMelvin"
-                    android:textSize="16sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Creador 2 -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_background2"
-
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <!-- Imagen del creador -->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/usuario"
-                app:shapeAppearanceOverlay="@style/CircularShape" />
-
-            <!-- Nombre y correo del creador en un LinearLayout vertical -->
-            <LinearLayout
-                android:background="@drawable/rounded_background2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="vertical">
 
-                <!-- Nombre del creador -->
-                <TextView
-                    android:layout_width="wrap_content"
+                <!-- Creador 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/NombreRaul"
-                    android:textSize="16sp"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textStyle="bold" />
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/rounded_background2"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
 
-                <!-- Correo del creador -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textColor="?attr/primaryTextColor"
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/usuario"
+                        app:shapeAppearanceOverlay="@style/CircularShape" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/primaryTextColor"
+                            android:text="@string/NombreMelvin"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/primaryTextColor"
+                            android:text="@string/CorreoMelvin"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Creador 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/CorreoRaul"
-                    android:textSize="16sp" />
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/rounded_background2"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/usuario"
+                        app:shapeAppearanceOverlay="@style/CircularShape" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/NombreRaul"
+                            android:textSize="16sp"
+                            android:textColor="?attr/primaryTextColor"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/CorreoRaul"
+                            android:textSize="16sp"
+                            android:textColor="?attr/primaryTextColor" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Creador 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/rounded_background2"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/usuario"
+                        app:shapeAppearanceOverlay="@style/CircularShape" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/NombreErick"
+                            android:textSize="16sp"
+                            android:textColor="?attr/primaryTextColor"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/CorreoErick"
+                            android:textSize="16sp"
+                            android:textColor="?attr/primaryTextColor" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Creador 4 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/rounded_background2"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/usuario"
+                        app:shapeAppearanceOverlay="@style/CircularShape" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/NombreAntony"
+                            android:textSize="16sp"
+                            android:textColor="?attr/primaryTextColor"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/CorreoAntony"
+                            android:textSize="16sp"
+                            android:textColor="?attr/primaryTextColor" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Creador 5 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/rounded_background2"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/usuario"
+                        app:shapeAppearanceOverlay="@style/CircularShape" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/NombreHilder"
+                            android:textSize="16sp"
+                            android:textColor="?attr/primaryTextColor"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/CorreoHilder"
+                            android:textSize="16sp"
+                            android:textColor="?attr/primaryTextColor" />
+                    </LinearLayout>
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
-
-        <!-- Creador 3 -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_background2"
-
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <!-- Imagen del creador -->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/usuario"
-                app:shapeAppearanceOverlay="@style/CircularShape" />
-
-            <!-- Nombre y correo del creador en un LinearLayout vertical -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_background2"
-                android:orientation="vertical">
-
-                <!-- Nombre del creador -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textColor="?attr/primaryTextColor"
-                    android:layout_height="wrap_content"
-                    android:text="@string/NombreErick"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <!-- Correo del creador -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/primaryTextColor"
-                    android:text="@string/CorreoErick"
-                    android:textSize="16sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Creador 4 -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_background2"
-
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <!-- Imagen del creador -->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/usuario"
-                app:shapeAppearanceOverlay="@style/CircularShape" />
-
-            <!-- Nombre y correo del creador en un LinearLayout vertical -->
-            <LinearLayout
-                android:background="@drawable/rounded_background2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <!-- Nombre del creador -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/NombreAntony"
-                    android:textSize="16sp"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textStyle="bold" />
-
-                <!-- Correo del creador -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/CorreoAntony"
-                    android:textSize="16sp"
-                    android:textColor="?attr/primaryTextColor"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Creador 5 -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_background2"
-
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <!-- Imagen del creador -->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/usuario"
-                app:shapeAppearanceOverlay="@style/CircularShape" />
-
-            <!-- Nombre y correo del creador en un LinearLayout vertical -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:background="@drawable/rounded_background2"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <!-- Nombre del creador -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/NombreHilder"
-                    android:textSize="16sp"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textStyle="bold" />
-
-                <!-- Correo del creador -->
-                <TextView
-                    android:textColor="?attr/primaryTextColor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/CorreoHilder"
-                    android:textSize="16sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
