@@ -21,7 +21,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:contentDescription="@string/profile_picture"
-            android:src="@drawable/usuario"
+
             app:shapeAppearanceOverlay="@style/CircularShape"/>
 
         <!-- Información del perfil -->

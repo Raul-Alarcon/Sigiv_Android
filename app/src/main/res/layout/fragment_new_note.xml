@@ -13,7 +13,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:hint="Título"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:background="@null"/>
 
     <TextView
         android:id="@+id/date"
@@ -38,6 +39,5 @@
         android:inputType="textMultiLine"
         android:minLines="3"
         android:gravity="top"/>
-
 
 </RelativeLayout>

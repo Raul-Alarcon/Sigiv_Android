@@ -13,7 +13,7 @@
         android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        app:icon="@drawable/ic_nuevo_grupo1"
+        app:icon="@drawable/ic_delete"
         android:contentDescription="asdasd"
         app:iconGravity="textStart"
         app:iconPadding="0dp"/>
@@ -24,7 +24,7 @@
         android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        app:icon="@drawable/ic_codigo_union"
+        app:icon="@drawable/ic_editar_nota"
         android:contentDescription="asdasd"
         app:iconGravity="textStart"
         app:iconPadding="0dp"/>

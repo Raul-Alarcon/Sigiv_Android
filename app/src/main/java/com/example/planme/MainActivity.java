@@ -7,6 +7,7 @@ import android.view.View;
 import com.example.planme.utils.ExceptionHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
@@ -41,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e){
             ExceptionHelper.log(e);
         }
-
 //        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
 //            Log.e("CrashHandler", "Uncaught Exception", throwable);
 //            // Puedes enviar el log a un servidor o archivo
