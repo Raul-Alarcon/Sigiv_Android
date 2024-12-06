@@ -14,8 +14,13 @@
         <item name="alertError">@color/light_alert_error</item>
         <item name="utilBrown">@color/light_brown</item>
 
+        <item name="selectoff">@color/light_primary_button_variant</item>
+        <item name="selecton">@color/light_secondary_button_variant</item>
+        <item name="ic_color">@color/light_secondary_button_variant</item>
+
         <item name="colorPrimary">#2196F3</item>
-        <item name="android:statusBarColor">@color/dark_brown</item>
+        <item name="android:statusBarColor">@color/dark_primary_button</item>
+
     </style>
 
 </resources>

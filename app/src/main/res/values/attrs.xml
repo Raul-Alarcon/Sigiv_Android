@@ -10,6 +10,9 @@
     <attr name="primaryButtonVariant" format="color"/>
     <attr name="alertError" format="color"/>
     <attr name="utilBrown" format="color"/>
+    <attr name="selectoff" format="color"/>
+    <attr name="selecton" format="color"/>
+    <attr name="ic_color" format="color" />
 
 
 

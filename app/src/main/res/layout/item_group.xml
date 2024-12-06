@@ -3,19 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:padding="16dp"
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true">
 
-    <ImageView
-        android:id="@+id/img_group"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginEnd="16dp"
-        android:contentDescription="@string/content_description_img"
-        android:src="@drawable/ic_usuario" />
+    <!-- Imagen del creador -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:tint="?attr/primaryTextColor"
+        android:src="@drawable/ic_usuario"
+        app:shapeAppearanceOverlay="@style/CircularShape" />
 
     <LinearLayout
         android:layout_width="0dp"

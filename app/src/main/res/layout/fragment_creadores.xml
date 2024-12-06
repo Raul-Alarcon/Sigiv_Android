@@ -5,40 +5,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".ui.views.Creadores.CreadoresFragment">
 
-    <!-- Icono circular -->
-
-    <!-- Contenedor principal con esquinas redondeadas -->
+    <!-- Icono -->
     <ImageView
         android:id="@+id/logoImageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/ic_usuario"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_launcher_foreground"
         android:contentDescription="@string/txt_usuarios"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_usuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="?attr/primaryTextColor" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Título -->
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoImageView">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_desarrolladores"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/mainContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@drawable/rounded_background2"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logoImageView"
-        app:layout_constraintVertical_bias="0.152">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.582">
 
         <!-- Creador 1 -->
         <LinearLayout
@@ -55,7 +66,8 @@
                 android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/usuario"
+                android:tint="?attr/primaryTextColor"
+                android:src="@drawable/ic_usuario"
                 app:shapeAppearanceOverlay="@style/CircularShape" />
 
             <!-- Nombre y correo del creador en un LinearLayout vertical -->
@@ -63,26 +75,24 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/rounded_background2"
-                android:orientation="vertical"
-                >
+
+                android:orientation="vertical">
 
                 <!-- Nombre del creador -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="?attr/primaryTextColor"
                     android:text="@string/NombreMelvin"
+                    android:textColor="?attr/primaryTextColor"
                     android:textSize="16sp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
 
                 <!-- Correo del creador -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="?attr/primaryTextColor"
                     android:text="@string/CorreoMelvin"
+                    android:textColor="?attr/primaryTextColor"
                     android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
@@ -103,13 +113,13 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
+                android:tint="?attr/primaryTextColor"
                 android:scaleType="centerCrop"
-                android:src="@drawable/usuario"
+                android:src="@drawable/ic_usuario"
                 app:shapeAppearanceOverlay="@style/CircularShape" />
 
             <!-- Nombre y correo del creador en un LinearLayout vertical -->
             <LinearLayout
-                android:background="@drawable/rounded_background2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -120,16 +130,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/NombreRaul"
-                    android:textSize="16sp"
                     android:textColor="?attr/primaryTextColor"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <!-- Correo del creador -->
                 <TextView
                     android:layout_width="wrap_content"
-                    android:textColor="?attr/primaryTextColor"
                     android:layout_height="wrap_content"
                     android:text="@string/CorreoRaul"
+                    android:textColor="?attr/primaryTextColor"
                     android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
@@ -151,7 +161,8 @@
                 android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/usuario"
+                android:tint="?attr/primaryTextColor"
+                android:src="@drawable/ic_usuario"
                 app:shapeAppearanceOverlay="@style/CircularShape" />
 
             <!-- Nombre y correo del creador en un LinearLayout vertical -->
@@ -159,15 +170,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/rounded_background2"
                 android:orientation="vertical">
 
                 <!-- Nombre del creador -->
                 <TextView
                     android:layout_width="wrap_content"
-                    android:textColor="?attr/primaryTextColor"
                     android:layout_height="wrap_content"
                     android:text="@string/NombreErick"
+                    android:textColor="?attr/primaryTextColor"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -175,8 +185,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="?attr/primaryTextColor"
                     android:text="@string/CorreoErick"
+                    android:textColor="?attr/primaryTextColor"
                     android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
@@ -198,12 +208,12 @@
                 android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/usuario"
+                android:tint="?attr/primaryTextColor"
+                android:src="@drawable/ic_usuario"
                 app:shapeAppearanceOverlay="@style/CircularShape" />
 
             <!-- Nombre y correo del creador en un LinearLayout vertical -->
             <LinearLayout
-                android:background="@drawable/rounded_background2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -214,8 +224,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/NombreAntony"
-                    android:textSize="16sp"
                     android:textColor="?attr/primaryTextColor"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <!-- Correo del creador -->
@@ -223,8 +233,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/CorreoAntony"
-                    android:textSize="16sp"
-                    android:textColor="?attr/primaryTextColor"/>
+                    android:textColor="?attr/primaryTextColor"
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -245,13 +255,13 @@
                 android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/usuario"
+                android:tint="?attr/primaryTextColor"
+                android:src="@drawable/ic_usuario"
                 app:shapeAppearanceOverlay="@style/CircularShape" />
 
             <!-- Nombre y correo del creador en un LinearLayout vertical -->
             <LinearLayout
                 android:layout_width="0dp"
-                android:background="@drawable/rounded_background2"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -261,16 +271,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/NombreHilder"
-                    android:textSize="16sp"
                     android:textColor="?attr/primaryTextColor"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <!-- Correo del creador -->
                 <TextView
-                    android:textColor="?attr/primaryTextColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/CorreoHilder"
+                    android:textColor="?attr/primaryTextColor"
                     android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
