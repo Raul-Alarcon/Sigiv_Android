@@ -253,6 +253,7 @@ public class CalendarFragment extends Fragment{
             flightAdapter.getFlights().addAll(taskMap.get(date));
         }
         flightAdapter.notifyDataSetChanged();
+
     }
 
     private void deleteEvent(FlightUI event) {
@@ -332,6 +333,7 @@ public class CalendarFragment extends Fragment{
                 flightBottomView.setBackground(null);
 
                 if (calendarDay.getPosition() == DayPosition.MonthDate) {
+
                     TypedValue typedValue = new TypedValue();
                     context.getTheme().resolveAttribute(R.attr.primaryButton, typedValue, true);
                     int color = typedValue.data;
@@ -343,8 +345,10 @@ public class CalendarFragment extends Fragment{
                     );
 
                     if (calendarDay.getDate().equals(today)) {
-                        layout.setBackgroundResource(R.drawable.selected_bg); // Estilo para el día actual
+                        layout.setBackgroundResource(R.drawable.selected_bg);
+                        binding.exThreeSelectedDateText.setText(calendarDay.getDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy")));// Estilo para el día actual
                     } else if (selectedDate != null && selectedDate.equals(calendarDay.getDate())) {
+                        binding.exThreeSelectedDateText.setText(calendarDay.getDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy")));
                         layout.setBackgroundResource(R.drawable.selected_bg); // Estilo para el día seleccionado
                     } else {
                         layout.setBackgroundResource(0);
@@ -363,6 +367,7 @@ public class CalendarFragment extends Fragment{
                         flightBottomView.setBackgroundColor(utilBrown);
 
                     }
+
                 } else {
                     layout.setBackground(null);
                 }

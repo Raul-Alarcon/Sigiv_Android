@@ -13,6 +13,7 @@ import com.example.planme.ui.base.OnClickListener;
 import com.example.planme.ui.models.FlightUI;
 import com.example.planme.utils.DateFormatHelper;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,8 +74,6 @@ public class RVFlightAdapter extends RecyclerView.Adapter<RVFlightAdapter.Exampl
             binding.itemTaskDateText.setText(flight.getTime().format(DateTimeFormatter.ofPattern("EEE \nMMM dd")));
             binding.itemTopicText.setText(flight.getTopic());
             binding.itemTaskText.setText(flight.getTxt());
-
-
         }
     }
 }
