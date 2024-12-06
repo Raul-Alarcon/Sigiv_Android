@@ -19,7 +19,7 @@
                 android:layout_height="50dp"
                 android:layout_alignParentEnd="false"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Cerrar" />
+                android:contentDescription="@string/cerrar"/>
 
             <TextView
                 android:layout_width="wrap_content"

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         app:icon="@drawable/ic_nuevo_grupo1"
-        android:contentDescription="asdasd"
+        android:contentDescription="@string/descripcion_btn1"
         app:iconGravity="textStart"
         app:iconPadding="0dp"/>
 
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         app:icon="@drawable/ic_codigo_union"
-        android:contentDescription="asdasd"
+        android:contentDescription="@string/descripcion_btn2"
         app:iconGravity="textStart"
         app:iconPadding="0dp"/>
 

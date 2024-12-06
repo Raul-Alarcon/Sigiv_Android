@@ -63,6 +63,8 @@ public class TaskFragment extends Fragment {
             this.taskViewModel.getNotesUI().observe(getViewLifecycleOwner(), rvNoteAdapter::setNotes);
         }
 
+        this.rvNoteAdapter.setOnClickListener(this::handleEditNote);
+
     }
 
     private void handleEditNote(EntityUI entityUI){

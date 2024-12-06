@@ -30,7 +30,7 @@
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Real-Time Alerts"
+        android:text="@string/real_time_alerts"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="?attr/primaryTextColor"

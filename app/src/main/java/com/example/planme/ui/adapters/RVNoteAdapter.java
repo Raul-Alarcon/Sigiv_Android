@@ -79,7 +79,12 @@ public class RVNoteAdapter extends RecyclerView.Adapter<RVNoteAdapter.NoteHolder
         public void render(NoteUI noteUI){
             this.binding.tvTitle.setText(noteUI.getTitle());
             this.binding.tvDate.setText(noteUI.getDate());
-            this.binding.tvShortContent.setText(noteUI.getShortContent());
+
+            String content = noteUI.getShortContent();
+            int maxLength = 20;
+            content = (content.length() > maxLength) ? content.substring(0, maxLength)+"..." : content;
+
+            this.binding.tvShortContent.setText(content);
         }
     }
 }

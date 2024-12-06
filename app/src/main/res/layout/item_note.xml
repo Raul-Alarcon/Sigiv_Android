@@ -12,7 +12,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Yb6h5h5h6b6h"
+        android:text="@string/text1"
         android:textSize="18sp" />
 
     <LinearLayout
@@ -24,7 +24,7 @@
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4:46 p.m."
+            android:text="@string/text2"
             android:textSize="14sp"
             android:layout_marginEnd="8dp" />
 
@@ -32,7 +32,7 @@
             android:id="@+id/tv_short_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Yb5h5h5h j6b6j"
+            android:text="@string/text3"
             android:textSize="14sp" />
     </LinearLayout>
 </LinearLayout>
