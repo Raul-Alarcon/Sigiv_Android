@@ -80,4 +80,18 @@
     <string name="txt_derechos_reservados">Derechos Reservados</string>
     <string name="txt_creadores">Creadores</string>
 
+    <!--dialog_add_event -->
+    <string name="titulo_evento">Título del evento</string>
+    <string name="descripcion_evento">Descripción del evento</string>
+    <!--form_group_layout -->
+    <string name="cerrar">Cerrar</string>
+    <!--fragment_actions_note -->
+    <string name="descripcion_btn1">Descripción para botón 1</string>
+    <string name="descripcion_btn2">Descripción para botón 2</string>
+    <!--info_qr_layout -->
+    <string name="real_time_alerts">Get Real-Time Alerts</string>
+    <!--item_note-->
+    <string name="text1">Yb6h5h5h6b6h</string>
+    <string name="text2">4:46 p.m.</string>hj
+    <string name="text3">Yb5h5h5h j6b6j</string>
 </resources>

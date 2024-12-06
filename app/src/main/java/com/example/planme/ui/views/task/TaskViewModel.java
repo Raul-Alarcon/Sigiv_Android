@@ -1,5 +1,7 @@
 package com.example.planme.ui.views.task;
 
+import android.provider.ContactsContract;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -46,6 +48,10 @@ public class TaskViewModel extends ViewModel {
         }
         future.complete(null);
         return future;
+    }
+
+    public CompletableFuture<Boolean> deleteNoteById(String noteID){
+        return this.noteRepository.Delete(userSession.getUid(), noteID);
     }
 
     public LiveData<List<NoteUI>> getNotesUI(){
