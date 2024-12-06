@@ -69,9 +69,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btn_Invitacion">Invitación</string>
     <string name="txt_About">About</string>
+    <string name="txt_Creadores">CREADORES</string>
     <string name="profile_picture">Profile Picture</string>
     <string name="txt_nombre">Nombre</string>
-    <string name="txt_usuario">Usuario1</string>
+    <string name="txt_usuario">Usuario</string>
+    <string name="txt_usuarios">Usuarios</string>
     <string name="txt_apellido">Apellido</string>
     <string name="txt_descripcion">Descripcion</string>
     <string name="txt_correo">Correo</string>
@@ -81,5 +83,18 @@
     <string name="txt_derechos_reservados">Derechos Reservados</string>
     <string name="txt_creadores">Creadores</string>
     <string name="txt_btn_google">GOOGLE</string>
+    <string name="raul">Raul</string>
+    <string name="raul_gmail_com">raul@gmail.com</string>
+    <string name="todo">TODO</string>
+    <string name="NombreMelvin">Melvin Alexis Tespan Caceres</string>
+    <string name="CorreoMelvin">tc21i04001@usonsonate.edu.sv</string>
+    <string name="NombreRaul">Raúl Edgardo Alarcon Monge</string>
+    <string name="CorreoRaul">am21i04001@usonsonate.edu.sv</string>
+    <string name="NombreErick">Erick Otoniel Centeno Chavez</string>
+    <string name="CorreoErick">cc21i04002@usonsonate.edu.sv</string>
+    <string name="NombreAntony">Antony Reggie Rodríguez López</string>
+    <string name="CorreoAntony">rl19i04001@usonsonate.edu.sv</string>
+    <string name="NombreHilder">Hilder Enrique Alpe Bran</string>
+    <string name="CorreoHilder">ab21i04002@usonsonate.edu.sv</string>
 
 </resources>
