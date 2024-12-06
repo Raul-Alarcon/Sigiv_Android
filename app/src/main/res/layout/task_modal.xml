@@ -97,7 +97,7 @@
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/teal_700"
+        android:backgroundTint="?attr/primaryButton"
         android:text="Save"
         android:textAllCaps="false"
         app:cornerRadius="8dp" />

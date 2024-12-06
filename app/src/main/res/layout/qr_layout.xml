@@ -11,18 +11,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Scane Codigo QR"
+            android:text="@string/txt_info_qr"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="#000000"
+            android:textColor="?attr/primaryTextColor"
             android:layout_marginBottom="8dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Escanea este código para verificar tu cuenta."
+            android:text="@string/txt_scan"
             android:textSize="16sp"
-            android:textColor="#666666"
+            android:textColor="?attr/secondaryTextColor"
             android:layout_marginBottom="32dp"/>
 
         <!-- QR Code Image -->
@@ -44,13 +44,13 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_weight="1"
-                android:background="#E0E0E0"/>
+                android:background="?attr/secondaryTextColor"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="o introduzca el código manualmente"
-                android:textColor="#666666"
+                android:text="@string/txt_code_manually"
+                android:textColor="?attr/secondaryTextColor"
                 android:textSize="14sp"
                 android:layout_marginHorizontal="16dp"/>
 
@@ -58,7 +58,7 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_weight="1"
-                android:background="#E0E0E0"/>
+                android:background="?attr/secondaryTextColor"/>
         </LinearLayout>
 
         <!-- Code Input Container -->
@@ -78,13 +78,12 @@
                     android:id="@+id/code_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Codigo"
+                    android:hint="@string/txt_group_code"
                     android:paddingHorizontal="16dp"
                     android:inputType="text"
                     android:layout_marginEnd="8dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <ImageButton
                 android:id="@+id/copy_button"

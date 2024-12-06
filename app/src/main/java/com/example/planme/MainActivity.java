@@ -87,6 +87,11 @@ public class MainActivity extends AppCompatActivity {
             navController.navigate(R.id.navigation_login, null, navOptions);
         }
 
+        // manejador de excepcions global
+        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+            Log.e("CrashHandler", "Uncaught Exception", throwable);
+        });
+
     }
 
     @Override

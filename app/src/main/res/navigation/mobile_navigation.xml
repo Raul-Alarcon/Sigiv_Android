@@ -20,7 +20,11 @@
         android:id="@+id/navigation_task"
         android:name="com.example.planme.ui.views.task.TaskFragment"
         android:label="@string/txt_nav_bottom_task"
-        tools:layout="@layout/fragment_task" />
+        tools:layout="@layout/fragment_task">
+
+        <action android:id="@+id/navigation_task_to_navigation_new_note"
+            app:destination="@+id/navigation_new_note" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_calendar"
@@ -32,7 +36,10 @@
         android:id="@+id/navigation_me"
         android:name="com.example.planme.ui.views.me.MeFragment"
         android:label="@string/title_page_me"
-        tools:layout="@layout/fragment_me" />
+        tools:layout="@layout/fragment_me" >
+        <action android:id="@+id/navigation_me_to_navigation_About"
+            app:destination="@+id/navigation_About"/>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_chat"
@@ -51,5 +58,17 @@
         android:name="com.example.planme.ui.views.login.LoginFragment"
         android:label="@string/title_page_login"
         tools:layout="@layout/fragment_login" />
+
+    <fragment
+        android:id="@+id/navigation_About"
+        android:name="com.example.planme.ui.views.About.AboutFragment"
+        android:label="@string/txt_About"
+        tools:layout="@layout/fragment_about" />
+
+    <fragment
+        android:id="@+id/navigation_new_note"
+        android:name="com.example.planme.ui.views.task.NewNoteFragment"
+        android:label="@string/title_page_new_note"
+        tools:layout="@layout/fragment_new_note" />
 
 </navigation>
