@@ -20,7 +20,7 @@
             android:id="@+id/exFiveAppBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/primaryButton">
+            android:background="?attr/primaryBackground">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                     android:layout_height="36dp"
                     android:layout_marginEnd="22dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    app:tint="?attr/primaryBackground"
+                    app:tint="?attr/primaryTextColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -45,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
-                    android:textColor="?attr/primaryBackground"
+                    android:textColor="?attr/primaryTextColor"
                     android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/exFiveNextMonthImage"
@@ -58,7 +58,7 @@
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    app:tint="?attr/primaryBackground"
+                    app:tint="?attr/primaryTextColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -80,12 +80,13 @@
                 app:cv_dayViewResource="@layout/calendar_day"
                 app:cv_monthHeaderResource="@layout/calendar_header"
                 app:cv_outDateStyle="endOfGrid" />
+
             <TextView
                 android:id="@+id/exThreeSelectedDateText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="#EEEEEE"
+                android:background="?attr/messagePanel"
                 android:fontFamily="sans-serif-medium"
                 android:paddingStart="20dp"
                 android:paddingTop="12dp"
@@ -106,15 +107,21 @@
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/exThreeAddButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_gravity="end|bottom"
-        android:layout_marginBottom="70dp"
-        android:layout_marginRight="10dp"
-        app:tint="?attr/primaryBackground"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="72dp"
+        android:contentDescription="@string/fb_add"
+        android:src="@drawable/ic_nuevo_grupo"
         app:backgroundTint="?attr/primaryButton"
-        app:srcCompat="@drawable/ic_nuevo_grupo" />
+        app:tint="@android:color/white"
+        style="@style/SquareFab"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </FrameLayout>

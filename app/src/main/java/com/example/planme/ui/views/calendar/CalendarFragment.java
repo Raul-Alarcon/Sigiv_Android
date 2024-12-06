@@ -17,6 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -27,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.planme.R;
+import com.example.planme.data.models.Task;
 import com.example.planme.databinding.CalendarDayBinding;
 import com.example.planme.databinding.CalendarHeaderBinding;
 import com.example.planme.databinding.FragmentCalendarBinding;
@@ -34,6 +37,7 @@ import com.example.planme.databinding.FragmentHomeBinding;
 import com.example.planme.ui.adapters.RVFlightAdapter;
 import com.example.planme.ui.models.FlightUI;
 import com.example.planme.ui.views.home.HomeViewModel;
+import com.example.planme.utils.DateFormatHelper;
 import com.kizitonwose.calendar.core.CalendarDay;
 import com.kizitonwose.calendar.core.CalendarMonth;
 import com.kizitonwose.calendar.core.DayPosition;
@@ -47,10 +51,13 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 public class CalendarFragment extends Fragment{
 
@@ -59,15 +66,15 @@ public class CalendarFragment extends Fragment{
     NavController navController; private LocalDate selectedDate;
     private List<FlightUI> flights = new ArrayList<>();
     private RVFlightAdapter flightAdapter;
-    private final Map<LocalDate, List<FlightUI>> taskMap = new HashMap<>();
+    CalendarViewModel calendarViewModel;
 
-
+    private Map<LocalDate, List<FlightUI>> taskMap = new HashMap<>();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        CalendarViewModel calendarViewModel = new ViewModelProvider(this)
+        calendarViewModel = new ViewModelProvider(this)
                 .get(CalendarViewModel.class);
         this.binding = FragmentCalendarBinding.inflate(inflater, container, false);
 
@@ -87,6 +94,45 @@ public class CalendarFragment extends Fragment{
 
         flightAdapter = new RVFlightAdapter();
         binding.exFiveRv.setAdapter(flightAdapter);
+        calendarViewModel.getDataFlight().observe(getViewLifecycleOwner(),flightUIS -> {
+            flightAdapter.setFlights(flightUIS);
+
+            Map<LocalDate, List<FlightUI>> _taskMap = new HashMap<>();
+
+            flightUIS.forEach( f -> {
+                LocalDate formatter = DateFormatHelper.stringToLocalDate(f.getTime());
+                _taskMap.put(formatter, Collections.singletonList(f));
+
+                binding.exFiveCalendar.notifyDateChanged(formatter);
+            });
+
+            taskMap = _taskMap;
+        });
+
+
+        flightAdapter.setOnClickListener( flightUI -> {
+            this.showEditEventDialog(selectedDate);
+        });
+
+
+        // Configuración del ItemTouchHelper para swipe
+        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false; // No es necesario mover ítems
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                // Obtén el evento que fue deslizado
+                FlightUI event = flightAdapter.getFlights().get(viewHolder.getAdapterPosition());
+                deleteEvent(event); // Llama a la función que elimina el evento
+            }
+        };
+
+        // Asocia el ItemTouchHelper al RecyclerView
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(binding.exFiveRv);
 
         DayOfWeek day  = daysOfWeek.get(0);
         configureBinders(daysOfWeek);
@@ -116,7 +162,7 @@ public class CalendarFragment extends Fragment{
             }
         });
 
-// Botón para navegar al mes anterior
+        // Botón para navegar al mes anterior
         binding.exFivePreviousMonthImage.setOnClickListener(v -> {
             com.kizitonwose.calendar.core.CalendarMonth firstVisibleMonth = binding.exFiveCalendar.findFirstVisibleMonth();
             if (firstVisibleMonth != null) {
@@ -135,8 +181,8 @@ public class CalendarFragment extends Fragment{
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void showAddEventDialog(LocalDate selectedDate) {
-        // Crear un AlertDialog para ingresar el título y la descripción
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_event, null);
 
         final EditText titleEditText = dialogView.findViewById(R.id.editTextTitle);
@@ -146,31 +192,16 @@ public class CalendarFragment extends Fragment{
                 .setTitle("Agregar Evento")
                 .setView(dialogView)
                 .setPositiveButton("Guardar", (dialog, which) -> {
-                    // Obtener los valores de los campos
+
                     String title = titleEditText.getText().toString().trim();
                     String description = descriptionEditText.getText().toString().trim();
 
                     if (!title.isEmpty() && !description.isEmpty()) {
-                        // Crear un nuevo evento
-                        FlightUI newEvent = new FlightUI();
-                        newEvent.setTopic(title);
-                        newEvent.setTxt(description);
+                        saveEvent(title, description);
 
-                        // Formatear la fecha
-                        DateTimeFormatter formatter = null;
-                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                        }
-                        String formattedDate = null; // Convierte LocalDate a String
-                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                            formattedDate = selectedDate.format(formatter);
-                        }
-
-                        // Establecer la fecha en el evento
-                        newEvent.setTime(formattedDate);
-
-                        // Guardar el evento en taskMap
-                        addTaskToDate(selectedDate, newEvent);
+                        // Limpiar los campos
+                        titleEditText.setText("");
+                        descriptionEditText.setText("");
 
                         // Actualizar el adaptador para mostrar el nuevo evento
                         updateAdapterForDate(selectedDate);
@@ -182,7 +213,63 @@ public class CalendarFragment extends Fragment{
                 .show();
     }
 
+    private void showEditEventDialog(LocalDate selectedDate) {
+        List<FlightUI> eventList = taskMap.getOrDefault(selectedDate, new ArrayList<>());
+        // Si hay eventos en ese día, permitir editar el primero (o el que elijas)
+        if (!eventList.isEmpty()) {
+            FlightUI event = eventList.get(0); // Aquí puedes personalizar la lógica para elegir un evento
+            View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_event, null);
 
+            final EditText titleEditText = dialogView.findViewById(R.id.editTextTitle);
+            final EditText descriptionEditText = dialogView.findViewById(R.id.editTextDescription);
+
+            // Rellenar los campos con los valores actuales
+            titleEditText.setText(event.getTopic());
+            descriptionEditText.setText(event.getTxt());
+
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Editar Evento")
+                    .setView(dialogView)
+                    .setPositiveButton("Guardar", (dialog, which) -> {
+                        // Guardar los cambios
+                        String newTitle = titleEditText.getText().toString().trim();
+                        String newDescription = descriptionEditText.getText().toString().trim();
+
+                        if (!newTitle.isEmpty() && !newDescription.isEmpty()) {
+                            event.setTopic(newTitle);
+                            event.setTxt(newDescription);
+                            updateAdapterForDate(selectedDate);  // Actualizar la lista con los cambios
+                        } else {
+                            Toast.makeText(getContext(), "Por favor ingresa un título y una descripción", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setNegativeButton("Cancelar", null)
+                    .show();
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void saveEvent(String Title, String text) {
+        if (text.isEmpty()) {
+            Toast.makeText(requireContext(), "Las cajas no pueden estar vacias", Toast.LENGTH_LONG).show();
+        } else {
+            if (selectedDate != null) {
+                String dateFormatter = DateFormatHelper.localDateToString(selectedDate);
+                FlightUI task = new FlightUI(UUID.randomUUID().toString(), Title, text, dateFormatter);
+                calendarViewModel.AddDataTask(task).thenAccept(isAdd -> {
+                    if (isAdd){
+                        List<FlightUI> eventList = taskMap.getOrDefault(selectedDate, new ArrayList<>());
+                        eventList.add(task);
+                        taskMap.put(selectedDate, eventList);
+                        updateAdapterForDate(selectedDate);
+                    }else {
+                        Toast.makeText(getContext(), "La Tarea no pudo ser agregada", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        }
+        binding.exFiveCalendar.notifyDateChanged(selectedDate);
+    }
 
     private void updateAdapterForDate(LocalDate date) {
         flightAdapter.getFlights().clear();
@@ -192,23 +279,24 @@ public class CalendarFragment extends Fragment{
         flightAdapter.notifyDataSetChanged();
     }
 
-    private void addTaskToDate(LocalDate date, FlightUI task) {
-        if (!taskMap.containsKey(date)) {
-            taskMap.put(date, new ArrayList<>());
-        }
-        taskMap.get(date).add(task);
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void deleteEvent(FlightUI event) {
+        new AlertDialog.Builder(getContext())
+                .setTitle("Confirmar eliminación")
+                .setMessage("¿Estás seguro de que deseas eliminar este evento?")
+                .setPositiveButton("Sí", (dialog, which) -> {
+                    // Eliminar el evento si el usuario confirma
+                    LocalDate date = DateFormatHelper.stringToLocalDate(event.getTime());
+                    List<FlightUI> eventList = taskMap.getOrDefault(date, new ArrayList<>());
+                    eventList.remove(event);
+                    taskMap.put(date, eventList);
+                    updateAdapterForDate(date);  // Actualizar el adaptador para reflejar los cambios
+                    Toast.makeText(getContext(), "Evento eliminado", Toast.LENGTH_SHORT).show(); // Mensaje de éxito
+                })
+                .setNegativeButton("No", null)  // Si el usuario cancela, no hacer nada
+                .show();
     }
 
-    private void deleteEvent(FlightUI event) {
-        LocalDate date = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            date = LocalDate.parse(event.getTime());
-        }
-        List<FlightUI> dateEvents = taskMap.getOrDefault(date, new ArrayList<>());
-        dateEvents.remove(event);
-        taskMap.put(date, dateEvents);
-        updateAdapterForDate(date);
-    }
 
     private void configureBinders(List<DayOfWeek> daysOfWeek) {
         // Clase para manejar las vistas del día
@@ -220,6 +308,14 @@ public class CalendarFragment extends Fragment{
                 super(view);
                 binding = CalendarDayBinding.bind(view);
 
+                view.setOnLongClickListener(v -> {
+                    if (day.getPosition() == DayPosition.MonthDate) {
+                        // Lógica para editar el evento
+                        showEditEventDialog(day.getDate());
+                        return true; // Indica que el evento ha sido consumido
+                    }
+                    return false;
+                });
                 view.setOnClickListener(v -> {
                     if (day.getPosition() == DayPosition.MonthDate) {
                         if (!day.getDate().equals(selectedDate)) {
@@ -260,6 +356,7 @@ public class CalendarFragment extends Fragment{
                 flightBottomView.setBackground(null);
 
                 if (calendarDay.getPosition() == DayPosition.MonthDate) {
+
                     TypedValue typedValue = new TypedValue();
                     context.getTheme().resolveAttribute(R.attr.primaryButton, typedValue, true);
                     int color = typedValue.data;
@@ -271,19 +368,28 @@ public class CalendarFragment extends Fragment{
                     );
 
                     if (calendarDay.getDate().equals(today)) {
-                        layout.setBackgroundResource(R.drawable.selected_bg); // Estilo para el día actual
+                        layout.setBackgroundResource(R.drawable.selected_bg);
+                        binding.exThreeSelectedDateText.setText(calendarDay.getDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy")));// Estilo para el día actual
                     } else if (selectedDate != null && selectedDate.equals(calendarDay.getDate())) {
+                        binding.exThreeSelectedDateText.setText(calendarDay.getDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy")));
                         layout.setBackgroundResource(R.drawable.selected_bg); // Estilo para el día seleccionado
                     } else {
                         layout.setBackgroundResource(0);
                     }
                     List<FlightUI> flightsForDay = taskMap.get(calendarDay.getDate());
                     if (flightsForDay != null && !flightsForDay.isEmpty()) {
-                        // Mostrar eventos en el día (por ejemplo, cambiar color o agregar iconos)
-                        /*flightTopView.setBackgroundColor(ContextCompat.getColor(context, R.color.eventColor));*/
+                        // Resolver colores desde atributos de tema
+                        context.getTheme().resolveAttribute(R.attr.primaryButton, typedValue, true);
+                        int primaryTextColor = typedValue.data;
+
+                        context.getTheme().resolveAttribute(R.attr.utilBrown, typedValue, true);
+                        int utilBrown = typedValue.data;
+
+                        // Aplicar colores a las barras
+                        flightTopView.setBackgroundColor(primaryTextColor);
+                        flightBottomView.setBackgroundColor(utilBrown);
                     }
                 } else {
-                   /* textView.setTextColorRes(R.color.example_5_text_grey_light);*/
                     layout.setBackground(null);
                 }
 
@@ -305,7 +411,6 @@ public class CalendarFragment extends Fragment{
                 legendLayout = CalendarHeaderBinding.bind(view).legendLayout.getRoot();
             }
         }
-
         Typeface typeface = Typeface.create("sans-serif-light", Typeface.NORMAL);
 
         // Configuración del monthHeaderBinder
@@ -323,7 +428,6 @@ public class CalendarFragment extends Fragment{
                             textView.setText(daysOfWeek.get(i)
                                     .getDisplayName(TextStyle.SHORT, Locale.getDefault()).toUpperCase());
                         }
-                        //textView.setTextColorRes(R.color.white);
                         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f);
                         textView.setTypeface(typeface);
                     }
@@ -352,5 +456,4 @@ public class CalendarFragment extends Fragment{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
         return yearMonth.format(formatter);
     }
-
 }
