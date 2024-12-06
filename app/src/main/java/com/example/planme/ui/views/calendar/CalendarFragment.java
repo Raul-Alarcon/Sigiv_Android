@@ -91,24 +91,8 @@ public class CalendarFragment extends Fragment{
         YearMonth endMonth = currentMonth.plusMonths(200);
         List<DayOfWeek> daysOfWeek = daysOfWeek();
 
-
         flightAdapter = new RVFlightAdapter();
         binding.exFiveRv.setAdapter(flightAdapter);
-        calendarViewModel.getDataFlight().observe(getViewLifecycleOwner(),flightUIS -> {
-            flightAdapter.setFlights(flightUIS);
-
-            Map<LocalDate, List<FlightUI>> _taskMap = new HashMap<>();
-
-            flightUIS.forEach( f -> {
-                LocalDate formatter = DateFormatHelper.stringToLocalDate(f.getTime());
-                _taskMap.put(formatter, Collections.singletonList(f));
-
-                binding.exFiveCalendar.notifyDateChanged(formatter);
-            });
-
-            taskMap = _taskMap;
-        });
-
 
         flightAdapter.setOnClickListener( flightUI -> {
             this.showEditEventDialog(selectedDate);
@@ -148,7 +132,7 @@ public class CalendarFragment extends Fragment{
                 LocalDate previousSelectedDate = selectedDate;
                 selectedDate = null; // Limpia la selección actual
                 binding.exFiveCalendar.notifyDateChanged(previousSelectedDate); // Notifica al calendario para actualizar la vista
-                updateAdapterForDate(null); // Actualiza el adaptador (esto depende de tu implementación específica)
+                updateAdapterForDate(selectedDate); // Actualiza el adaptador (esto depende de tu implementación específica)
             }
 
             return null; // Devuelve null ya que no necesitamos devolver un valor específico
@@ -178,6 +162,36 @@ public class CalendarFragment extends Fragment{
                 Toast.makeText(getContext(), "Por favor, selecciona una fecha primero", Toast.LENGTH_SHORT).show();
             }
         });
+
+        calendarViewModel.getDataFlight().observe(getViewLifecycleOwner(),flightUIS -> {
+            flightAdapter.setFlights(flightUIS);
+
+            Map<LocalDate, List<FlightUI>> _taskMap = new HashMap<>();
+
+            flightUIS.forEach( f -> {
+                LocalDate formatter = DateFormatHelper.stringToLocalDate(f.getTime());
+                _taskMap.put(formatter, Collections.singletonList(f));
+
+                binding.exFiveCalendar.notifyDateChanged(formatter);
+            });
+
+            taskMap = _taskMap;
+        });
+
+        if (!calendarViewModel.taskDataCache.isEmpty()) {
+            flightAdapter.setFlights(calendarViewModel.taskDataCache);
+            calendarViewModel.taskDataCache.forEach( flightUI -> {
+                LocalDate dateFormatter = DateFormatHelper.stringToLocalDate(flightUI.getTime());
+                taskMap.put(dateFormatter, Collections.singletonList(flightUI));
+            });
+        }
+
+        if (!flightAdapter.getFlights().isEmpty()) {
+            LocalDate dd = selectedDate;
+            flightAdapter.notifyDataSetChanged();
+        }
+
+
 
     }
 
@@ -234,11 +248,17 @@ public class CalendarFragment extends Fragment{
                         // Guardar los cambios
                         String newTitle = titleEditText.getText().toString().trim();
                         String newDescription = descriptionEditText.getText().toString().trim();
-
                         if (!newTitle.isEmpty() && !newDescription.isEmpty()) {
                             event.setTopic(newTitle);
                             event.setTxt(newDescription);
-                            updateAdapterForDate(selectedDate);  // Actualizar la lista con los cambios
+                            calendarViewModel.UpdateTask(event).thenAccept(isUpdated ->{
+                                if (isUpdated){
+                                    updateAdapterForDate(selectedDate);  // Actualizar la lista con los cambios
+                                }else {
+                                    Toast.makeText(getContext(), "Error al actualizar", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
                         } else {
                             Toast.makeText(getContext(), "Por favor ingresa un título y una descripción", Toast.LENGTH_SHORT).show();
                         }
@@ -288,10 +308,17 @@ public class CalendarFragment extends Fragment{
                     // Eliminar el evento si el usuario confirma
                     LocalDate date = DateFormatHelper.stringToLocalDate(event.getTime());
                     List<FlightUI> eventList = taskMap.getOrDefault(date, new ArrayList<>());
-                    eventList.remove(event);
-                    taskMap.put(date, eventList);
-                    updateAdapterForDate(date);  // Actualizar el adaptador para reflejar los cambios
-                    Toast.makeText(getContext(), "Evento eliminado", Toast.LENGTH_SHORT).show(); // Mensaje de éxito
+                    calendarViewModel.DeleteTask(event).thenAccept(isDeleted ->{
+                        if (isDeleted){
+                            eventList.remove(event);
+                            taskMap.put(date, eventList);
+                            updateAdapterForDate(date);  // Actualizar el adaptador para reflejar los cambios
+                            Toast.makeText(getContext(), "Evento eliminado", Toast.LENGTH_SHORT).show(); // Mensaje de éxito
+                        }else {
+                            Toast.makeText(getContext(), "Evento no seleccionado", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 })
                 .setNegativeButton("No", null)  // Si el usuario cancela, no hacer nada
                 .show();

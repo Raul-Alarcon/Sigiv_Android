@@ -3,8 +3,10 @@ package com.example.planme.data.repository;
 import androidx.annotation.NonNull;
 
 import com.example.planme.data.models.FireBaseModel;
+import com.example.planme.data.models.Note;
 import com.example.planme.data.models.Task;
 import com.example.planme.ui.models.FlightUI;
+import com.example.planme.utils.DateFormatHelper;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,14 +19,14 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class TaskRepository {
-    final DatabaseReference noteDbContext;
+    final DatabaseReference taskDbContext;
     public TaskRepository(DatabaseReference dbContext){
-        this.noteDbContext = dbContext.child(FireBaseModel.task);
+        this.taskDbContext = dbContext.child(FireBaseModel.task);
     }
 
     public void getAllByUser(String userId, Consumer<List<FlightUI>> onFinish){
         try {
-            this.noteDbContext.child(userId)
+            this.taskDbContext.child(userId)
                     .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -46,16 +48,15 @@ public class TaskRepository {
         }
     }
 
-
     public CompletableFuture<Boolean> addTask(String userId, FlightUI task){
         CompletableFuture<Boolean> future = new CompletableFuture<>();
         try {
-            String key = this.noteDbContext.child(userId).push().getKey();
+            String key = this.taskDbContext.child(userId).push().getKey();
 
             task.setId(key);
 
             if(!Objects.equals(key, "") && !Objects.isNull(key)){
-                this.noteDbContext.child(userId)
+                this.taskDbContext.child(userId)
                         .child(key).setValue(task).addOnCompleteListener(_task -> {
                             if(_task.isSuccessful()){
                                 future.complete(true);
@@ -65,6 +66,45 @@ public class TaskRepository {
                             }
                         });
             }
+
+        } catch (Exception e){
+            future.completeExceptionally(e);
+        }
+
+        return future;
+    }
+
+    public CompletableFuture<Boolean> Delete(String userId, String taskId){
+        CompletableFuture<Boolean> future = new CompletableFuture<>();
+
+        try{
+            this.taskDbContext.child(userId).child(taskId)
+                    .removeValue().addOnCompleteListener( task -> {
+                        if (task.isSuccessful()){
+                            future.complete(true);
+                        } else {
+                            future.complete(false);
+                        }
+
+                    });
+        } catch (Exception e){
+            future.completeExceptionally(e);
+        }
+
+        return future;
+    }
+
+    public CompletableFuture<Boolean> updaTask(String userId, FlightUI task){
+        CompletableFuture<Boolean> future = new CompletableFuture<>();
+        try {
+            this.taskDbContext.child(userId)
+                    .child(task.getId()).setValue(task).addOnCompleteListener(_task -> {
+                        if(_task.isSuccessful()){
+                            future.complete(true);
+                        } else {
+                            future.complete(false);
+                        }
+                    });
 
         } catch (Exception e){
             future.completeExceptionally(e);

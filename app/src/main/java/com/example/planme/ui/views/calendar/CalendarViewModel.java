@@ -14,12 +14,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class CalendarViewModel extends ViewModel {
     private final TaskRepository taskRepository;
     private final MutableLiveData<List<FlightUI>> task;
+    public final List<FlightUI> taskDataCache;
     FirebaseDatabase db = FirebaseDatabase.getInstance();
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseUser userSession;
@@ -28,6 +30,8 @@ public class CalendarViewModel extends ViewModel {
         this.taskRepository = new TaskRepository(db.getReference());
         this.userSession = auth.getCurrentUser();
         this.task = new MutableLiveData<>();
+        this.taskDataCache = new ArrayList<>();
+
         this.initialize().thenAccept(unused -> {}).exceptionally(throwable -> {
             ExceptionHelper.log(new Exception(throwable.getMessage()));
             return null;
@@ -37,6 +41,8 @@ public class CalendarViewModel extends ViewModel {
         CompletableFuture<Void> future = new CompletableFuture<>();
         try {
             this.taskRepository.getAllByUser(userSession.getUid(),flightUIS -> {
+                this.taskDataCache.clear();
+                this.taskDataCache.addAll(flightUIS);
                 task.setValue(flightUIS);
             });
         } catch (Exception e) {
@@ -51,5 +57,11 @@ public class CalendarViewModel extends ViewModel {
 
     public CompletableFuture<Boolean> AddDataTask(FlightUI task){
         return this.taskRepository.addTask(userSession.getUid(), task);
+    }
+    public  CompletableFuture<Boolean> DeleteTask(FlightUI task){
+        return  this.taskRepository.Delete(userSession.getUid(), task.getId());
+    }
+    public  CompletableFuture<Boolean> UpdateTask(FlightUI task){
+        return this.taskRepository.updaTask(userSession.getUid(), task);
     }
 }
