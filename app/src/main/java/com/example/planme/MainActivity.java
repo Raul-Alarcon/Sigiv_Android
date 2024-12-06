@@ -7,6 +7,7 @@ import android.view.View;
 import com.example.planme.utils.ExceptionHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
@@ -41,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e){
             ExceptionHelper.log(e);
         }
-
 //        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
 //            Log.e("CrashHandler", "Uncaught Exception", throwable);
 //            // Puedes enviar el log a un servidor o archivo
@@ -61,9 +61,15 @@ public class MainActivity extends AppCompatActivity {
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             try {
+
+                if (destination.getId() == R.id.navigation_chat){
+                    navView.setVisibility(View.GONE);
+                }
                 if (destination.getId() == R.id.navigation_login) {
+
                     navView.setVisibility(View.GONE);
                     Objects.requireNonNull(getSupportActionBar()).hide();
+
                 } else {
                     navView.setVisibility(View.VISIBLE);
                     Objects.requireNonNull(getSupportActionBar()).show();

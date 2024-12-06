@@ -1,11 +1,9 @@
 <resources>
-
     <string name="app_name">PlanMe</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="web_client_id">482461582860-4jdrrhjr5o2bvltiibbk7ku016csd3fl.apps.googleusercontent.com</string>
-
     <string name="txt_nav_bottom_task">Tareas</string>
     <string name="txt_nav_bottom_calendar">Calendario</string>
     <string name="txt_nav_bottom_me">Yo</string>
@@ -61,7 +59,7 @@
     <string name="txt_info_qr">Scanea el codigo QR</string>
     <string name="txt_code_manually">O ingresa el codigo manualmente.</string>
 
-    <string name="txt_btn_googleE">Iniciar con google</string>
+    <string name="txt_btn_google">Iniciar con google</string>
 
     <string name="title_page_new_note">Nota</string>
     <string name="date_message">Hoy %1$s</string>
@@ -82,7 +80,6 @@
     <string name="txt_Version">Version 1.0</string>
     <string name="txt_derechos_reservados">Derechos Reservados</string>
     <string name="txt_creadores">Creadores</string>
-    <string name="txt_btn_google">GOOGLE</string>
     <string name="raul">Raul</string>
     <string name="raul_gmail_com">raul@gmail.com</string>
     <string name="todo">TODO</string>
@@ -96,5 +93,6 @@
     <string name="CorreoAntony">rl19i04001@usonsonate.edu.sv</string>
     <string name="NombreHilder">Hilder Enrique Alpe Bran</string>
     <string name="CorreoHilder">ab21i04002@usonsonate.edu.sv</string>
+    <string name="txt_desarrolladores">DESARROLLADORES</string>
 
 </resources>

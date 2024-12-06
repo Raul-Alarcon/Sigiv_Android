@@ -17,35 +17,11 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentStart="true"
-                android:src="@drawable/common_google_signin_btn_icon_dark"
+                android:src="@drawable/ic_usuario"
                 android:scaleType="centerCrop"
+                android:tint="?attr/primaryTextColor"
                 app:shapeAppearanceOverlay="@style/CircularShape"/>
 
-            <!-- Members Icons Container -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/member_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="+4k"
-                    android:textSize="14sp"
-                    android:layout_marginEnd="4dp"/>
-
-                <!-- Member profile pictures would be added dynamically -->
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="2dp"
-                    android:src="@drawable/common_google_signin_btn_icon_dark"
-                    app:shapeAppearanceOverlay="@style/CircularShape"/>
-
-            </LinearLayout>
         </RelativeLayout>
 
         <!-- Community Info -->
@@ -75,17 +51,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_like"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                app:icon="@drawable/ic_notifications_black_24dp"
-                android:contentDescription="asdasd"
-                app:iconGravity="textStart"
-                app:iconPadding="0dp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_exit"

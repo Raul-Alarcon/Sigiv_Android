@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
+
     <!-- Tema Light -->
     <color name="light_message_panel">#F5F5F5</color>
     <color name="light_background">#FFFFFF</color>
