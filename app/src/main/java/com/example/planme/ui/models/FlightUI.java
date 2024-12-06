@@ -1,22 +1,30 @@
 package com.example.planme.ui.models;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.time.LocalDate;
 
 public class FlightUI {
     private String id;
     private String topic;
     private String txt;
-    private LocalDate time;
+    private String time;
 
-    public FlightUI(String id, String topic, String txt, LocalDate time) {
+    public FlightUI(String id, String topic, String txt, String time) {
         this.id = id;
         this.topic = topic;
         this.txt = txt;
         this.time = time;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public FlightUI() {
-
+        this.id = "";
+        this.topic = "";
+        this.txt = "";
+        this.time = null;
     }
 
     public String getId() {
@@ -43,11 +51,11 @@ public class FlightUI {
         this.txt = txt;
     }
 
-    public LocalDate getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalDate time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

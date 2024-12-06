@@ -35,7 +35,7 @@ public class HomeViewModel extends ViewModel {
     final MemberGroupRepository memberGroupRepository;
     final MessageRepository messageRepository;
    private final MutableLiveData<List<GroupUI>> groups;
-   private final MutableLiveData<MessageException> exception;
+    private final MutableLiveData<MessageException> exception;
    private final MutableLiveData<GroupUI> group;
 
 

@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class RVFlightAdapter extends RecyclerView.Adapter<RVFlightAdapter.Example5FlightsViewHolder>{
 
@@ -25,6 +26,10 @@ public class RVFlightAdapter extends RecyclerView.Adapter<RVFlightAdapter.Exampl
 
     public List<FlightUI> getFlights(){
         return this.flights;
+    }
+    public void setFlights(List<FlightUI> task){
+        flights = task;
+        notifyDataSetChanged();
     }
     public void setOnClickListener(onClickListener listener){
         this.listener = listener;
@@ -71,10 +76,21 @@ public class RVFlightAdapter extends RecyclerView.Adapter<RVFlightAdapter.Exampl
 
         @RequiresApi(api = Build.VERSION_CODES.O)
         public void bind(FlightUI flight) {
-            binding.itemTaskDateText.setText(flight.getTime().format(DateTimeFormatter.ofPattern("EEE \nMMM dd")));
+            LocalDate date = DateFormatHelper.stringToLocalDate(flight.getTime());
+
+            String formatter = formatLocalDate(date);
+
+            binding.itemTaskDateText.setText(formatter);
             binding.itemTopicText.setText(flight.getTopic());
             binding.itemTaskText.setText(flight.getTxt());
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String formatLocalDate(LocalDate localDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE \nMMM dd", Locale.ENGLISH);
+
+        return localDate.format(formatter);
     }
 }
 
