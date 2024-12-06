@@ -17,6 +17,7 @@
     <string name="title_page_login">Login</string>
 
     <string name="edit_text_placeholder">Mensaje</string>
+    <string name="txt_btn_googleEE">Iniciar con google</string>
 
     <string name="txt_calendar_day_legend">LUN</string>
     <string name="txt_calendar_event_item">THU\nJUN 30\n14:00</string>
@@ -58,7 +59,7 @@
     <string name="txt_info_qr">Scanea el codigo QR</string>
     <string name="txt_code_manually">O ingresa el codigo manualmente.</string>
 
-    <string name="txt_btn_google">Google</string>
+    <string name="txt_btn_google">Iniciar con google</string>
 
     <string name="title_page_new_note">Nota</string>
     <string name="date_message">Hoy %1$s</string>
@@ -66,9 +67,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btn_Invitacion">Invitación</string>
     <string name="txt_About">About</string>
+    <string name="txt_Creadores">CREADORES</string>
     <string name="profile_picture">Profile Picture</string>
     <string name="txt_nombre">Nombre</string>
-    <string name="txt_usuario">Usuario1</string>
+    <string name="txt_usuario">Usuario</string>
+    <string name="txt_usuarios">Usuarios</string>
     <string name="txt_apellido">Apellido</string>
     <string name="txt_descripcion">Descripcion</string>
     <string name="txt_correo">Correo</string>
@@ -77,5 +80,18 @@
     <string name="txt_Version">Version 1.0</string>
     <string name="txt_derechos_reservados">Derechos Reservados</string>
     <string name="txt_creadores">Creadores</string>
+    <string name="raul">Raul</string>
+    <string name="raul_gmail_com">raul@gmail.com</string>
+    <string name="todo">TODO</string>
+    <string name="NombreMelvin">Melvin Alexis Tespan Caceres</string>
+    <string name="CorreoMelvin">tc21i04001@usonsonate.edu.sv</string>
+    <string name="NombreRaul">Raúl Edgardo Alarcon Monge</string>
+    <string name="CorreoRaul">am21i04001@usonsonate.edu.sv</string>
+    <string name="NombreErick">Erick Otoniel Centeno Chavez</string>
+    <string name="CorreoErick">cc21i04002@usonsonate.edu.sv</string>
+    <string name="NombreAntony">Antony Reggie Rodríguez López</string>
+    <string name="CorreoAntony">rl19i04001@usonsonate.edu.sv</string>
+    <string name="NombreHilder">Hilder Enrique Alpe Bran</string>
+    <string name="CorreoHilder">ab21i04002@usonsonate.edu.sv</string>
 
 </resources>

@@ -62,12 +62,23 @@
         android:id="@+id/navigation_About"
         android:name="com.example.planme.ui.views.About.AboutFragment"
         android:label="@string/txt_About"
-        tools:layout="@layout/fragment_about" />
+        tools:layout="@layout/fragment_about" >
+        <action
+            android:id="@+id/action_navigation_About_to_navigation_Creadores"
+            app:destination="@id/navigation_Creadores" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_new_note"
         android:name="com.example.planme.ui.views.task.NewNoteFragment"
         android:label="@string/title_page_new_note"
         tools:layout="@layout/fragment_new_note" />
+
+    <fragment
+        android:id="@+id/navigation_Creadores"
+        android:name="com.example.planme.ui.views.Creadores.CreadoresFragment"
+        android:label="@string/txt_Creadores"
+        tools:layout="@layout/fragment_about" />
 
 </navigation>
