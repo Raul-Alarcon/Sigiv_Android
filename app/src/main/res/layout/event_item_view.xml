@@ -13,7 +13,7 @@
         android:id="@+id/itemTaskDateText"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/light_brown"
+        android:background="?attr/secondaryButton"
         android:gravity="center"
         android:lineSpacingExtra="2.5dp"
         android:textAllCaps="true"
