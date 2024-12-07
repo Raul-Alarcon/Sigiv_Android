@@ -24,7 +24,7 @@
     <color name="dark_secondary_button">#3e8bd4</color>
     <color name="dark_secondary_button_variant">#FF03DAC5</color>
     <color name="dark_primary_button_variant">#FF018786</color>
-    <color name="dark_alert_error">#E57373</color>
+    <color name="dark_alert_error">#2196F3</color>
     <color name="dark_brown">#5D4037</color>
 
     <color name="msg_background_color">#E8E8E8</color>

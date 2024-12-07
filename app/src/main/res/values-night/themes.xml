@@ -12,9 +12,6 @@
         <item name="secondaryButtonVariant">@color/dark_secondary_button_variant</item>
         <item name="alertError">@color/dark_alert_error</item>
         <item name="utilBrown">@color/dark_brown</item>
-        <item name="android:statusBarColor">#373434</item>
-
-
 
         <item name="colorPrimary">#2196F3</item>
         <item name="android:statusBarColor">@color/dark_primary_button</item>
